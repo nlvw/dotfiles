@@ -1,15 +1,46 @@
-" Specify a directory for plugins
-" - Avoid using standard Vim directory names like 'plugin'
-" - Make sure you use single quotes
+" ------------------------------------------------------------------------------------
+" Plugin Installation (Plugin Settings At End of File)
+" ------------------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 
-" Colorfull Status Bar 
-Plug 'itchyny/lightline.vim'
+	" PaperColor Theme https://vimawesome.com/plugin/papercolor-theme
+	Plug 'nlknguyen/papercolor-theme'
 
-" Initialize plugin system
+	" Draculo Theme https://vimawesome.com/plugin/vim
+	Plug 'dracula/vim'
+
+	" Colorfull Status Bar 
+	Plug 'itchyny/lightline.vim'
+
+	" The Nerd Tree https://vimawesome.com/plugin/nerdtree-red
+	Plug 'scrooloose/nerdtree'
+
+	" Fugitive (Git Commands) https://vimawesome.com/plugin/fugitive-vim
+	Plug 'tpope/vim-fugitive'
+
+	" Git Gutter (show diff) https://vimawesome.com/plugin/vim-gitgutter
+	Plug 'airblade/vim-gitgutter'
+
+	" Surround (quoting/parenthesizing made simple) https://vimawesome.com/plugin/surround-vim
+	Plug 'tpope/vim-surround'
+
+	" delimitmate (auto close stuff) https://vimawesome.com/plugin/delimitmate
+	Plug 'raimondi/delimitmate'
+
+	" Syntax checking hacks for vim https://vimawesome.com/plugin/syntastic
+	Plug 'scrooloose/syntastic'
+
+	" Syntax for Rust w/Syntastic https://vimawesome.com/plugin/rust-vim-superman
+	Plug 'rust-lang/rust.vim'
+
+	" Syntax for Powershell https://vimawesome.com/plugin/vim-ps1
+	Plug 'pprovost/vim-ps1'
+
 call plug#end()
 
-" Set Color Theme
+" ------------------------------------------------------------------------------------
+" Default Vim Settings 
+" ------------------------------------------------------------------------------------
 set background=dark
 colorscheme PaperColor
 
@@ -150,45 +181,11 @@ if has("autocmd")
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+
 " ------------------------------------------------------------------------------------
-" Plugin Management and Settings https://vimawesome.com/
-"" -----------------------------------------------------------------------------------
-call plug#begin('~/.vim/plugged')
-
-	" PaperColor Theme https://vimawesome.com/plugin/papercolor-theme
-	Plug 'nlknguyen/papercolor-theme'
-
-	" Draculo Theme https://vimawesome.com/plugin/vim
-	Plug 'dracula/vim'
-
-	" Colorfull Status Bar 
-	Plug 'itchyny/lightline.vim'
-
-	" The Nerd Tree https://vimawesome.com/plugin/nerdtree-red
-	Plug 'scrooloose/nerdtree'
-
-	" Fugitive (Git Commands) https://vimawesome.com/plugin/fugitive-vim
-	Plug 'tpope/vim-fugitive'
-
-	" Git Gutter (show diff) https://vimawesome.com/plugin/vim-gitgutter
-	Plug 'airblade/vim-gitgutter'
-
-	" Surround (quoting/parenthesizing made simple) https://vimawesome.com/plugin/surround-vim
-	Plug 'tpope/vim-surround'
-
-	" delimitmate (auto close stuff) https://vimawesome.com/plugin/delimitmate
-	Plug 'raimondi/delimitmate'
-
-	" Syntax checking hacks for vim https://vimawesome.com/plugin/syntastic
-	Plug 'scrooloose/syntastic'
-
-	" Syntax for Rust w/Syntastic https://vimawesome.com/plugin/rust-vim-superman
-	Plug 'rust-lang/rust.vim'
-
-	" Syntax for Powershell https://vimawesome.com/plugin/vim-ps1
-	Plug 'pprovost/vim-ps1'
-
-call plug#end()
+" Plugin Settings
+" ------------------------------------------------------------------------------------
 
 " Syntastic Settings
 set statusline+=%#warningmsg#

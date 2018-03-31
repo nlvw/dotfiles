@@ -1,5 +1,6 @@
-" Use the dracula theme
-colorscheme dracula
+" Set Color Theme
+set background=dark
+colorscheme PaperColor
 
 " Enable syntax highlighting
 syntax on

@@ -140,8 +140,9 @@ install_dotfiles () {
 setup_gitconfig
 install_dotfiles
 
-# Install Vim Plugins
-#vim +PlugInstall +qall
+# Install Vim-Plug & Plugins
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim +PlugInstall +qall
 
 echo ''
 echo '  All installed!'

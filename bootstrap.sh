@@ -140,5 +140,8 @@ install_dotfiles () {
 setup_gitconfig
 install_dotfiles
 
+# Install Vim Plugins
+#vim +PlugInstall +qall
+
 echo ''
 echo '  All installed!'

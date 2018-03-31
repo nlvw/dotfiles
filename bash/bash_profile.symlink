@@ -11,6 +11,9 @@ unset file;
 # Enable bash vi mode
 set -o vi
 
+# Automate ssh-agent startup
+[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)"
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
 

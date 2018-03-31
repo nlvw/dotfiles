@@ -140,6 +140,11 @@ install_dotfiles () {
 setup_gitconfig
 install_dotfiles
 
+# Setup SSH Files
+touch ~/.ssh/config
+chmod 600 ~/.ssh/config
+echo "AddKeysToAgent yes" >> ~/.ssh/config
+
 # Install Vim-Plug & Plugins
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim +PlugInstall +qall

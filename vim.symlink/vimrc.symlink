@@ -47,8 +47,8 @@ call plug#end()
 
 " Install Missing Plugings
 autocmd VimEnter *
-  \  if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
-  \|   PlugInstall | q
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
   \| endif
 
 " ------------------------------------------------------------------------------------

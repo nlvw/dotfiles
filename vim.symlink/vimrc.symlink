@@ -45,6 +45,12 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
+" Install Missing Plugings
+autocmd VimEnter *
+  \  if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall | q
+  \| endif
+
 " ------------------------------------------------------------------------------------
 " Default Vim Settings 
 " ------------------------------------------------------------------------------------

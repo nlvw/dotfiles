@@ -1,5 +1,5 @@
 " Use the dracula theme
-color dracula
+colorscheme dracula
 
 " Enable syntax highlighting
 syntax on

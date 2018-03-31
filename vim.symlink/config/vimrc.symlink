@@ -63,6 +63,9 @@ syntax on
 " Make Vim more useful
 set nocompatible
 
+" Disable audio bell / beebing tone
+set belloff=all
+
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
 

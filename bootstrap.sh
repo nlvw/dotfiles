@@ -27,23 +27,21 @@ fail () {
   exit
 }
 
-setup_gitconfig () {
-  if ! [ -f git/gitconfig.local.symlink ]
+setup_gituserinfo () {
+  if ! [ -f git/userinfo ]
   then
-    info 'setup gitconfig'
+    info 'setup user info'
 
-    git_credential='cache'
-    if [ "$(uname -s)" == "Darwin" ]
-    then
-      git_credential='osxkeychain'
-    fi
+		touch git/userinfo
 
     user ' - What is your github author name?'
     read -e git_authorname
     user ' - What is your github author email?'
     read -e git_authoremail
 
-    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" git/gitconfig.symlink > git/gitconfig.symlink
+		echo "[user]" > git/userinfo
+		echo "name = ${git_authorname}" >> git/userinfo
+		echo "email = ${git_authoremail}" >> git/userinfo
 
     success 'gitconfig'
   fi
@@ -137,7 +135,7 @@ install_dotfiles () {
   done
 }
 
-setup_gitconfig
+setup_gituserinfo
 install_dotfiles
 
 # Setup SSH Files

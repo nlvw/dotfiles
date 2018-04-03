@@ -12,7 +12,7 @@ unset file;
 set -o vi
 
 # Automate ssh-agent startup
-[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)"
+[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" &>/dev/null
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;

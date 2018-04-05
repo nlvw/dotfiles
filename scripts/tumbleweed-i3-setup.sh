@@ -1,4 +1,5 @@
-# Setup For I3-Gaps on a minimal install of OpenSuse Tumbleweed
+# Setup For i3-gaps on OpenSuse Tumbleweed
+# Server / Text Only Install
 
 # Check for, and apply, updates
 zypper ref

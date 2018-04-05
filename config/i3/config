@@ -162,12 +162,26 @@ bindsym $mod+Shift+q kill
 bindsym Print exec screenshot
 bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
 
-# startup
+# #---Starting External Scripts---# #
+
+# Composite Manager
+exec --no-startup-id compton -f
+
+# Increase key rate
+exec --no-startup-id xset r rate 300 50
+
+# Bar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+# Background
 #exec_always --no-startup-id feh --bg-scale /home/booker/.wallpaper.jpg
 
 # Keys
 exec_always xmodmap -e "clear lock" #disable caps lock switch
 exec_always xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
 
-exec --no-startup-id compton -f
+#Unclutter makes the mouse invisible after a brief period
+#exec --no-startup-id unclutter
+
+#Mount other drives:
+#exec --no-startup-id sudo mount -a

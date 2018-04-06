@@ -1,10 +1,16 @@
 # DotFiles For My Linux Preferences
 
 ## Setup Instructions
-```
-cd ~ 
+
+```bash
+cd ~
 git clone https://github.com/Wolfereign/.dotfiles.git 
 bash ~/.dotfiles/bootstrap.sh
 ```
- 
-Any files with the extension of ".symlink"  will get symlinked to '~/' and the ".symlink" extension will be stripped.  Also the file will be renamed with a '.' prefix.
+
+## Auto Symlink Determination
+
+* "file.symh" -> "~/.file"
+* "file.symc" -> "~/.config/file"
+
+The bootstrap.sh script will search the repository for the above extenstion and automatically create symlinks as specified.

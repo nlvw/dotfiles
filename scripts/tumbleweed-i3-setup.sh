@@ -16,7 +16,7 @@ zypper install -y lightdm-gtk-greeter-branding-openSUSE
 sed -i  's#\(DISPLAYMANAGER=\)\(.*\)#\1"lightdm"#' /etc/sysconfig/displaymanager
 
 # Install i3-gaps
-zypper install -y i3-gaps rofi compton alacritty uxvrt scrot feh
+zypper install -y i3-gaps rofi compton alacritty rxvt-unicode urxvt-font-size urxvt-perls scrot feh
 sed -i  's#\(DEFAULT_WM=\)\(.*\)#\1"i3"#' /etc/sysconfig/windowmanager
 
 # Install Polybar

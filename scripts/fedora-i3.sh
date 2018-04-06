@@ -16,7 +16,7 @@ systemctl enable lightdm.service
 
 # Install i3-gaps
 dnf copr enable gregw/i3desktop
-dnf install -y i3-gaps i3status dmenu rofi
+dnf install -y i3-gaps i3status dmenu rofi i3lock
 
 # Install i3 apps
 dnf install -y compton rxvt-unicode-256color scrot feh

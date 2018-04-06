@@ -1,187 +1,247 @@
-# mod
-set $mod Mod4
+###########################################################################################
+# #---Basic Definitions---# #
+###########################################################################################
+#Needed for i3-gaps
+for_window [class="^.*"] border pixel 3
+gaps inner 15
+gaps outer 15
+font pango:mono 9
+set $mod Mod1
+set $term --no-startup-id alacritty
+#set $video --no-startup-id bash video.sh
+set $stoprec --no-startup-id killall ffmpeg
 
-# font
-#font pango: System San Francisco Display 10
+###########################################################################################
+# #---Run At Startup---# #
+###########################################################################################
+exec --no-startup-id xset r rate 300 50 # Incrase Key Rate
+exec --no-startup-id sudo mount -a # Mount other drives:
+exec --no-startup-id compton --xrender-sync-fence # Composite manager:
+exec_always --no-startup-id ~/.config/polybar/launch.sh #Launch Polybar where appropriate
+#exec --no-startup-id unclutter # Unclutter makes the mouse invisible after a brief period
+#exec --no-startup-id nm-applet # Network Manager applet
 
-# thin borders
-hide_edge_borders both
+###########################################################################################
+# #---Set Variables---# #
+###########################################################################################
+set $shutdown sudo shutdown -h now
+set $reboot sudo reboot
 
-# drag windows
-floating_modifier $mod
+#FOR ALSA/AMIXER
+#set $inc --no-startup-id amixer sset Master 2%+
+#set $biginc --no-startup-id amixer sset Master 5%+
+#set $dec --no-startup-id amixer sset Master 2%-
+#set $bigdec --no-startup-id amixer sset Master 5%-
+#set $mute --no-startup-id amixer sset Master toggle
+#set $truemute --no-startup-id amixer sset Master mute
+#set $screencast  --no-startup-id bash screencast_alsa.sh
+#set $audio --no-startup-id bash audio_alsa.sh
 
-# change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+#For PULSEAUDIO/PAMIXER
+set $inc --no-startup-id pamixer --allow-boost -i 5
+set $biginc --no-startup-id pamixer --allow-boost -i 15
+set $dec --no-startup-id pamixer --allow-boost -d 5
+set $bigdec --no-startup-id pamixer --allow-boost -d 15
+set $mute --no-startup-id pamixer --allow-boost -t
+set $micmute --no-startup-id pamixer --allow-boost -t
+set $truemute --no-startup-id pamixer -m
+set $screencast  --no-startup-id bash screencast_pulse.sh
+set $audio --no-startup-id bash audio_pulse.sh
 
-# lock
-bindsym $mod+Shift+x exec i3lock --color 475263
+###########################################################################################
+# #---Bindings---# #
+###########################################################################################
 
-# move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+# #---Basic---# #
+bindsym $mod+Return 		exec $term
+bindsym $mod+Shift+Return 	exec $term -e vim ~/vimwiki/index.wiki
 
-# split in horizontal orientation
-bindsym $mod+b split h
+bindsym $mod+q		    	kill
+bindsym $mod+Shift+q    	kill
 
-# split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+d			    exec rofi -show run
 
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen
+bindsym $mod+f			    fullscreen toggle
+bindsym $mod+Shift+space 	floating toggle
+bindsym $mod+space		    focus mode_toggle
+bindsym $mod+t			    split toggle
+bindsym $mod+o			    sticky toggle
 
-# change container layout
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+Shift+Escape 	    exec i3-msg exit
+bindsym $mod+Shift+BackSpace	exec $reboot
+bindsym $mod+x			        exec --no-startup-id ~/.config/i3/lock.sh
+bindsym $mod+Shift+x		    exec $shutdown
 
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+# #---Movement---# #
+bindsym $mod+Left		    focus left
+bindsym $mod+Down		    focus down
+bindsym $mod+Up			    focus up
+bindsym $mod+Right 		    focus right
 
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+h			    focus left
+bindsym $mod+j			    focus down
+bindsym $mod+k			    focus up
+bindsym $mod+l			    focus right
 
-# focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+Shift+Left		move left
+bindsym $mod+Shift+Down		move down
+bindsym $mod+Shift+Up		move up
+bindsym $mod+Shift+Right 	move right
 
-set $workspace1 "1 "
-set $workspace2 "2 "
-set $workspace3 "3 "
-set $workspace4 "4 "
-set $workspace5 "5 "
-set $workspace6 "6 "
-set $workspace7 "7 "
-set $workspace8 "8 "
-set $workspace9 "9 "
-set $workspace10 "10 "
+bindsym $mod+Shift+h		move left
+bindsym $mod+Shift+j		move down
+bindsym $mod+Shift+k		move up
+bindsym $mod+Shift+l		move right
 
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $workspace1
-bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace $workspace4
-bindsym $mod+Shift+5 move container to workspace $workspace5
-bindsym $mod+Shift+6 move container to workspace $workspace6
-bindsym $mod+Shift+7 move container to workspace $workspace7
-bindsym $mod+Shift+8 move container to workspace $workspace8
-bindsym $mod+Shift+9 move container to workspace $workspace9
-bindsym $mod+Shift+0 move container to workspace $workspace10
+# #---Resize---# #
+bindsym $mod+Shift+y		resize shrink width 10 px or 10ppt
+bindsym $mod+Shift+u		resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+i		resize grow height 10 px or 10 ppt
+bindsym $mod+Shift+o		resize grow width 10 px or 10 ppt
+
+bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 15
+bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
+
+bindsym $mod+s			    gaps inner current plus 5
+bindsym $mod+Shift+s		gaps inner current minus 5
+bindsym $mod+z			    gaps outer current plus 5
+bindsym $mod+Shift+z		gaps outer current minus 5
+
+# #---Workspace Bindings---# #
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace $workspace5
-bindsym $mod+6 workspace $workspace6
-bindsym $mod+7 workspace $workspace7
-bindsym $mod+8 workspace $workspace8
-bindsym $mod+9 workspace $workspace9
-bindsym $mod+0 workspace $workspace10
+bindsym $mod+1		workspace $ws1
+bindsym $mod+2		workspace $ws2
+bindsym $mod+3		workspace $ws3
+bindsym $mod+4		workspace $ws4
+bindsym $mod+5		workspace $ws5
+bindsym $mod+6		workspace $ws6
+bindsym $mod+7		workspace $ws7
+bindsym $mod+8		workspace $ws8
+bindsym $mod+9		workspace $ws9
+bindsym $mod+0		workspace $ws10
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
+# move focused container to workspace
+bindsym $mod+Shift+1	move container to workspace $ws1
+bindsym $mod+Shift+2	move container to workspace $ws2
+bindsym $mod+Shift+3	move container to workspace $ws3
+bindsym $mod+Shift+4	move container to workspace $ws4
+bindsym $mod+Shift+5	move container to workspace $ws5
+bindsym $mod+Shift+6	move container to workspace $ws6
+bindsym $mod+Shift+7	move container to workspace $ws7
+bindsym $mod+Shift+8	move container to workspace $ws8
+bindsym $mod+Shift+9	move container to workspace $ws9
+bindsym $mod+Shift+0	move container to workspace $ws10
 
-# restart i3 inplace
-bindsym $mod+Shift+r restart
+# #---Media Keys---# #
 
-# exit i3
-bindsym $mod+Shift+e exec /home/booker/.i3/scripts/exit_menu
+# Volume keys
+bindsym $mod+plus		    exec $inc
+bindsym $mod+Shift+plus		exec $biginc
+bindsym $mod+minus 		    exec $dec
+bindsym $mod+Shift+minus	exec $bigdec
+bindsym $mod+less 		    exec $prev
+bindsym $mod+Shift+less		exec $beg
+bindsym $mod+greater		exec $next
+bindsym $mod+Shift+greater	exec $next
 
+# For advancing forward/backward in an mpd song
+bindsym $mod+bracketleft 	        exec $lilbak
+bindsym $mod+Shift+bracketleft 	    exec $bigbak
+bindsym $mod+bracketright 	        exec $lilfor
+bindsym $mod+Shift+bracketright     exec $bigfor
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-    bindsym h resize shrink width 10 px or 10 ppt
-    bindsym j resize grow height 10 px or 10 ppt
-    bindsym k resize shrink height 10 px or 10 ppt
-    bindsym l resize grow width 10 px or 10 ppt
+# Print screen takes a screenshot.
+# With shift, it takes one only of the given window.
+bindsym Print 			    exec --no-startup-id scrot
+bindsym Shift+Print 		exec --no-startup-id scrot -u
 
-    bindsym Lefj resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-# resize mode
-bindsym $mod+r mode "resize"
-
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
-
-# window colors
-#                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
-
-# sticky window
-bindsym $mod+Shift+s sticky toggle
-
-# floating
-for_window [class="qTox"] floating enable
-for_window [class="Pavucontrol"] floating enable
-for_window [class="Skype"] floating enable
-
-# default workspaces
-assign [class="Spotify"] $workspace10
-assign [class="Skype"] $workspace9
-assign [class="qTox"] $workspace9
-
-# workspace default monitors
-workspace $workspace1 output DVI-I-2
-workspace $workspace2 output DVI-I-2
-workspace $workspace3 output DVI-I-2
-workspace $workspace4 output DVI-I-2
-workspace $workspace5 output DVI-I-2
-workspace $workspace6 output DVI-I-2
-workspace $workspace9 output DVI-I-2
-workspace $workspace10 output DVI-I-2
-
-# key-bindings
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 2 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 2 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 2 toggle # mute sound
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioPause exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-bindsym $mod+Shift+f exec firefox
-bindsym $mod+Return exec urxvt
-bindsym $mod+Shift+q kill
-bindsym Print exec screenshot
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
-
-# #---Starting External Scripts---# #
-
-# Composite Manager
-exec --no-startup-id compton -f
-
-# Increase key rate
-exec --no-startup-id xset r rate 300 50
-
-# Bar
-exec_always --no-startup-id ~/.config/polybar/launch.sh
-
-# Background
-#exec_always --no-startup-id feh --bg-scale /home/booker/.wallpaper.jpg
-
-# Keys
-exec_always xmodmap -e "clear lock" #disable caps lock switch
-exec_always xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
-
-#Unclutter makes the mouse invisible after a brief period
-#exec --no-startup-id unclutter
-
-#Mount other drives:
-#exec --no-startup-id sudo mount -a
+# #---Extra XF86 Keys---# #
+# These are the extra media keys that some keyboards have.
+bindsym XF86AudioMute		    exec $mute
+bindsym XF86AudioLowerVolume	exec $dec
+bindsym XF86AudioRaiseVolume	exec $inc
+bindsym XF86PowerOff		    exec $shutdown
+##bindsym XF86Copy		        exec
+##bindsym XF86Open		        exec
+##bindsym XF86Paste		        exec
+##bindsym XF86Cut		        exec
+##bindsym XF86MenuKB		    exec
+bindsym XF86Calculator		    exec $term -e R -q
+bindsym XF86Sleep		        exec sudo zzz
+##bindsym XF86WakeUp		    exec
+bindsym XF86Explorer	    	exec $term -e ranger
+##bindsym XF86Send		        exec
+##bindsym XF86Xfer		        exec
+bindsym XF86WWW			        exec --no-startup-id $BROWSER
+##bindsym XF86DOS		        exec
+bindsym XF86ScreenSaver	       	exec exec --no-startup-id ~/.config/i3/lock.sh
+##bindsym XF86RotateWindows    	exec
+##bindsym XF86TaskPane		    exec
+##bindsym XF86Favorites		    exec
+bindsym XF86MyComputer		    exec $term -e ranger
+##bindsym XF86Back		        exec
+##bindsym XF86Forward		    exec
+bindsym XF86Eject		        exec sudo umount -R /mnt
+bindsym XF86AudioNext	    	exec $next
+bindsym XF86AudioPlay		    exec $pause
+bindsym XF86AudioPrev		    exec $prev
+bindsym XF86AudioStop		    exec $pause
+bindsym XF86AudioRecord		    exec $audio
+bindsym XF86AudioRewind	    	exec $lilbak
+bindsym XF86AudioForward	    exec $lilfor
+##bindsym XF86Phone		        exec
+##bindsym XF86Tools		        exec
+bindsym XF86HomePage	    	exec $BROWSER https://lukesmith.xyz
+bindsym XF86Reload		        restart
+##bindsym XF86ScrollUp	    	exec
+##bindsym XF86ScrollDown		exec
+##bindsym XF86New		        exec
+##bindsym XF86LaunchA	    	exec
+##bindsym XF86LaunchB		    exec
+##bindsym XF86Launch2		    exec
+##bindsym XF86Launch3		    exec
+##bindsym XF86Launch4		    exec
+##bindsym XF86Launch5		    exec
+##bindsym XF86Launch6		    exec
+##bindsym XF86Launch7		    exec
+##bindsym XF86Launch8		    exec
+##bindsym XF86Launch9		    exec
+bindsym XF86AudioMicMute	    exec $micmute
+##bindsym XF86TouchpadToggle	exec
+bindsym XF86TouchpadOn		    exec --no-startup-id exec synclient TouchpadOff=0
+bindsym XF86TouchpadOff	    	exec --no-startup-id exec synclient TouchpadOff=1
+bindsym XF86Suspend		        exec --no-startup-id ~/.config/i3/lock.sh
+bindsym XF86Close		        kill
+bindsym XF86WebCam		        exec --no-startup-id camtoggle
+bindsym XF86Mail		        exec $term -e neomutt
+bindsym XF86Messenger	    	exec $term -e weechat
+bindsym XF86Search		        exec $BROWSER https://duckduckgo.com
+##bindsym XF86Go		    	exec
+##bindsym XF86Finance	    	exec
+##bindsym XF86Game	        	exec
+bindsym XF86Shop		        exec $BROWSER https://ebay.com
+bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 15
+bindsym XF86MonBrightnessUp	    exec --no-startup-id xbacklight -inc 15
+bindsym XF86AudioMedia		    exec $music
+bindsym XF86Display		        exec --no-startup-id arandr
+#bindsym XF86KbdLightOnOff  	exec
+bindsym XF86KbdBrightnessDown	exec --no-startup-id python3.6 ~/.i3/kb-lights.py -
+bindsym XF86KbdBrightnessUp	    exec --no-startup-id python3.6 ~/.i3/kb-lights.py +
+##bindsym XF86Reply		        exec
+##bindsym XF86MailForward   	exec
+##bindsym XF86Save	        	exec
+bindsym XF86Documents	    	exec $term -e ranger ~/Documents
+##bindsym XF86Battery		    exec
+##bindsym XF86Bluetooth	    	exec
+bindsym XF86WLAN		        exec $netrefresh

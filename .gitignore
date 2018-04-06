@@ -1,4 +1,4 @@
 git/userinfo
-vim.symlink/autoload/plug.vim
-vim.symlink/autoload/plug.vim.old
-vim.symlink/plugged/
+vim.symh/autoload/plug.vim
+vim.symh/autoload/plug.vim.old
+vim.symh/plugged/

@@ -1,22 +1,40 @@
 ! Dracula Xresources palette
-*.foreground: #F8F8F2
-*.background: #282A36
-*.color0:     #000000
-*.color8:     #4D4D4D
-*.color1:     #FF5555
-*.color9:     #FF6E67
-*.color2:     #50FA7B
-*.color10:    #5AF78E
-*.color3:     #F1FA8C
-*.color11:    #F4F99D
-*.color4:     #BD93F9
-*.color12:    #CAA9FA
-*.color5:     #FF79C6
-*.color13:    #FF92D0
-*.color6:     #8BE9FD
-*.color14:    #9AEDFE
-*.color7:     #BFBFBF
-*.color15:    #E6E6E6
+! special
+*.foreground:   #f8f2f4
+*.background:   #151516
+*.cursorColor:  #f8f2f4
+
+! black
+*.color0:       #27272d
+*.color8:       #3a3a3d
+
+! red
+*.color1:       #d4617e
+*.color9:       #c47488
+
+! green
+*.color2:       #73da8e
+*.color10:      #89e4a1
+
+! yellow
+*.color3:       #ced686
+*.color11:      #e0e5b6
+
+! blue
+*.color4:       #38bdc3
+*.color12:      #8be6ea
+
+! magenta
+*.color5:       #e39ab8
+*.color13:      #f6c6ff
+
+! cyan
+*.color6:       #96e6ea
+*.color14:      #c4f6f8
+
+! white
+*.color7:       #978c98
+*.color15:      #dacbdb
 
 URxvt.intensityStyles:	false
 URxvt.background:       [70]#000000
@@ -47,6 +65,14 @@ rofi.color-normal:	#111, #819396, #222, #008ed4, #ffffff
 rofi.color-active:	#002b37, #008ed4, #003643, #008ed4, #66c6ff
 rofi.color-urgent:	#002b37, #da4281, #003643, #008ed4, #890661
 
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: argb:d9151516, #151516, #151516
+rofi.color-normal: #151516, #27272d, #151516, #151516, #f8f2f4
+rofi.color-active: #8be6ea, #27272d, #151516, #151516, #f8f2f4
+rofi.color-urgent: #151516, #27272d, #151516, #151516, #f8f2f4
 rofi.fake-transparency:	true
 rofi.lines:		3
 rofi.bw:		0

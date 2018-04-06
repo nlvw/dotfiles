@@ -29,7 +29,7 @@ sudo dnf install -y polybar
 
 
 # Install basic cli apps
-dnf install -y vim tmux ranger git unzip
+dnf install -y vim tmux ranger git unzip ImageMagick
 
 # Install gui apps
 dnf install -y firefox

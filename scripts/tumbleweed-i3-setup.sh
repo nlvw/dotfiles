@@ -28,7 +28,7 @@ zypper install -y polybar
 zypper install -y pulseaudio pulseaudio-utils alsa-plugins-pulse pulseaudio-module-zeroconf pulseaudio-module-x11 pulseaudio-ctl pavucontrol
 
 # Install basic cli apps
-zypper install -y vim tmux ranger git unzip
+zypper install -y vim tmux ranger git unzip ImageMagick
 
 # Install gui apps
 zypper install -y firefox

@@ -5,7 +5,7 @@
 
 # Check for, and apply, updates
 zypper ref
-zypper dup
+zypper dup -y
 
 # Install x11 (X Windows System)
 zypper install -y -t pattern x11

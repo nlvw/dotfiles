@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Setup For i3-gaps on OpenSuse Tumbleweed
 # Server / Text Only Install
 
@@ -14,7 +16,7 @@ zypper install -y lightdm-gtk-greeter-branding-openSUSE
 sed -i  's#\(DISPLAYMANAGER=\)\(.*\)#\1"lightdm"#' /etc/sysconfig/displaymanager
 
 # Install i3-gaps
-zypper install -y i3-gaps rofi lemonbar compton alacritty lxappearance scrot feh
+zypper install -y i3-gaps rofi compton alacritty uxvrt scrot feh
 sed -i  's#\(DEFAULT_WM=\)\(.*\)#\1"i3"#' /etc/sysconfig/windowmanager
 
 # Install Polybar
@@ -32,3 +34,7 @@ zypper install -y vim tmux ranger git unzip
 zypper install -y firefox
 
 # Rice It Up!!
+if [ ! -f ~/.dotfiles/bootstrap.sh ]; then
+    git clone https://github.com/Wolfereign/.dotfiles.git
+    bash ~/.dotfiles/bootstrap.sh
+fi

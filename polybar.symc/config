@@ -9,25 +9,17 @@
 ;=====================================================
 
 [colors]
-;background = ${xrdb:color0}
-background = #00000000
+
+background = #005f627a
 background-alt = #444
-foreground = ${xrdb:color7}
-;foreground = #dfdfdf
+foreground = #f2f2f2
 foreground-alt = #555
 primary = ${xrdb:color3}
-;primary = ${xrdb:color3}
 secondary = ${xrdb:color5}
-;secondary = #e60053
 alert = #bd2c40
 col = #00f
-;fg = ${xrdb:color7}
-;bg = ${xrdb:color2}
 
-[bar/example]
-;monitor = ${env:MONITOR:HDMI-1}
-monitor = ${env:MONITOR}
-;monitor = ${env:MONITOR:LVDS-1}
+[bar/top]
 width = 100%
 height = 24
 ;offset-x = 1%
@@ -54,8 +46,8 @@ font-0 = mono:pixelsize=9;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = Wuncon Siji:pixelsize=9;1
 
-#modules-left = i3
-modules-left = i3 mpd
+modules-left = i3
+#modules-left = i3 mpd
 #modules-center = mpd
 #modules-right = volume wlan eth battery temperature date
 modules-right = home filesystem volume wlan eth battery temperature date

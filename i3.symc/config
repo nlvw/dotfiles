@@ -246,3 +246,43 @@ bindsym XF86Documents	    	exec $term -e ranger ~/Documents
 ##bindsym XF86Battery		    exec
 ##bindsym XF86Bluetooth	    	exec
 bindsym XF86WLAN		        exec $netrefresh
+
+###########################################################################################
+# #---Colors---# #
+###########################################################################################
+
+# Special
+set_from_resource $foreground foreground
+set_from_resource $background background
+set_from_resource $cursorColor cursorColor
+# Black
+set_from_resource $color0  color0
+set_from_resource $color8  color8
+# Red
+set_from_resource $color1  color1
+set_from_resource $color9  color9
+# Green
+set_from_resource $color2  color2
+set_from_resource $color10 color10
+# Yellow
+set_from_resource $color3  color3
+set_from_resource $color11 color11
+# Blue
+set_from_resource $color4  color4
+set_from_resource $color12 color12
+# Grey
+set_from_resource $color5  color5
+set_from_resource $color13 color13
+# Lightgreen
+set_from_resource $color6  color6
+set_from_resource $color14 color14
+# White
+set_from_resource $color7  color7
+set_from_resource $color15 color15
+
+# i3 windows decoration
+# Class                 Border      Background  Text        Indicator   Child_border
+client.focused          $background $background $foreground $background $background
+client.focused_inactive $background $background $foreground $background $background
+client.unfocused        $background $background $color8     $background $background
+client.urgent           $background $background $color1     $background $background

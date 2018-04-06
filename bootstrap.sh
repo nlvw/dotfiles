@@ -13,7 +13,7 @@ set -e
 for src in $(find -H "$DOTFILES_ROOT" -maxdepth 4 -name '*.symh' -not -path '*.git*')
 do
   dst="$HOME/.$(basename "${src%.*}")"
-  rm -rf "$dst" || true
+  rm -rf "$dst" &>/dev/null || true
   ln -s "$src" "$dst"
 done
 
@@ -22,7 +22,7 @@ mkdir ~/.config &>/dev/null || true
 for src in $(find -H "$DOTFILES_ROOT" -maxdepth 4 -name '*.symc' -not -path '*.git*')
 do
   dst="$HOME/.config/$(basename "${src%.*}")"
-  rm -rf "$dst" || true
+  rm -rf "$dst" &>/dev/null || true
   ln -s "$src" "$dst"
 done
 

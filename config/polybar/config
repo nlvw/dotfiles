@@ -12,7 +12,7 @@
 ;background = ${xrdb:color0}
 background = #00000000
 background-alt = #444
-foreground = ${xrdb:color6}
+foreground = ${xrdb:color7}
 ;foreground = #dfdfdf
 foreground-alt = #555
 primary = ${xrdb:color3}

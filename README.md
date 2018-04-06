@@ -13,4 +13,4 @@ bash ~/.dotfiles/bootstrap.sh
 * "file.symh" -> "~/.file"
 * "file.symc" -> "~/.config/file"
 
-The bootstrap.sh script will search the repository for the above extenstion and automatically create symlinks as specified.
+The bootstrap.sh script will search the repository for the above extenstions and automatically create symlinks as specified.

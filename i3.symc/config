@@ -7,7 +7,7 @@ gaps inner 15
 gaps outer 15
 font pango:mono 9
 set $mod Mod1
-set $term --no-startup-id alacritty
+set $term --no-startup-id urxvt256cc
 #set $video --no-startup-id bash video.sh
 set $stoprec --no-startup-id killall ffmpeg
 

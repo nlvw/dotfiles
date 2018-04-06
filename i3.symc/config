@@ -2,7 +2,7 @@
 set $mod Mod4
 
 # font
-font pango: System San Francisco Display 10
+#font pango: System San Francisco Display 10
 
 # thin borders
 hide_edge_borders both
@@ -157,7 +157,7 @@ bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 bindsym $mod+Shift+f exec firefox
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+q kill
 bindsym Print exec screenshot
 bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"

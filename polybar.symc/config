@@ -55,7 +55,7 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = roboto mono:size=12:antialias=false;1
+font-0 = Roboto Mono:size=12:antialias=false;1
 font-1 = 3270Medium Nerd Font Mono:style=Medium:pixelsize=20:antialias=false;3
 
 modules-left = powermenu i3

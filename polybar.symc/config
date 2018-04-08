@@ -9,14 +9,20 @@
 ;=====================================================
 
 [colors]
-background = #151516
-background-alt = #3a3a3d
-foreground = #f8f2f4
-foreground-alt = #dacbdb
-primary = #96e6ea
-secondary = #89e4a1
-alert = #c47488
-success = #73da8e
+background = #282a36
+foreground = #f8f8f2
+
+current_line = #44475a
+selection = #44475a 
+comment = #6272a4
+
+cyan = #8be9fd
+green = #50fa7b
+orange = #ffb86c
+pink = #ff79c6
+purple = #bd93f9
+red = #ff5555
+yellow = #f1fa8c
 
 [global/wm]
 margin-top = 5
@@ -24,10 +30,7 @@ margin-bottom = 5
 
 [settings]
 screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = ove
+
 
 [bar/bottom]
 ;monitor = ${env:MONITOR}
@@ -60,11 +63,10 @@ modules-right = cpu temperature memory eth home filesystem volume powermenu
 
 tray-position = right
 tray-padding = 0
-;tray-transparent = true
-;tray-background = #0063ff
+tray-transparent = false
+tray-background = ${colors.background}
 
 ;wm-restack = i3
-
 ;override-redirect = true
 
 scroll-up = i3wm-wsnext
@@ -78,7 +80,7 @@ mount-0 = /
 
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
+label-unmounted-foreground = ${colors.red}
 
 [module/home]
 type = internal/fs
@@ -88,7 +90,7 @@ mount-0 = /home
 
 label-mounted = %{F#0a81f5}~%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
+label-unmounted-foreground = ${colors.red}
 
 [module/i3]
 type = internal/i3
@@ -100,13 +102,13 @@ wrapping-scroll = false
 ;pin-workspaces = true
 
 label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
+label-mode-foreground = ${colors.cyan}
+label-mode-background = ${colors.comment}
 
 ; focused = Active workspace on focused monitor
 label-focused = %name%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+label-focused-background = ${colors.current_line}
+label-focused-underline= ${colors.green}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
@@ -121,23 +123,23 @@ label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
-label-urgent-background = ${colors.alert}
+label-urgent-background = ${colors.orange}
 label-urgent-padding = 2
 
 [module/cpu]
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${xrdb:color1}
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.pink}
 label = %percentage%%
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${xrdb:color6}
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.green}
 label = %percentage_used%%
 
 [module/eth]
@@ -145,15 +147,15 @@ type = internal/network
 interface = eth0
 interval = 3.0
 
-format-connected-underline = ${xrdb:color2}
+format-connected-underline = ${colors.purple}
 format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
+format-connected-prefix-foreground = ${colors.foreground}
 label-connected = %local_ip%
 
 format-disconnected = <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = no eth
-label-disconnected-foreground = ${colors.foreground-alt}
+label-disconnected-foreground = ${colors.foreground}
 
 [module/date]
 type = internal/date
@@ -166,8 +168,8 @@ date = " %a, %b %d, %Y"
 time = " at %I:%M%p"
 
 format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${xrdb:color12}
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.cyan}
 
 label = %date% %time%
 
@@ -179,17 +181,17 @@ label-volume = VOL
 label-volume-foreground = ${root.foreground}
 
 format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
+format-muted-foreground = ${colors.comment}
 label-muted = sound muted
 
 bar-volume-width = 10
-bar-volume-foreground-0 = ${colors:secondary}
-bar-volume-foreground-1 = ${colors:secondary}
-bar-volume-foreground-2 = ${colors:secondary}
-bar-volume-foreground-3 = ${colors:secondary}
-bar-volume-foreground-4 = ${colors:secondary}
-bar-volume-foreground-5 = #f1fa8c
-bar-volume-foreground-6 = ${colors:alert}
+bar-volume-foreground-0 = ${colors.green}
+bar-volume-foreground-1 = ${colors.green}
+bar-volume-foreground-2 = ${colors.green}
+bar-volume-foreground-3 = ${colors.green}
+bar-volume-foreground-4 = ${colors.green}
+bar-volume-foreground-5 = ${colors.yellow}
+bar-volume-foreground-6 = ${colors.red}
 bar-volume-gradient = false
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
@@ -197,27 +199,27 @@ bar-volume-fill = =
 bar-volume-fill-font = 2
 bar-volume-empty = =
 bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-empty-foreground = ${colors.foreground}
 
 
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 60
+warn-temperature = 70
 
 format = <ramp> <label>
-format-underline = ${colors:alert}
+format-underline = ${colors.red}
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
 label = %temperature%
 label-warn = %temperature%
-label-warn-foreground = ${colors.secondary}
+label-warn-foreground = ${colors.orange}
 
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-foreground = ${colors.foreground}
 
 [module/powermenu]
 type = custom/menu
@@ -225,11 +227,11 @@ type = custom/menu
 format-spacing = 1
 
 label-open = 
-label-open-foreground = ${colors.secondary}
+label-open-foreground = ${colors.purple}
 label-close =  cancel
-label-close-foreground = ${colors.secondary}
+label-close-foreground = ${colors.comment}
 label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
+label-separator-foreground = ${colors.foreground}
 
 menu-0-0 = reboot
 menu-0-0-exec = menu-open-1

@@ -25,8 +25,8 @@ exec_always --no-startup-id bash ~/.config/polybar/launch.sh #Launch Polybar whe
 ###########################################################################################
 # #---Set Variables---# #
 ###########################################################################################
-set $shutdown shutdown -h now
-set $reboot reboot now
+set $shutdown systemctl poweroff
+set $reboot systemctl reboot
 
 #FOR ALSA/AMIXER
 #set $inc --no-startup-id amixer sset Master 2%+
@@ -173,27 +173,11 @@ bindsym XF86AudioMute		    exec $mute
 bindsym XF86AudioLowerVolume	exec $dec
 bindsym XF86AudioRaiseVolume	exec $inc
 bindsym XF86PowerOff		    exec $shutdown
-##bindsym XF86Copy		        exec
-##bindsym XF86Open		        exec
-##bindsym XF86Paste		        exec
-##bindsym XF86Cut		        exec
-##bindsym XF86MenuKB		    exec
-bindsym XF86Calculator		    exec $term -e R -q
+#bindsym XF86Calculator		    exec $term -e R -q
 bindsym XF86Sleep		        exec sudo zzz
-##bindsym XF86WakeUp		    exec
-bindsym XF86Explorer	    	exec $term -e ranger
-##bindsym XF86Send		        exec
-##bindsym XF86Xfer		        exec
-bindsym XF86WWW			        exec --no-startup-id $BROWSER
-##bindsym XF86DOS		        exec
-bindsym XF86ScreenSaver	       	exec exec --no-startup-id ~/.config/i3/lock.sh
-##bindsym XF86RotateWindows    	exec
-##bindsym XF86TaskPane		    exec
-##bindsym XF86Favorites		    exec
-bindsym XF86MyComputer		    exec $term -e ranger
 ##bindsym XF86Back		        exec
 ##bindsym XF86Forward		    exec
-bindsym XF86Eject		        exec sudo umount -R /mnt
+#bindsym XF86Eject		        exec sudo umount -R /mnt
 bindsym XF86AudioNext	    	exec $next
 bindsym XF86AudioPlay		    exec $pause
 bindsym XF86AudioPrev		    exec $prev
@@ -201,51 +185,19 @@ bindsym XF86AudioStop		    exec $pause
 bindsym XF86AudioRecord		    exec $audio
 bindsym XF86AudioRewind	    	exec $lilbak
 bindsym XF86AudioForward	    exec $lilfor
-##bindsym XF86Phone		        exec
-##bindsym XF86Tools		        exec
-bindsym XF86HomePage	    	exec $BROWSER https://lukesmith.xyz
-bindsym XF86Reload		        restart
-##bindsym XF86ScrollUp	    	exec
-##bindsym XF86ScrollDown		exec
-##bindsym XF86New		        exec
-##bindsym XF86LaunchA	    	exec
-##bindsym XF86LaunchB		    exec
-##bindsym XF86Launch2		    exec
-##bindsym XF86Launch3		    exec
-##bindsym XF86Launch4		    exec
-##bindsym XF86Launch5		    exec
-##bindsym XF86Launch6		    exec
-##bindsym XF86Launch7		    exec
-##bindsym XF86Launch8		    exec
-##bindsym XF86Launch9		    exec
-bindsym XF86AudioMicMute	    exec $micmute
+#bindsym XF86AudioMicMute	    exec $micmute
 ##bindsym XF86TouchpadToggle	exec
-bindsym XF86TouchpadOn		    exec --no-startup-id exec synclient TouchpadOff=0
-bindsym XF86TouchpadOff	    	exec --no-startup-id exec synclient TouchpadOff=1
-bindsym XF86Suspend		        exec --no-startup-id ~/.config/i3/lock.sh
-bindsym XF86Close		        kill
-bindsym XF86WebCam		        exec --no-startup-id camtoggle
-bindsym XF86Mail		        exec $term -e neomutt
-bindsym XF86Messenger	    	exec $term -e weechat
-bindsym XF86Search		        exec $BROWSER https://duckduckgo.com
-##bindsym XF86Go		    	exec
-##bindsym XF86Finance	    	exec
-##bindsym XF86Game	        	exec
-bindsym XF86Shop		        exec $BROWSER https://ebay.com
-bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 15
-bindsym XF86MonBrightnessUp	    exec --no-startup-id xbacklight -inc 15
-bindsym XF86AudioMedia		    exec $music
-bindsym XF86Display		        exec --no-startup-id arandr
+#bindsym XF86TouchpadOn		    exec --no-startup-id exec synclient TouchpadOff=0
+#bindsym XF86TouchpadOff	    	exec --no-startup-id exec synclient TouchpadOff=1
+#bindsym XF86Suspend		        exec --no-startup-id ~/.config/i3/lock.sh
+#bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 15
+#bindsym XF86MonBrightnessUp	    exec --no-startup-id xbacklight -inc 15
+#bindsym XF86AudioMedia		    exec $music
+#bindsym XF86Display		        exec --no-startup-id arandr
 #bindsym XF86KbdLightOnOff  	exec
-bindsym XF86KbdBrightnessDown	exec --no-startup-id python3.6 ~/.i3/kb-lights.py -
-bindsym XF86KbdBrightnessUp	    exec --no-startup-id python3.6 ~/.i3/kb-lights.py +
-##bindsym XF86Reply		        exec
-##bindsym XF86MailForward   	exec
-##bindsym XF86Save	        	exec
-bindsym XF86Documents	    	exec $term -e ranger ~/Documents
-##bindsym XF86Battery		    exec
-##bindsym XF86Bluetooth	    	exec
-bindsym XF86WLAN		        exec $netrefresh
+#bindsym XF86KbdBrightnessDown	exec --no-startup-id python3.6 ~/.i3/kb-lights.py -
+#bindsym XF86KbdBrightnessUp	    exec --no-startup-id python3.6 ~/.i3/kb-lights.py +
+
 
 ###########################################################################################
 # #---Colors---# #
@@ -266,7 +218,7 @@ set $red        #ff5555
 set $yellow     #f1fa8c
 
 # set some nice colors      border      background  text        indicator
-client.focused              $purple     $purple         $fg         $purple
+client.focused              $purple     $purple     $fg         $purple
 client.unfocused            $bg         $bg         $comment    $bg
 client.focused_inactive     $purple     $bg         $comment    $comment
 client.urgent               $orange     $bg         $fg         $orange

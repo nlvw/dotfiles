@@ -3,11 +3,11 @@
 ###########################################################################################
 #Needed for i3-gaps
 for_window [class="^.*"] border pixel 3
-gaps inner 15
-gaps outer 15
-font pango:mono 9
+gaps inner 8
+gaps outer 8
+font pango:roboto 14
 set $mod Mod1
-set $term --no-startup-id urxvt256c
+set $term --no-startup-id alacritty
 #set $video --no-startup-id bash video.sh
 set $stoprec --no-startup-id killall ffmpeg
 
@@ -25,8 +25,8 @@ exec_always --no-startup-id bash ~/.config/polybar/launch.sh #Launch Polybar whe
 ###########################################################################################
 # #---Set Variables---# #
 ###########################################################################################
-set $shutdown sudo shutdown -h now
-set $reboot sudo reboot
+set $shutdown shutdown -h now
+set $reboot reboot now
 
 #FOR ALSA/AMIXER
 #set $inc --no-startup-id amixer sset Master 2%+

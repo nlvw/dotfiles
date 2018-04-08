@@ -9,8 +9,6 @@ font pango:roboto 14
 focus_follows_mouse no
 set $mod Mod1
 set $term --no-startup-id alacritty
-#set $video --no-startup-id bash video.sh
-set $stoprec --no-startup-id killall ffmpeg
 
 ###########################################################################################
 # #---Run At Startup---# #
@@ -268,7 +266,7 @@ set $red        #ff5555
 set $yellow     #f1fa8c
 
 # set some nice colors      border      background  text        indicator
-client.focused              $purple     $bg         $fg         $purple
+client.focused              $purple     $purple         $fg         $purple
 client.unfocused            $bg         $bg         $comment    $bg
 client.focused_inactive     $purple     $bg         $comment    $comment
 client.urgent               $orange     $bg         $fg         $orange

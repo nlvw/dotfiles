@@ -57,6 +57,15 @@ autocmd VimEnter *
 " Plugin Settings
 " ------------------------------------------------------------------------------------
 
+" Paper Color Theme Settings
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default.dark': {
+  \       'transparent_background': 0.68
+  \     }
+  \   }
+  \ }
+
 " Syntastic Settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}

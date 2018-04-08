@@ -63,8 +63,8 @@ modules-center = date
 modules-right = volume cpu temperature memory eth filesystem
 
 tray-position = right
-tray-padding = 0
-tray-transparent = false
+tray-padding = 1
+tray-transparent = true
 tray-background = ${colors.background}
 
 ;wm-restack = i3

@@ -49,8 +49,8 @@ line-size = 2
 border-size = 0
 ;border-color = ${colors:background}	
 
-padding-left = 0
-padding-right = 0
+padding-left = 2
+padding-right = 2
 
 module-margin-left = 1
 module-margin-right = 1
@@ -204,9 +204,9 @@ type = custom/menu
 expand-right = true
 format-spacing = 1
 
-label-open = " "
+label-open = ""
 label-open-foreground = ${colors.foreground}
-label-close = " "
+label-close = ""
 label-close-foreground = ${colors.orange}
 label-separator = |
 label-separator-foreground = ${colors.foreground}

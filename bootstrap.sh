@@ -30,9 +30,8 @@ done
 if ! [ -f git/userinfo ]; then
   touch git/userinfo
 
-  read -epr ' - What is your github author name? ' git_authorname
-  user ' - What is your github author email?'
-  read -epr ' - What is your github author email?' git_authoremail
+  read -erp ' - What is your github author name? ' git_authorname
+  read -erp ' - What is your github author email?' git_authoremail
 
   echo "[user]" > git/userinfo
   echo "name = ${git_authorname}" >> git/userinfo

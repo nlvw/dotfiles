@@ -56,7 +56,7 @@ module-margin-left = 1
 module-margin-right = 1
 
 font-0 = roboto mono:size=12:antialias=false;1
-font-1 = 3270Medium Nerd Font Mono:style=Medium:pixelsize=24:antialias=false;3
+font-1 = 3270Medium Nerd Font Mono:style=Medium:pixelsize=18:antialias=false;3
 
 modules-left = powermenu i3
 modules-center = date

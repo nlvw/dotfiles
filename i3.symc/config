@@ -270,7 +270,7 @@ set $yellow     #f1fa8c
 # set some nice colors      border      background  text        indicator
 client.focused              $purple     $bg         $fg         $purple
 client.unfocused            $bg         $bg         $comment    $bg
-client.focused_inactive     $bg         $bg         $comment    $comment
+client.focused_inactive     $purple     $bg         $comment    $comment
 client.urgent               $orange     $bg         $fg         $orange
 #border & indicator are ignored
 client.placeholder          $bg         $bg         $bg         $bg

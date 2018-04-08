@@ -18,6 +18,7 @@ sed -i  's#\(DISPLAYMANAGER=\)\(.*\)#\1"lightdm"#' /etc/sysconfig/displaymanager
 # Install i3 and required apps for my config
 zypper install -y i3-gaps i3lock rofi compton alacritty scrot feh ImageMagick
 sed -i  's#\(DEFAULT_WM=\)\(.*\)#\1"i3"#' /etc/sysconfig/windowmanager
+ln -sfn /usr/share/xsessions/i3.desktop /etc/alternatives/default-xsession.desktop
 
 # Install Fonts
 zypper install -y pango fontawesome-fonts google-roboto-fonts google-roboto-mono-fonts

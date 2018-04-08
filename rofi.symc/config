@@ -1,8 +1,0 @@
-rofi.theme: ~/.config/rofi/material.rasi
- 
-rofi.fake-transparency: true
-rofi.lines:             6
-rofi.bw:                0
-rofi.opacity:           "26"
-rofi.hide-scrollbar:    true
-rofi.width:             30

@@ -60,7 +60,7 @@ bindsym $mod+Shift+Return 	exec $term -e vim ~/vimwiki/index.wiki
 bindsym $mod+q		    	kill
 bindsym $mod+Shift+q    	kill
 
-bindsym $mod+d			    exec rofi -show run
+bindsym $mod+d			    exec rofi -theme material.rasi -show run
 
 bindsym $mod+f			    fullscreen toggle
 bindsym $mod+Shift+space 	floating toggle

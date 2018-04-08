@@ -8,6 +8,9 @@ for file in ~/.dotfiles/bash/{aliases,exports,functions,prompt}; do
 done;
 unset file;
 
+# Load Bash Completions
+source ~/.config/alacritty/alacritty-completions.bash
+
 # Enable bash vi mode
 set -o vi
 

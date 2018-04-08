@@ -6,6 +6,7 @@ for_window [class="^.*"] border pixel 3
 gaps inner 8
 gaps outer 8
 font pango:roboto 14
+focus_follows_mouse no
 set $mod Mod1
 set $term --no-startup-id alacritty
 #set $video --no-startup-id bash video.sh
@@ -251,38 +252,25 @@ bindsym XF86WLAN		        exec $netrefresh
 # #---Colors---# #
 ###########################################################################################
 
-# Special
-#set_from_resource $foreground foreground
-#set_from_resource $background background
-#set_from_resource $cursorColor cursorColor
-# Black
-#set_from_resource $color0  color0
-#set_from_resource $color8  color8
-# Red
-#set_from_resource $color1  color1
-#set_from_resource $color9  color9
-# Green
-#set_from_resource $color2  color2
-#set_from_resource $color10 color10
-# Yellow
-#set_from_resource $color3  color3
-#set_from_resource $color11 color11
-# Blue
-#set_from_resource $color4  color4
-#set_from_resource $color12 color12
-# Grey
-#set_from_resource $color5  color5
-#set_from_resource $color13 color13
-# Lightgreen
-#set_from_resource $color6  color6
-#set_from_resource $color14 color14
-# White
-#set_from_resource $color7  color7
-#set_from_resource $color15 color15
+set $bgb            #282a36
+set $bg             #282a36AA
+set $fg             #f8f8f2
+set $tf             #f8f8f2AA
+set $hi             #f1fa7c
+set $tx             #040404
+set $pk             #ff79c6
+# yellow
+set $yw             #f1fa7c
+# green
+set $gn             #50fa7b
+# red
+set $rd             #ff5555
+set $id             #ff79c6
 
-# i3 windows decoration
-# Class                 Border      Background  Text        Indicator   Child_border
-#client.focused          $background $background $foreground $background $background
-#client.focused_inactive $background $background $foreground $background $background
-#client.unfocused        $background $background $color8     $background $background
-#client.urgent           $background $background $color1     $background $background
+# set some nice colors      border  background  text  indicator
+client.focused              $id     $pk         $tx     $id
+client.unfocused            $bg     $bg         $tf     $id
+client.focused_inactive     $bg     $bg         $pk     $id
+client.urgent               $yw     $yw         $tx     $id
+#border & indicator are ignored
+client.placeholder          $bg     $bg         $bg     $bg

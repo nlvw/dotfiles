@@ -52,8 +52,8 @@ border-size = 0
 padding-left = 0
 padding-right = 0
 
-module-margin-left = 2
-module-margin-right = 2
+module-margin-left = 0
+module-margin-right = 0
 
 font-0 = roboto mono:size=12:antialias=false;1
 font-1 = FontAwesome:style=Solid:pixelsize=10:antialias=false;3
@@ -132,7 +132,7 @@ interface = eth0
 interval = 3.0
 
 format-connected-underline = ${colors.purple}
-format-connected-prefix = ""
+;format-connected-prefix = 
 format-connected-prefix-foreground = ${colors.foreground}
 label-connected = %local_ip%
 
@@ -151,7 +151,7 @@ date = " %a, %b %d, %Y"
 
 time = " at %I:%M%p"
 
-format-prefix = 
+;format-prefix = 
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.cyan}
 
@@ -166,10 +166,10 @@ label-muted = MUTE
 format-muted-prefix = " "
 format-muted-prefix-foreground = ${colors.comment}
 ;handle-events = false
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-volume-3 = 
+;ramp-volume-0 = 
+;ramp-volume-1 = 
+;ramp-volume-2 = 
+;ramp-volume-3 = 
 ramp-volume-foreground = ${colors.foreground}
 
 
@@ -187,9 +187,9 @@ label = %temperature%
 label-warn = %temperature%
 label-warn-foreground = ${colors.orange}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+;ramp-0 = 
+;ramp-1 = 
+;ramp-2 = 
 ramp-foreground = ${colors.foreground}
 
 [module/filesystem]
@@ -198,7 +198,7 @@ interval = 25
 
 mount-0 = /
 
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}:%percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.red}
 
@@ -207,9 +207,9 @@ type = custom/menu
 
 format-spacing = 1
 
-label-open = 
+label-open = &#xf011;
 label-open-foreground = ${colors.purple}
-label-close =  cancel
+label-close = &#xf011;
 label-close-foreground = ${colors.comment}
 label-separator = |
 label-separator-foreground = ${colors.foreground}

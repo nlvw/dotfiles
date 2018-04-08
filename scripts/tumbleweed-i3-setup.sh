@@ -21,7 +21,7 @@ sed -i  's#\(DEFAULT_WM=\)\(.*\)#\1"i3"#' /etc/sysconfig/windowmanager
 ln -sfn /usr/share/xsessions/i3.desktop /etc/alternatives/default-xsession.desktop
 
 # Install Fonts
-zypper install -y pango fontawesome-fonts google-roboto-fonts google-roboto-mono-fonts
+zypper install -y pango google-roboto-fonts google-roboto-mono-fonts
 
 # Install Polybar
 zypper ar https://download.opensuse.org/repositories/home:/sysek/openSUSE_Tumbleweed/home:sysek.repo

@@ -159,7 +159,7 @@ label = %date% %time%
 type = internal/volume
 handle-events = true
 
-format-volume = <volume> <label-volume>
+format-volume = <label-volume>
 format-volume-prefix = "墳"
 format-muted-prefix = "ﱝ"
 label-volume = %percentage:3%%

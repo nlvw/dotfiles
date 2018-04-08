@@ -61,7 +61,7 @@ autocmd VimEnter *
 let g:PaperColor_Theme_Options = {
   \   'theme': {
   \     'default.dark': {
-  \       'transparent_background': 0.68
+  \       'transparent_background': 1
   \     }
   \   }
   \ }

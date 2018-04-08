@@ -252,26 +252,25 @@ bindsym XF86WLAN		        exec $netrefresh
 ###########################################################################################
 # #---Colors---# #
 ###########################################################################################
+set $bg     #282a36
+set $fg     #f8f8f2
 
-set $bgb            #282a36
-set $bg             #282a36AA
-set $fg             #f8f8f2
-set $tf             #f8f8f2AA
-set $hi             #f1fa7c
-set $tx             #040404
-set $pk             #ff79c6
-# yellow
-set $yw             #f1fa7c
-# green
-set $gn             #50fa7b
-# red
-set $rd             #ff5555
-set $id             #ff79c6
+set $current_line   #44475a
+set $selection      #44475a 
+set $comment        #6272a4
 
-# set some nice colors      border  background  text  indicator
-client.focused              $id     $pk         $tx     $id
-client.unfocused            $bg     $bg         $tf     $id
-client.focused_inactive     $bg     $bg         $pk     $id
-client.urgent               $yw     $yw         $tx     $id
+set $cyan       #8be9fd
+set $green      #50fa7b
+set $orange     #ffb86c
+set $pink       #ff79c6
+set $purple     #bd93f9
+set $red        #ff5555
+set $yellow     #f1fa8c
+
+# set some nice colors      border      background  text        indicator
+client.focused              $purple     $bg         $fg         $purple
+client.unfocused            $bg         $bg         $comment    $bg
+client.focused_inactive     $bg         $bg         $comment    $comment
+client.urgent               $orange     $bg         $fg         $orange
 #border & indicator are ignored
-client.placeholder          $bg     $bg         $bg     $bg
+client.placeholder          $bg         $bg         $bg         $bg

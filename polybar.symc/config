@@ -30,7 +30,7 @@ screenchange-reload = true
 ;compositing-border = ove
 
 [bar/bottom]
-monitor = ${env:MONITOR}
+;monitor = ${env:MONITOR}
 width = 100%
 height = 25
 radius = 0

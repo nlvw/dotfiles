@@ -32,13 +32,13 @@ margin-bottom = 5
 screenchange-reload = true
 
 
-[bar/bottom]
+[bar/top]
 ;monitor = ${env:MONITOR}
 width = 100%
 height = 25
 radius = 0
 fixed-center = true
-bottom = true
+bottom = false
 
 background = ${colors.background}
 foreground = ${colors.foreground}

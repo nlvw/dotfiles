@@ -38,6 +38,7 @@ width = 100%
 height = 25
 radius = 0
 fixed-center = true
+bottom = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -59,9 +60,9 @@ font-1 = FontAwesome:style=Solid:pixelsize=10:antialias=false;3
 font-2 = FontAwesome5Free:style=Solid:pixelsize=10:antialias=false;3
 font-3 = FontAwesome5Brands:style=Solid:pixelsize=10:antialias=false;3
 
-modules-left = i3
+modules-left = powermenu i3
 modules-center = date
-modules-right = cpu temperature memory eth home filesystem volume powermenu
+modules-right = volume cpu temperature memory eth filesystem
 
 tray-position = right
 tray-padding = 0
@@ -74,25 +75,6 @@ tray-background = ${colors.background}
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.red}
-
-[module/home]
-type = internal/fs
-interval = 25
-
-mount-0 = /home
-
-label-mounted = %{F#0a81f5}~%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.red}
 
 [module/i3]
 type = internal/i3
@@ -150,7 +132,7 @@ interface = eth0
 interval = 3.0
 
 format-connected-underline = ${colors.purple}
-format-connected-prefix = <i class="fa fa-desktop" aria-hidden="true"></i>
+format-connected-prefix = ""
 format-connected-prefix-foreground = ${colors.foreground}
 label-connected = %local_ip%
 
@@ -177,31 +159,18 @@ label = %date% %time%
 
 [module/volume]
 type = internal/volume
-
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL
-label-volume-foreground = ${root.foreground}
-
+mapped = true
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage:3%%
+label-muted = MUTE
 format-muted-prefix = " "
-format-muted-foreground = ${colors.comment}
-label-muted = sound muted
-
-bar-volume-width = 10
-bar-volume-foreground-0 = ${colors.green}
-bar-volume-foreground-1 = ${colors.green}
-bar-volume-foreground-2 = ${colors.green}
-bar-volume-foreground-3 = ${colors.green}
-bar-volume-foreground-4 = ${colors.green}
-bar-volume-foreground-5 = ${colors.yellow}
-bar-volume-foreground-6 = ${colors.red}
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = =
-bar-volume-fill-font = 2
-bar-volume-empty = =
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground}
+format-muted-prefix-foreground = ${colors.comment}
+;handle-events = false
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-foreground = ${colors.foreground}
 
 
 [module/temperature]
@@ -210,7 +179,7 @@ thermal-zone = 0
 warn-temperature = 70
 
 format = <ramp> <label>
-format-underline = ${colors.red}
+format-underline = ${colors.green}
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
@@ -222,6 +191,16 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground}
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.red}
 
 [module/powermenu]
 type = custom/menu
@@ -249,3 +228,15 @@ menu-2-0 = power off
 menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
+
+[module/systray]
+type = internal/systray
+
+format = <label-toggle> <tray-clients> <label-toggle>
+format-spacing = 2
+
+label-toggle = hide
+label-toggle-alt = show
+label-toggle-padding = 2
+label-toggle-background = ${colors.background}
+label-toggle-foreground = ${colors.foreground}

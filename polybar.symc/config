@@ -195,9 +195,10 @@ fixed-values = true
 spacing = 2
 
 mount-0 = /
+mount-1 = /home
 
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-mounted-prefix = " "
+format-mounted-prefix = " "
 format-mounted-underline = ${colors.cyan}
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.red}

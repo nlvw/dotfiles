@@ -56,7 +56,7 @@ module-margin-left = 1
 module-margin-right = 1
 
 font-0 = roboto mono:size=12:antialias=false;1
-font-1 = 3270Medium Nerd Font Mono:style=Medium:pixelsize=12:antialias=false;3
+font-1 = 3270Medium Nerd Font Mono:style=Medium:pixelsize=24:antialias=false;3
 
 modules-left = powermenu i3
 modules-center = date
@@ -160,12 +160,12 @@ type = internal/volume
 handle-events = true
 
 format-volume = <ramp-volume> <label-volume>
-format-muted-prefix = "ﱝ "
+format-muted-prefix = "ﱝ"
 label-volume = %percentage:3%%
 label-muted = MUTE
-ramp-volume-0 = " "
-ramp-volume-1 = "奔 "
-ramp-volume-2 = "墳 "
+ramp-volume-0 = "奄"
+ramp-volume-1 = "奔"
+ramp-volume-2 = "墳"
 
 [module/temperature]
 type = internal/temperature

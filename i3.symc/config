@@ -16,6 +16,7 @@ set $stoprec --no-startup-id killall ffmpeg
 # #---Run At Startup---# #
 ###########################################################################################
 exec --no-startup-id xset r rate 300 50 # Incrase Key Rate
+exec --no-startup-id /usr/bin/pulseaudio --start # Start Sound Server
 exec --no-startup-id sudo mount -a # Mount other drives:
 exec --no-startup-id compton --xrender-sync-fence # Composite manager:
 exec --no-startup-id feh --bg-scale ~/.config/i3/wall.png # Set Background

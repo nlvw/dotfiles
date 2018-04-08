@@ -29,7 +29,9 @@ zypper --gpg-auto-import-keys refresh
 zypper install -y polybar
 
 # Install Audio
-zypper install -y pulseaudio pulseaudio-utils alsa-plugins-pulse pulseaudio-module-zeroconf pulseaudio-module-x11 pulseaudio-ctl pavucontrol
+zypper install -y pulseaudio pulseaudio-utils alsa-plugins-pulse pulseaudio-module-zeroconf pulseaudio-module-x11 pavucontrol
+
+# pulseaudio-ctl?
 
 # Install my preffered apps
 zypper install -y vim tmux ranger git unzip firefox 

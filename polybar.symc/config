@@ -158,20 +158,18 @@ format-underline = ${colors.cyan}
 label = %date% %time%
 
 [module/volume]
-type = internal/volume
-mapped = true
-format-volume = <ramp-volume> <label-volume>
+type = internal/pulseaudio
+format-volume = <volume> <label-volume>
+
 format-prefix = " "
+format-muted-prefix = " "
+
 label-volume = %percentage:3%%
 label-muted = MUTE
-format-muted-prefix = " "
+
 format-muted-prefix-foreground = ${colors.comment}
-;handle-events = false
-;ramp-volume-0 = 
-;ramp-volume-1 = 
-;ramp-volume-2 = 
-;ramp-volume-3 = 
-ramp-volume-foreground = ${colors.foreground}
+handle-events = true
+
 
 
 [module/temperature]

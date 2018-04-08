@@ -39,10 +39,10 @@ systemctl enable docker
 systemctl start docker
 
 # Install my preffered apps
-zypper install -y vim tmux ranger git unzip clipit firefox 
+zypper install -y vim tmux ranger git unzip clipit firefox discord libreoffice deluge qutebrowser gimp thunderbird audacity
 
 # Install visual studio code
-sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/zypp/repos.d/vscode.repo'
-sudo zypper refresh
-sudo zypper -y install code
+zypper refresh
+zypper -y install code

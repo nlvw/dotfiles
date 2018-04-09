@@ -108,25 +108,33 @@ interval = 0.5
 
 format = <label> <ramp-coreload>
 label = 
-label-foreground = ${colors.purple}
-format-underline = ${colors.purple}
+label-foreground = ${colors.foreground}
+label-underline = ${colors.comment}
 
 ramp-coreload-0 = ▁
 ramp-coreload-0-foreground = ${colors.green}
+ramp-coreload-0-underline = ${colors.green}
 ramp-coreload-1 = ▂
 ramp-coreload-1-foreground = ${colors.green}
+ramp-coreload-1-underline = ${colors.green}
 ramp-coreload-2 = ▃
 ramp-coreload-2-foreground = ${colors.green}
+ramp-coreload-2-underline = ${colors.green}
 ramp-coreload-3 = ▄
 ramp-coreload-3-foreground = ${colors.green}
+ramp-coreload-3-underline = ${colors.green}
 ramp-coreload-4 = ▅
 ramp-coreload-4-foreground = ${colors.orange}
+ramp-coreload-4-underline = ${colors.orange}
 ramp-coreload-5 = ▆
 ramp-coreload-5-foreground = ${colors.orange}
+ramp-coreload-5-underline = ${colors.orange}
 ramp-coreload-6 = ▇
 ramp-coreload-6-foreground = ${colors.red}
+ramp-coreload-6-underline = ${colors.red}
 ramp-coreload-7 = █
 ramp-coreload-7-foreground = ${colors.red}
+ramp-coreload-7-underline = ${colors.red}
 
 [module/memory]
 type = internal/memory
@@ -134,8 +142,8 @@ interval = 3
 
 format = <label> <bar-used>
 label = 
-label-foreground = ${colors.yellow}
-format-underline = ${colors.yellow}
+label-foreground = ${colors.foreground}
+label-underline = ${colors.yellow}
 
 bar-used-indicator =
 bar-used-width = 10

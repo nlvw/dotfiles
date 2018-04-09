@@ -108,9 +108,9 @@ interval = 0.5
 
 format = <label>
 format-prefix = " "
-foramt-prefix-foreground = ${colors.purple}
+format-foreground = ${colors.purple}
 format-underline = ${colors.purple}
-label = CPU: %percentage%%
+label = %percentage%%
 label-foreground = ${colors.foreground}
 
 
@@ -119,9 +119,9 @@ type = internal/memory
 interval = 3
 
 format = <label>
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-label = MEM: %percentage_used%%
+format-prefix = " "
+format-prefix-foreground = ${colors.green}
+label = %percentage_used%%
 label-foreground = ${colors.foreground}
 format-underline = ${colors.green}
 

@@ -106,35 +106,21 @@ label-urgent-padding = 2
 type = internal/cpu
 interval = 0.5
 
-format = <label> <ramp-coreload>
-label = " CPU: "
+format = <label>
+label = CPU: %percentage-cores%%
+label-prefix = 
+label-prefix-foreground = ${colors.purple}
 label-foreground = ${colors.foreground}
 lable-underline = ${colors.purple}
-
-ramp-coreload-0 = ▁
-ramp-coreload-0-foreground = ${colors.green}
-ramp-coreload-1 = ▂
-ramp-coreload-1-foreground = ${colors.green}
-ramp-coreload-2 = ▃
-ramp-coreload-2-foreground = ${colors.green}
-ramp-coreload-3 = ▄
-ramp-coreload-3-foreground = ${colors.green}
-ramp-coreload-4 = ▅
-ramp-coreload-4-foreground = ${colors.orange}
-ramp-coreload-5 = ▆
-ramp-coreload-5-foreground = ${colors.orange}
-ramp-coreload-6 = ▇
-ramp-coreload-6-foreground = ${colors.red}
-ramp-coreload-7 = █
-ramp-coreload-7-foreground = ${colors.red}
 
 [module/memory]
 type = internal/memory
 interval = 3
 
 format = <label>
-
-label = " RAM: %percentage_used%"
+label = MEM: %percentage_used%%
+label-prefix = 
+label-prefix-foreground = ${colors.foreground}
 label-foreground = ${colors.foreground}
 label-underline = ${colors.green}
 

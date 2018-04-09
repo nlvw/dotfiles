@@ -162,7 +162,7 @@ label-volume-foreground = ${colors.foreground}
 
 format-muted = <label-muted>
 format-muted-prefix = "ﱝ"
-format-volume-foreground = ${colors.orange}
+format-muted-foreground = ${colors.orange}
 format-muted-underline = ${colors.orange}
 label-muted = MUTE
 label-muted-foreground = ${colors.foreground}

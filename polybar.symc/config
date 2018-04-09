@@ -123,7 +123,7 @@ format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 label = MEM: %percentage_used%%
 label-foreground = ${colors.foreground}
-label-underline = ${colors.green}
+format-underline = ${colors.green}
 
 
 [module/date]
@@ -136,7 +136,7 @@ format-underline = ${colors.yellow}
 
 label = %date% %time%
 date =  %A, %d %b %Y
-time =  %I:%M p
+time =  %I:%M %p
 
 [module/volume]
 type = internal/volume

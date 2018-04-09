@@ -132,11 +132,12 @@ interval = 1
 
 format = <label>
 format-foreground = ${colors.foreground}
-format-underline = ${colors.yellow}
 
 label = %date% %time%
 date =  %A, %d %b %Y
+date-underline = ${colors.cyan}
 time =  %I:%M %p
+time-underline = ${colors.purple}
 
 [module/volume]
 type = internal/volume

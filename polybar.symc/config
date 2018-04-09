@@ -127,7 +127,7 @@ format-underline = ${colors.green}
 
 [module/date]
 type = internal/date
-interval = 1
+interval = 10
 
 format = <label>
 format-prefix = " "
@@ -139,7 +139,7 @@ date = %A, %d %b %Y
 
 [module/time]
 type = internal/date
-interval = 1
+interval = 10
 
 format = <label>
 format-prefix = " "
@@ -161,7 +161,7 @@ label-volume = %percentage:3%%
 label-volume-foreground = ${colors.foreground}
 
 format-muted = <label-muted>
-format-muted-prefix = "ﱝ"
+format-muted-prefix = "ﱝ "
 format-muted-foreground = ${colors.orange}
 format-muted-underline = ${colors.orange}
 label-muted = MUTE
@@ -171,23 +171,29 @@ click-right = exec pavucontrol
 
 [module/temperature]
 type = internal/temperature
+interval = 5
 thermal-zone = 0
 warn-temperature = 70
 
 format = <label>
 format-prefix = " "
-format-underline = ${colors.green}
-format-warn = <label-warn>
-
+format-foreground = ${colors.cyan}
+format-underline = ${colors.cyan}
 label = %temperature%
+label-foreground = ${colors.foreground}
+
+format-warn = <label-warn>
+format-warn-prefix = " "
+format-warn-foreground = ${colors.red}
+format-warn-underline = ${colors.red}
 label-warn = %temperature%
-label-warn-foreground = ${colors.orange}
+label-warn-foreground = ${colors.foreground}
 
 [module/filesystem]
 type = internal/fs
 interval = 25
 fixed-values = true
-spacing = 2
+spacing = 1
 
 mount-0 = /
 mount-1 = /home
@@ -196,7 +202,8 @@ format-mounted = <label-mounted>
 format-mounted-prefix = " "
 format-mounted-foreground = ${colors.purple}
 format-mounted-underline = ${colors.purple}
-label-mounted = %mountpoint%: %percentage_used%%
+label-mounted = %mountpoint% : %percentage_used%%
+label-mounted-foreground = ${colors.foreground}
 
 format-unmounted = <label-unmounted>
 format-unmounted-prefix = " "
@@ -204,7 +211,6 @@ format-unmounted-foreground = ${colors.red}
 format-unmounted-underline = ${colors.red}
 label-unmounted =  %mountpoint% : N/A
 label-unmounted-foreground = ${colors.red}
-
 
 [module/powermenu]
 type = custom/menu

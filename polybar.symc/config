@@ -64,7 +64,7 @@ bottom = false
 
 modules-left = powermenu cpu temperature memory filesystem
 modules-center = i3
-modules-right = volume date
+modules-right = volume date time
 
 tray-position = right
 tray-padding = 1
@@ -110,7 +110,7 @@ format = <label>
 format-prefix = " "
 foramt-prefix-foreground = ${colors.purple}
 format-underline = ${colors.purple}
-label = CPU: %percentage%
+label = CPU: %percentage%%
 label-foreground = ${colors.foreground}
 
 
@@ -125,19 +125,27 @@ label = MEM: %percentage_used%%
 label-foreground = ${colors.foreground}
 format-underline = ${colors.green}
 
-
 [module/date]
 type = internal/date
 interval = 1
 
 format = <label>
 format-foreground = ${colors.foreground}
+formate-underline = ${colors.cyan}
 
-label = %date% %time%
+label = %date%
 date =  %A, %d %b %Y
-date-underline = ${colors.cyan}
+
+[module/time]
+type = internal/date
+interval = 1
+
+format = <label>
+format-foreground = ${colors.foreground}
+formate-underline = ${colors.purple}
+
+label = %time%
 time =  %I:%M %p
-time-underline = ${colors.purple}
 
 [module/volume]
 type = internal/volume
@@ -147,7 +155,7 @@ label-volume = %percentage:3%%
 label-muted = MUTE
 
 format-volume = <label-volume>
-format-volume-prefix = "墳"
+format-volume-prefix = "墳 "
 format-volume-underline = ${colors.green}
 
 format-muted-prefix = "ﱝ"

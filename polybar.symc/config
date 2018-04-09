@@ -107,18 +107,19 @@ type = internal/cpu
 interval = 0.5
 
 format = <label>
-format-prefix = 
+format-prefix = " "
 foramt-prefix-foreground = ${colors.purple}
-label = CPU: %percentage-cores%%
+format-underline = ${colors.purple}
+label = CPU: %percentage%
 label-foreground = ${colors.foreground}
-lable-underline = ${colors.purple}
+
 
 [module/memory]
 type = internal/memory
 interval = 3
 
 format = <label>
-format-prefix = 
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 label = MEM: %percentage_used%%
 label-foreground = ${colors.foreground}
@@ -134,8 +135,8 @@ format-foreground = ${colors.foreground}
 format-underline = ${colors.yellow}
 
 label = %date% %time%
-date =  %A, %b. %d
-time =  %H:%M:%S
+date =  %A, %d %b %Y
+time =  %I:%M p
 
 [module/volume]
 type = internal/volume

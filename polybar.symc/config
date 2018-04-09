@@ -107,10 +107,9 @@ type = internal/cpu
 interval = 0.5
 
 format = <label> <ramp-coreload>
-label = 
+label = " CPU: "
 label-foreground = ${colors.foreground}
 lable-underline = ${colors.purple}
-lable-overline = ${colors.purple}
 
 ramp-coreload-0 = ▁
 ramp-coreload-0-foreground = ${colors.green}
@@ -133,30 +132,12 @@ ramp-coreload-7-foreground = ${colors.red}
 type = internal/memory
 interval = 3
 
-format = <label> <ramp-used>
-format-underline = ${colors.green}
-format-overline = ${colors.green}
+format = <label>
 
-label = " RAM: "
+label = " RAM: %percentage_used%"
 label-foreground = ${colors.foreground}
+label-underline = ${colors.green}
 
-; Only applies if <ramp-used> is used
-ramp-used-0 = ▁
-ramp-used-0-foreground = ${colors.green}
-ramp-used-1 = ▂
-ramp-used-1-foreground = ${colors.green}
-ramp-used-2 = ▃
-ramp-used-2-foreground = ${colors.green}
-ramp-used-3 = ▄
-ramp-used-3-foreground = ${colors.green}
-ramp-used-4 = ▅
-ramp-used-4-foreground = ${colors.orange}
-ramp-used-5 = ▆
-ramp-used-5-foreground = ${colors.orange}
-ramp-used-6 = ▇
-ramp-used-6-foreground = ${colors.red}
-ramp-used-7 = █
-ramp-used-7-foreground = ${colors.red}
 
 [module/date]
 type = internal/date
@@ -165,7 +146,6 @@ interval = 1
 format = <label>
 format-foreground = ${colors.foreground}
 format-underline = ${colors.yellow}
-format-overline = ${colors.yellow}
 
 label = %date% %time%
 date =  %A, %b. %d
@@ -175,16 +155,15 @@ time =  %H:%M:%S
 type = internal/volume
 handle-events = true
 
-format-volume = <label-volume>
-format-volume-prefix = "墳"
-format-muted-prefix = "ﱝ"
 label-volume = %percentage:3%%
 label-muted = MUTE
 
-format-volume-underline = ${colors.greeen}
-format-volume-overline = ${colors.green}
+format-volume = <label-volume>
+format-volume-prefix = "墳"
+format-volume-underline = ${colors.green}
+
+format-muted-prefix = "ﱝ"
 format-muted-underline = ${colors.red}
-format-muted-overline = ${colors.red}
 
 click-right = exec pavucontrol
 
@@ -212,12 +191,10 @@ mount-0 = /
 
 label-mounted =  %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-mounted-underline = #0a81f5
-label-mounted-overline = #0a81f5
 
 label-unmounted =  %mountpoint% not mounted
 label-unmounted-foreground = ${colors.red}
 label-unmounted-underline = ${colors.red}
-label-unmounted-overline = ${colors.red}
 
 [module/powermenu]
 type = custom/menu

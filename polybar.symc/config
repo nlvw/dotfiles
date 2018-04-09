@@ -110,7 +110,7 @@ format = <label> <ramp-coreload>
 label = 
 label-foreground = ${colors.foreground}
 lable-underline = ${colors.purple}
-lable-underline = ${colors.purple}
+lable-overline = ${colors.purple}
 
 ramp-coreload-0 = ▁
 ramp-coreload-0-foreground = ${colors.green}

@@ -63,9 +63,9 @@ font-1 = ${fonts.font-1}
 inherit = bar/default
 bottom = false
 
-modules-left = cpu temperature memory filesystem
+modules-left = powermenu cpu temperature memory filesystem
 modules-center = i3
-modules-right = volume date powermenu
+modules-right = volume date
 
 tray-position = right
 tray-padding = 0

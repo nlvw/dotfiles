@@ -131,7 +131,7 @@ interval = 1
 
 format = <label>
 format-foreground = ${colors.foreground}
-formate-underline = ${colors.cyan}
+format-underline = ${colors.cyan}
 
 label = %date%
 date =  %A, %d %b %Y
@@ -142,7 +142,7 @@ interval = 1
 
 format = <label>
 format-foreground = ${colors.foreground}
-formate-underline = ${colors.purple}
+format-underline = ${colors.purple}
 
 label = %time%
 time =  %I:%M %p

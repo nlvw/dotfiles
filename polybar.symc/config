@@ -196,7 +196,6 @@ fixed-values = true
 spacing = 1
 
 mount-0 = /
-mount-1 = /home
 
 format-mounted = <label-mounted>
 format-mounted-prefix = " "

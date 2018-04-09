@@ -68,7 +68,7 @@ modules-center = i3
 modules-right = volume date
 
 tray-position = right
-tray-padding = 0
+tray-padding = 1
 tray-transparent = true
 tray-background = ${colors.background}
 
@@ -108,7 +108,7 @@ type = internal/cpu
 interval = 0.5
 
 format = <label> <ramp-coreload>
-format-padding = 5
+;format-padding = 5
 
 label = 
 label-foreground = ${colors.purple}
@@ -144,7 +144,7 @@ type = internal/memory
 interval = 3
 
 format = <label> <bar-used>
-format-padding = 5
+;format-padding = 5
 
 label = 
 

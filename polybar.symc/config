@@ -130,36 +130,42 @@ type = internal/date
 interval = 1
 
 format = <label>
-format-foreground = ${colors.foreground}
+format-prefix = " "
+format-foreground = ${colors.cyan}
 format-underline = ${colors.cyan}
-
 label = %date%
-date =  %A, %d %b %Y
+label-foreground = ${colors.foreground}
+date = %A, %d %b %Y
 
 [module/time]
 type = internal/date
 interval = 1
 
 format = <label>
-format-foreground = ${colors.foreground}
+format-prefix = " "
+format-foreground = ${colors.purple}
 format-underline = ${colors.purple}
-
 label = %time%
-time =  %I:%M %p
+label-foreground = ${colors.foreground}
+time = %I:%M %p
 
 [module/volume]
 type = internal/volume
 handle-events = true
 
-label-volume = %percentage:3%%
-label-muted = MUTE
-
 format-volume = <label-volume>
 format-volume-prefix = "墳 "
+format-volume-foreground = ${colors.green}
 format-volume-underline = ${colors.green}
+label-volume = %percentage:3%%
+label-volume-foreground = ${colors.foreground}
 
+format-muted = <label-muted>
 format-muted-prefix = "ﱝ"
-format-muted-underline = ${colors.red}
+format-volume-foreground = ${colors.orange}
+format-muted-underline = ${colors.orange}
+label-muted = MUTE
+label-muted-foreground = ${colors.foreground}
 
 click-right = exec pavucontrol
 
@@ -184,19 +190,21 @@ fixed-values = true
 spacing = 2
 
 mount-0 = /
+mount-1 = /home
 
 format-mounted = <label-mounted>
 format-mounted-prefix = " "
 format-mounted-foreground = ${colors.purple}
-label-mounted =  %%mountpoint%%{F-}: %percentage_used%%
-label-mounted-underline = ${colors.purple}
+format-mounted-underline = ${colors.purple}
+label-mounted = %mountpoint%: %percentage_used%%
 
 format-unmounted = <label-unmounted>
 format-unmounted-prefix = " "
 format-unmounted-foreground = ${colors.red}
-label-unmounted =  %mountpoint% : not mounted
+format-unmounted-underline = ${colors.red}
+label-unmounted =  %mountpoint% : N/A
 label-unmounted-foreground = ${colors.red}
-label-unmounted-underline = ${colors.purple}
+
 
 [module/powermenu]
 type = custom/menu

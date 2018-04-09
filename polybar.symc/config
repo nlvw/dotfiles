@@ -220,7 +220,7 @@ format-spacing = 1
 label-open = ""
 label-open-foreground = ${colors.foreground}
 label-close = ""
-label-close-foreground = ${colors.orange}
+label-close-foreground = ${colors.green}
 label-separator = |
 label-separator-foreground = ${colors.foreground}
 

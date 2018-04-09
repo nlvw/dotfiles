@@ -108,8 +108,8 @@ interval = 0.5
 
 format = <label>
 format-prefix = " "
-format-foreground = ${colors.purple}
-format-underline = ${colors.purple}
+format-foreground = ${colors.pink}
+format-underline = ${colors.pink}
 label = %percentage%%
 label-foreground = ${colors.foreground}
 
@@ -185,12 +185,18 @@ spacing = 2
 
 mount-0 = /
 
-label-mounted =  %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-mounted-underline = #0a81f5
+format-mounted = <label-mounted>
+format-mounted-prefix = " "
+format-mounted-foreground = ${colors.purple}
+label-mounted =  %%mountpoint%%{F-}: %percentage_used%%
+label-mounted-underline = ${colors.purple}
 
-label-unmounted =  %mountpoint% not mounted
+format-unmounted = <label-unmounted>
+format-unmounted-prefix = " "
+format-unmounted-foreground = ${colors.red}
+label-unmounted =  %mountpoint% : not mounted
 label-unmounted-foreground = ${colors.red}
-label-unmounted-underline = ${colors.red}
+label-unmounted-underline = ${colors.purple}
 
 [module/powermenu]
 type = custom/menu

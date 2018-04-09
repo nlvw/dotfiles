@@ -201,14 +201,14 @@ format-mounted = <label-mounted>
 format-mounted-prefix = " "
 format-mounted-foreground = ${colors.purple}
 format-mounted-underline = ${colors.purple}
-label-mounted = %mountpoint% : %percentage_used%%
+label-mounted = %mountpoint%: %percentage_used%%
 label-mounted-foreground = ${colors.foreground}
 
 format-unmounted = <label-unmounted>
 format-unmounted-prefix = " "
 format-unmounted-foreground = ${colors.red}
 format-unmounted-underline = ${colors.red}
-label-unmounted =  %mountpoint% : N/A
+label-unmounted =  %mountpoint%: N/A
 label-unmounted-foreground = ${colors.red}
 
 [module/powermenu]
@@ -225,16 +225,20 @@ label-separator = |
 label-separator-foreground = ${colors.foreground}
 
 menu-0-0 = Restart
+menu-0-0-foreground = ${colors.orange}
 menu-0-0-exec = menu-open-1
 menu-0-1 = Shutdown
+menu-0-1-foreground = ${colors.red}
 menu-0-1-exec = menu-open-2
 
 menu-1-0 = Cancel
 menu-1-0-exec = menu-open-0
 menu-1-1 = Restart
+menu-1-1-foreground = ${colors.orange}
 menu-1-1-exec = systemctl reboot
 
 menu-2-0 = Shutdown
+menu-2-0-foreground = ${colors.red}
 menu-2-0-exec = systemctl poweroff
 menu-2-1 = Cancel
 menu-2-1-exec = menu-open-0

@@ -50,11 +50,11 @@ line-size = 2
 border-size = 0
 ;border-color = ${colors:background}	
 
-padding-left = 2
-padding-right = 2
-
-module-margin-left = 1
-module-margin-right = 1
+spacing = 1
+padding-left = 0
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 0
 
 font-0 = ${fonts.font-0}
 font-1 = ${fonts.font-1}
@@ -63,12 +63,12 @@ font-1 = ${fonts.font-1}
 inherit = bar/default
 bottom = false
 
-modules-left = powermenu i3
-;modules-center = date
-modules-right = volume cpu temperature memory filesystem date
+modules-left = cpu temperature memory filesystem
+modules-center = i3
+modules-right = volume date powermenu
 
 tray-position = right
-tray-padding = 1
+tray-padding = 0
 tray-transparent = true
 tray-background = ${colors.background}
 
@@ -105,35 +105,71 @@ label-urgent-padding = 2
 
 [module/cpu]
 type = internal/cpu
-interval = 2
-format-prefix = "﬙ "
-format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.pink}
-label = %percentage%%
+interval = 0.5
+
+format = <label> <ramp-coreload>
+format-padding = 5
+
+label = 
+label-foreground = ${colors.aqua}
+label-font = 3
+
+ramp-coreload-0 = ▁
+ramp-coreload-0-font = 5
+ramp-coreload-0-foreground = ${colors.green}
+ramp-coreload-1 = ▂
+ramp-coreload-1-font = 5
+ramp-coreload-1-foreground = ${colors.green}
+ramp-coreload-2 = ▃
+ramp-coreload-2-font = 5
+ramp-coreload-2-foreground = ${colors.green}
+ramp-coreload-3 = ▄
+ramp-coreload-3-font = 5
+ramp-coreload-3-foreground = ${colors.green}
+ramp-coreload-4 = ▅
+ramp-coreload-4-font = 5
+ramp-coreload-4-foreground = ${colors.blue}
+ramp-coreload-5 = ▆
+ramp-coreload-5-font = 5
+ramp-coreload-5-foreground = ${colors.blue}
+ramp-coreload-6 = ▇
+ramp-coreload-6-font = 5
+ramp-coreload-6-foreground = ${colors.red}
+ramp-coreload-7 = █
+ramp-coreload-7-font = 5
+ramp-coreload-7-foreground = ${colors.red}
 
 [module/memory]
 type = internal/memory
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.green}
-label = %percentage_used%%
+interval = 3
+
+format = <label> <bar-used>
+format-padding = 5
+
+label = 
+
+bar-used-indicator =
+bar-used-width = 10
+bar-used-foreground-0 = ${colors.green}
+bar-used-foreground-1 = ${colors.green}
+bar-used-foreground-2 = ${colors.blue}
+bar-used-foreground-3 = ${colors.red}
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = #444444
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
 
-date = " %a, %b %d, %Y"
-;date-alt = " %a, %b %d, %Y at %I:%M%p"
-;date-alt = " %Y-%m-%d"
-
-time = " at %I:%M%p"
-
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.cyan}
+format = <label>
+format-background = ${colors.yellow}
+format-foreground = ${colors.grey}
+format-padding = 3
 
 label = %date% %time%
+date =  %A, %b. %d
+time =  %H:%M:%S
 
 [module/volume]
 type = internal/volume
@@ -144,6 +180,8 @@ format-volume-prefix = "墳"
 format-muted-prefix = "ﱝ"
 label-volume = %percentage:3%%
 label-muted = MUTE
+
+click-right = exec pavucontrol
 
 [module/temperature]
 type = internal/temperature

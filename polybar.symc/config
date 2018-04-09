@@ -104,7 +104,7 @@ label-urgent-padding = 2
 
 [module/cpu]
 type = internal/cpu
-interval = 0.5
+interval = 5
 
 format = <label>
 format-prefix = " "
@@ -116,7 +116,7 @@ label-foreground = ${colors.foreground}
 
 [module/memory]
 type = internal/memory
-interval = 3
+interval = 5
 
 format = <label>
 format-prefix = " "

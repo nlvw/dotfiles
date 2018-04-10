@@ -79,7 +79,7 @@ console-mode auto
 EOF
 
 # Create Boot Entry
-set puID = findmnt / -o PARTUUID -n
+puID=$(findmnt / -o PARTUUID -n)
 mkdir /boot/loader/entries || true
 cat << EOF > /boot/loader/entries/arch.conf
 title Arch Linux

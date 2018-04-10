@@ -112,7 +112,7 @@ ufw reload
 ########################################################################################
 # Install Core Utilities
 ########################################################################################
-pacman -S --noconfirm pacmatic vim wget git
+pacman -S --noconfirm sudo pacmatic vim wget git
 
 ########################################################################################
 # Install / Setup I3 Graphical Env

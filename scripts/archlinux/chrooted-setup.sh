@@ -99,6 +99,10 @@ pacman -S --noconfirm sudo
 echo "%wheel      ALL=(ALL) ALL" > /etc/sudoers.d/wheel
 chmod -c 0440 /etc/sudoers.d/wheel
 
+#echo "$uName      ALL=(ALL) NOPASSWD: ALL" > "/etc/sudoers.d/${uName}"
+#chmod -c 0440 "/etc/sudoers.d/${uName}"
+
+
 ########################################################################################
 # Networking
 ########################################################################################
@@ -120,14 +124,29 @@ ufw reload
 ########################################################################################
 # Install Core Utilities
 ########################################################################################
-pacman -S --noconfirm base-devel pacmatic vim wget git
+pacman -S --noconfirm base-devel vim wget git
 
+########################################################################################
+# Install AUR Helper
+########################################################################################
+cat << EOF >> /etc/pacman.conf
+
+[archlinuxfr]
+SigLevel = Never
+Server = http://repo.archlinux.fr/$arch
+EOF
+
+pacman -Syy
+pacman -S --noconfirm yaourt
 
 ########################################################################################
 # Install / Setup I3 Graphical Env
 ########################################################################################
 pacman -S --noconfirm i3-gaps xorg xorg-xinit 
 
+########################################################################################
+# Install Polybar
+########################################################################################
 
 
 

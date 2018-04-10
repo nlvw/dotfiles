@@ -92,7 +92,10 @@ EOF
 bootctl update
 
 ########################################################################################
-# Pull Git Repo
+# Networking
 ########################################################################################
-pacman -S --noconfirm git
-git clone https://github.com/Wolfereign/.dotfiles
+pacman -S --nocheck networkmanager
+ln -sf /usr/lib/systemd/system/NetworkManager.service /etc/systemd/system/dbus-org.freedesktop.NetworkManager.service
+ln -sf /usr/lib/systemd/system/NetworkManager-dispatcher.service /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service
+ln -sf /usr/lib/systemd/system/NetworkManager.service /etc/systemd/system/multi-user.target.wants/NetworkManager.service
+

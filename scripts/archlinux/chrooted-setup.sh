@@ -49,7 +49,7 @@ Exec = /usr/bin/bootctl update
 EOF
 
 # Set Loader Configuration
-cat << EOF > /etc/boot/loader/loader.conf
+cat << EOF > /boot/loader/loader.conf
 default arch
 timeout 3
 editor 0
@@ -59,7 +59,7 @@ EOF
 # Create Boot Entry
 set puID = findmnt / -o PARTUUID -n
 mkdir /boot/loader/entries || true
-cat << EOF > /etc/boot/loader/entries/arch.conf
+cat << EOF > /boot/loader/entries/arch.conf
 title Arch Linux
 linux /vmlinuz-linux
 initrd /initramfs-linux.img

@@ -94,8 +94,31 @@ bootctl update
 ########################################################################################
 # Networking
 ########################################################################################
-pacman -S --nocheck networkmanager
+pacman -S --noconfirm networkmanager
 ln -sf /usr/lib/systemd/system/NetworkManager.service /etc/systemd/system/dbus-org.freedesktop.NetworkManager.service
 ln -sf /usr/lib/systemd/system/NetworkManager-dispatcher.service /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service
 ln -sf /usr/lib/systemd/system/NetworkManager.service /etc/systemd/system/multi-user.target.wants/NetworkManager.service
+
+########################################################################################
+# Firewall
+########################################################################################
+pacman -S --noconfirm iptables ufw
+ufw enable
+ufw logging medium
+ufw default deny incoming
+ufw default allow outgoing
+ufw reload
+
+########################################################################################
+# Install Core Utilities
+########################################################################################
+pacman -S --noconfirm pacmatic vim wget git
+
+########################################################################################
+# Install / Setup I3 Graphical Env
+########################################################################################
+pacman -S --noconfirm i3-gaps xorg xorg-xinit 
+
+
+
 

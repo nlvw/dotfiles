@@ -26,6 +26,28 @@ useradd -m "$uName" -G wheel
 echo "Setting $uName Password. Please Input Desired Password: "
 passwd "$uName"
 
+########################################################################################
+# Hostname
+########################################################################################
+echo "$hName" > /etc/hostname
+cat << EOF >> /etc/hosts
+127.0.0.1	localhost
+::1		    localhost
+127.0.1.1	${hName}.localdomain	hName
+EOF
+
+########################################################################################
+# Setup Locale/Time
+########################################################################################
+
+# Time Zone
+ln -sf /usr/share/zoneinfo/US/Mountain /etc/localtime
+hwclock --systohc
+
+# Locale
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+echo KEYMAP=us > /etc/vconsole.conf
+locale-gen
 
 ########################################################################################
 # Setup Bootloader
@@ -68,29 +90,6 @@ EOF
 
 # Update boot partition just in case
 bootctl update
-
-########################################################################################
-# Setup Locale/Time
-########################################################################################
-
-# Time Zone
-ln -sf /usr/share/zoneinfo/US/Mountain /etc/localtime
-hwclock --systohc
-
-# Locale
-echo LANG=en_US.UTF-8 > /etc/locale.conf
-echo KEYMAP=us > /etc/vconsole.conf
-locale-gen
-
-########################################################################################
-# Hostname
-########################################################################################
-echo "$hName" > /etc/hostname
-cat << EOF >> /etc/hosts
-127.0.0.1	localhost
-::1		    localhost
-127.0.1.1	${hName}.localdomain	hName
-EOF
 
 ########################################################################################
 # Pull Git Repo

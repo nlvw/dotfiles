@@ -2,3 +2,4 @@ git/userinfo
 vim.symh/autoload/plug.vim
 vim.symh/autoload/plug.vim.old
 vim.symh/plugged/
+.vscode

@@ -14,8 +14,11 @@ zypper ref
 zypper dup -y
 
 # Install GPU Driver
-zypper addrepo --refresh http://http.download.nvidia.com/opensuse/tumbleweed
-zypper inr -r NVIDIA
+update-pciids
+if lspci | grep -i 'vga\|3d\|2d\|nvidia\|NVIDIA'; then
+    zypper addrepo --refresh http://http.download.nvidia.com/opensuse/tumbleweed/ NVIDIA
+    zypper --gpg-autoimport-keys install -y x11-video-nvidiaG04
+fi
 
 # Install x11 (X Windows System)
 zypper install -y -t pattern x11
@@ -24,18 +27,15 @@ systemctl set-default graphical
 # Install/Configure Display Manager
 zypper install -y lightdm-slick-greeter-branding-upstream
 sed -i '/DISPLAYMANAGER=/c\DISPLAYMANAGER="lightdm"' /etc/sysconfig/displaymanager
-#sed -i  's#\(DISPLAYMANAGER=\)\(.*\)#\1"lightdm"#' /etc/sysconfig/displaymanager
 
 # Install i3 and required apps for my config
 zypper install -y i3-gaps i3lock rofi compton alacritty scrot feh ImageMagick pango
 sed -i '/DEFAULT_WM=/c\DEFAULT_WM="i3"' /etc/sysconfig/windowmanager
-#sed -i  's#\(DEFAULT_WM=\)\(.*\)#\1"i3"#' /etc/sysconfig/windowmanager
 ln -sfn /usr/share/xsessions/i3.desktop /etc/alternatives/default-xsession.desktop
 
 # Install Polybar
 zypper ar -f https://download.opensuse.org/repositories/home:/sysek/openSUSE_Tumbleweed/home:sysek.repo
-zypper --gpg-auto-import-keys refresh -f -r https://download.opensuse.org/repositories/home:/sysek/openSUSE_Tumbleweed/home:sysek.repo
-zypper install -y polybar
+zypper --gpg-auto-import-keys install -y polybar
 
 # Install Audio -- pulseaudio-ctl?
 zypper install -y pulseaudio pulseaudio-utils alsa-plugins-pulse pulseaudio-module-zeroconf pulseaudio-module-x11 pavucontrol

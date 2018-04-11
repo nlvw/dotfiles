@@ -3,6 +3,9 @@
 # Setup For i3-gaps on OpenSuse Tumbleweed
 # Server / Text Only Install
 
+# Disable automatic installation of reccomended packages
+sed -i  's#\(solver.onlyRequires = \)\(.*\)#\1false#' /etc/zypp/zypp.conf
+
 # Check for, and apply, updates
 zypper ref
 zypper dup -y
@@ -25,10 +28,8 @@ zypper ar https://download.opensuse.org/repositories/home:/sysek/openSUSE_Tumble
 zypper --gpg-auto-import-keys refresh
 zypper install -y polybar
 
-# Install Audio
+# Install Audio -- pulseaudio-ctl?
 zypper install -y pulseaudio pulseaudio-utils alsa-plugins-pulse pulseaudio-module-zeroconf pulseaudio-module-x11 pavucontrol
-
-# pulseaudio-ctl?
 
 # Install KVM
 zypper install install -y -t pattern kvm_server

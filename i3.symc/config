@@ -17,7 +17,7 @@ exec --no-startup-id xset r rate 300 50 # Incrase Key Rate
 exec --no-startup-id /usr/bin/pulseaudio --start # Start Sound Server
 exec --no-startup-id sudo mount -a # Mount other drives:
 exec --no-startup-id compton --xrender-sync-fence # Composite manager:
-exec --no-startup-id feh --bg-scale ~/.config/i3/wall.png # Set Background
+exec --no-startup-id feh --bg-scale ~/.config/i3/wall2.png # Set Background
 exec_always --no-startup-id bash ~/.config/polybar/launch.sh #Launch Polybar where appropriate
 exec --no-startup-id clipit
 #exec --no-startup-id unclutter # Unclutter makes the mouse invisible after a brief period

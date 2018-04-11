@@ -46,7 +46,7 @@ zypper ar -f http://opensuse-guide.org/repo/openSUSE_Tumbleweed/ libdvdcss
 zypper --gpg-auto-import-keys install -y libdvdcss2 ffmpeg lame gstreamer-plugins-libav gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon vlc vlc-codecs flash-player flash-player-ppapi libxine2 libxine2-codecs
 
 # Install KVM
-zypper install install -y -t pattern kvm_server
+zypper install -y -t pattern kvm_server
 
 # Install Docker
 zypper install -y docker docker-compose

@@ -27,7 +27,7 @@ if lspci | grep -i 'vga\|3d\|2d\|nvidia\|NVIDIA'; then
 fi
 
 # Install x11 (X Windows System)
-zypper install -y -t pattern x11
+zypper install --recommends -y -t pattern x11
 systemctl set-default graphical
 
 # Install/Configure Display Manager

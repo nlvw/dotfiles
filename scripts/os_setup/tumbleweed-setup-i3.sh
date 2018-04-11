@@ -43,8 +43,7 @@ zypper install -y pulseaudio pulseaudio-utils alsa-plugins-pulse pulseaudio-modu
 # Install Mulimedia Codecs
 zypper ar -f http://packman.inode.at/suse/openSUSE_Tumbleweed/ packman
 zypper ar -f http://opensuse-guide.org/repo/openSUSE_Tumbleweed/ libdvdcss
-zypper ref
-zypper install -y libdvdcss2 ffmpeg lame gstreamer-plugins-libav gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon vlc vlc-codecs flash-player flash-player-ppapi libxine2 libxine2-codecs
+zypper --gpg-auto-import-keys install -y libdvdcss2 ffmpeg lame gstreamer-plugins-libav gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-plugins-ugly-orig-addon vlc vlc-codecs flash-player flash-player-ppapi libxine2 libxine2-codecs
 
 # Install KVM
 zypper install install -y -t pattern kvm_server

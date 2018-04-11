@@ -60,7 +60,7 @@ systemctl enable docker
 systemctl start docker
 
 # Install my preffered apps
-zypper install -y vim tmux ranger git unzip clipit firefox discord libreoffice deluge qutebrowser gimp thunderbird audacity
+zypper install -y vim tmux ranger git unzip clipit firefox discord libreoffice deluge qutebrowser gimp thunderbird audacity qpdfview
 
 # Install visual studio code
 rpm --import https://packages.microsoft.com/keys/microsoft.asc

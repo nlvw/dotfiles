@@ -44,6 +44,9 @@ call plug#begin('~/.vim/plugged')
 
 	" Syntax for Powershell https://vimawesome.com/plugin/vim-ps1
 	Plug 'pprovost/vim-ps1'
+	
+	" Nix syntax highlighting
+	Plug 'lnl7/vim-nix'
 
 call plug#end()
 

@@ -26,6 +26,11 @@ do
   ln -s "$src" "$dst"
 done
 
+# Symlink Fonts
+mkdir ~/.local &>/dev/null || true
+mkdir ~/.local/share &>/dev/null || true
+ln -s "${DOTFILES_ROOT}/fonts" ~/.local/share/fonts
+
 # Setup Local User Git Info if Missing
 if ! [ -f git/userinfo ]; then
   touch git/userinfo

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # This Will Automate the Arch Linux Setup Steps After the user has installed and chrooted into the new installation
 # UEFI and systemd-boot are default/assumed

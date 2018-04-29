@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Setup For i3-gaps on OpenSuse Tumbleweed
 # Server / Text Only Install

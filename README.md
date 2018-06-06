@@ -4,8 +4,8 @@
 
 ```bash
 cd ~
-git clone https://github.com/Wolfereign/.dotfiles.git 
-bash ~/.dotfiles/bootstrap.sh
+git clone https://gitlab.com/Wolfereign/dotfiles.git
+bash ~/dotfiles/bootstrap.sh
 ```
 
 ## Auto Symlink Determination

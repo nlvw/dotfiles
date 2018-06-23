@@ -14,7 +14,7 @@ for src in $(find -H "$DOTFILES_ROOT" -maxdepth 4 -name '*.symh' -not -path '*.g
 do
   dst="$HOME/.$(basename "${src%.*}")"
   rm -rf "$dst" &>/dev/null || true
-  ln -s "$src" "$dst"
+  ln -rsf "$src" "$dst"
 done
 
 # Create/Refresh dotfile symlinks (~/.config/*)
@@ -23,24 +23,24 @@ for src in $(find -H "$DOTFILES_ROOT" -maxdepth 4 -name '*.symc' -not -path '*.g
 do
   dst="$HOME/.config/$(basename "${src%.*}")"
   rm -rf "$dst" &>/dev/null || true
-  ln -s "$src" "$dst"
+  ln -rsf "$src" "$dst"
 done
 
 # Symlink Fonts
 mkdir ~/.local &>/dev/null || true
 mkdir ~/.local/share &>/dev/null || true
-ln -s "${DOTFILES_ROOT}/fonts" ~/.local/share/fonts
+ln -rsf "${DOTFILES_ROOT}/fonts" ~/.local/share/fonts
 
 # Setup Local User Git Info if Missing
-if ! [ -f git/userinfo ]; then
-  touch git/userinfo
+if ! [ -f "${DOTFILES_ROOT}/git/userinfo" ]; then
+  touch "${DOTFILES_ROOT}git/userinfo"
 
   read -erp $' - What is your github author name?\n' git_authorname
   read -erp $' - What is your github author email?\n' git_authoremail
 
-  echo "[user]" > git/userinfo
-  echo "name = ${git_authorname}" >> git/userinfo
-  echo "email = ${git_authoremail}" >> git/userinfo
+  echo "[user]" > "${DOTFILES_ROOT}git/userinfo"
+  echo "name = ${git_authorname}" >> "${DOTFILES_ROOT}git/userinfo"
+  echo "email = ${git_authoremail}" >> "${DOTFILES_ROOT}git/userinfo"
 fi
 
 # Setup SSH Files

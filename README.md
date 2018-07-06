@@ -4,7 +4,7 @@
 
 ```bash
 cd ~
-git clone https://gitlab.com/Wolfereign/dotfiles.git
+git clone https://github.com/Wolfereign/dotfiles.git
 bash ~/dotfiles/bootstrap.sh
 ```
 

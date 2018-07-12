@@ -21,6 +21,13 @@ set belloff=all
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
 
+" Keymap for OS clipboard
+vnoremap <C-c> "+y
+map <C-v> "+P
+
+" Keymap for Primary Selection Clipboard (Linux)
+vnoremap <C-C> "*y :let @+=@*<CR>
+
 " Enhance command-line completion
 set wildmenu
 

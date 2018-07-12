@@ -33,14 +33,14 @@ ln -rsf "${DOTFILES_ROOT}/fonts" ~/.local/share/fonts
 
 # Setup Local User Git Info if Missing
 if ! [ -f "${DOTFILES_ROOT}/git/userinfo" ]; then
-  touch "${DOTFILES_ROOT}git/userinfo"
+  touch "${DOTFILES_ROOT}/git/userinfo"
 
   read -erp $' - What is your github author name?\n' git_authorname
   read -erp $' - What is your github author email?\n' git_authoremail
 
-  echo "[user]" > "${DOTFILES_ROOT}git/userinfo"
-  echo "name = ${git_authorname}" >> "${DOTFILES_ROOT}git/userinfo"
-  echo "email = ${git_authoremail}" >> "${DOTFILES_ROOT}git/userinfo"
+  echo "[user]" > "${DOTFILES_ROOT}/git/userinfo"
+  echo "name = ${git_authorname}" >> "${DOTFILES_ROOT}/git/userinfo"
+  echo "email = ${git_authoremail}" >> "${DOTFILES_ROOT}/git/userinfo"
 fi
 
 # Setup SSH Files

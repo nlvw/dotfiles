@@ -50,6 +50,9 @@ call plug#begin('~/.vim/plugged')
 	
 	" Note Taking VimWiki
 	Plug 'vimwiki/vimwiki'
+	
+	" Local VimRC Files
+	Plug 'embear/vim-localvimrc'
 
 call plug#end()
 

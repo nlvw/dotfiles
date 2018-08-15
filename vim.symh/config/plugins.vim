@@ -47,6 +47,9 @@ call plug#begin('~/.vim/plugged')
 	
 	" Nix syntax highlighting
 	Plug 'lnl7/vim-nix'
+	
+	" Note Taking VimWiki
+	Plug 'vimwiki/vimwiki'
 
 call plug#end()
 

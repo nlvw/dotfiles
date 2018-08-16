@@ -87,3 +87,14 @@ let g:syntastic_check_on_wq = 0
 " Syntax Powershell Settings
 let g:ps1_nofold_blocks = 1
 
+" VimWiki Settings
+let wiki_notes = {}
+let wiki_notes.path = '~/projects/notes' 
+let wiki_notes.syntax = 'markdown'
+let wiki_notes.ext = '.md'
+
+let g:vimwiki_list = [wiki_notes]
+let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+let g:vimwiki_global_ext = 0
+autocmd FileType vimwiki set syntax=markdown
+

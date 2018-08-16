@@ -51,3 +51,4 @@ fi;
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
 #complete -W "NSGlobalDomain" defaults;
+if [ -e /home/nic/.nix-profile/etc/profile.d/nix.sh ]; then . /home/nic/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

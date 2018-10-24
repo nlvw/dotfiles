@@ -9,9 +9,17 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # set PATH so it includes user's private bin directories
-PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+if [ -d "$HOME/bin" ]; then
+	PATH="$PATH:$HOME/bin"
+fi
 
 # if in tty
 if [ "$TERM" == "linux" ]; then
 setfont /usr/share/consolefonts/Uni3-TerminusBold24x12.psf.gz
 fi
+
+# if nix env exits source it
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+	. "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
+

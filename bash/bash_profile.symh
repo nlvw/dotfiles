@@ -8,8 +8,15 @@ for file in ~/dotfiles/bash/{aliases,exports,functions,prompt}; do
 done;
 unset file;
 
+# if nix env exits source it
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+	. "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
+
 # Load Bash Completions
-source ~/.config/alacritty/alacritty-completions.bash
+if [ -e ~/.config/alacritty/alacritty-completions.bash ]; then
+	source ~/.config/alacritty/alacritty-completions.bash
+fi
 
 # Enable bash vi mode
 set -o vi
@@ -52,3 +59,9 @@ fi;
 # You could just use `-g` instead, but I like being explicit
 #complete -W "NSGlobalDomain" defaults;
 if [ -e /home/nic/.nix-profile/etc/profile.d/nix.sh ]; then . /home/nic/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# ChromeOS: Set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+	debian_chroot=$(cat /etc/debian_chroot)
+fi
+

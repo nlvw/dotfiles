@@ -27,9 +27,9 @@ do
 done
 
 # Symlink Fonts
-mkdir ~/.local &>/dev/null || true
-mkdir ~/.local/share &>/dev/null || true
-ln -rsf "${DOTFILES_ROOT}/fonts" ~/.local/share/fonts
+#mkdir ~/.local &>/dev/null || true
+#mkdir ~/.local/share &>/dev/null || true
+#ln -rsf "${DOTFILES_ROOT}/fonts" ~/.local/share/fonts
 
 # Setup Local User Git Info if Missing
 if ! [ -f "${DOTFILES_ROOT}/git/userinfo" ]; then

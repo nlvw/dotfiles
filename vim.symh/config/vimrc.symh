@@ -37,6 +37,16 @@ set esckeys
 " Remap Escape Key Functionality
 inoremap jk <Esc>
 
+" Line Navigation
+nnoremap <S-h> <Home>
+nnoremap <S-l> <End>
+
+" Tab Navigation
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+nnoremap <C-j> :tabprevious<CR>
+nnoremap <C-k> :tabnext<CR>
+
 " Allow backspace in insert mode
 set backspace=indent,eol,start
 

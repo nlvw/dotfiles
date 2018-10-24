@@ -31,6 +31,9 @@ set -g status-right "#[fg=blue]#S #I:#P #[fg=yellow]:: %d %b %Y #[fg=green]:: %l
 set-option -g pane-border-fg colour235 #base02
 set-option -g pane-active-border-fg colour240 #base01
 
+# Bind Window Switch
+bind -n C-h previous-window
+bind -n C-l next-window
 
 # use PREFIX | to split window horizontally and PREFIX - to split vertically
 #bind | split-window -h
@@ -38,10 +41,6 @@ set-option -g pane-active-border-fg colour240 #base01
 
 # Make the current window the first window
 #bind T swap-window -t 1
-
-# and use C-h and C-l to cycle thru panes
-#bind -r C-h select-window -t :-
-#bind -r C-l select-window -t :+
 
 #bind ` copy-mode
 #bind p paste-buffer

@@ -32,7 +32,7 @@ vnoremap <C-C> "*y :let @+=@*<CR>
 set wildmenu
 
 " Allow cursor keys in insert mode
-set esckeys
+"set esckeys
 
 " Remap Escape Key Functionality
 inoremap jk <Esc>

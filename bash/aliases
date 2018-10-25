@@ -48,6 +48,9 @@ alias sudo='sudo '
 # Get week number
 alias week='date +%V'
 
+# Vim (RTP at ~/.config/vim
+alias vim ='vim -u ~/.config/vim/vimrc.vim '
+
 # Google Chrome
 #alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 #alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'

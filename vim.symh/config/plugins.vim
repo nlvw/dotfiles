@@ -50,6 +50,9 @@ call plug#begin('~/.vim/plugged')
 	
 	" Note Taking VimWiki
 	Plug 'vimwiki/vimwiki'
+
+	" Org Mode
+	Plug 'jceb/vim-orgmode'
 	
 	" Local VimRC Files
 	Plug 'embear/vim-localvimrc'

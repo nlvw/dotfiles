@@ -7,7 +7,7 @@ cd "$(dirname "$0")"
 DOTFILES_ROOT=$(pwd -P)
 
 # Stop Script on Error
-set -e
+#set -e
 
 # Create/Refresh dotfile symlinks (~/*)
 for src in $(find -H "$DOTFILES_ROOT" -maxdepth 4 -name '*.symh' -not -path '*.git*')
@@ -26,10 +26,31 @@ do
   ln -rsf "$src" "$dst"
 done
 
-# Symlink Fonts
-#mkdir ~/.local &>/dev/null || true
-#mkdir ~/.local/share &>/dev/null || true
-#ln -rsf "${DOTFILES_ROOT}/fonts" ~/.local/share/fonts
+# Create Font Folder
+mkdir ~/.local &>/dev/null || true
+mkdir ~/.local/share &>/dev/null || true
+mkdir ~/.local/share/fonts &>/dev/null || true
+
+# Link Dotfile Fonts
+ln -rsf "${DOTFILES_ROOT}/fonts" ~/.local/share/fonts/dotfile_fonts
+
+# Setup Nix
+if [ ! -d "$HOME/.nix-profile" ]; then
+	# Install Nix
+	curl https://nixos.org/nix/install | sh
+	. "$HOME/.nix-profile/etc/profile.d/nix.sh"
+
+	# Install Nix Packages
+	nix-env -i vim neovim emacs ranger tmux git pandoc source-code-pro roboto-mono
+
+	# Link Nix Fonts
+	ln -sf "$HOME/.nix-profile/share/fonts" ~/.local/share/fonts/nix_fonts
+fi
+
+# Setup Spacemacs
+if [ ! -d "$HOME/.emacs.d" ]; then
+	git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+fi
 
 # Setup Local User Git Info if Missing
 if ! [ -f "${DOTFILES_ROOT}/git/userinfo" ]; then

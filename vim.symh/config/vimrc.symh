@@ -47,6 +47,9 @@ nnoremap <C-Right> :tabnext<CR>
 nnoremap <C-j> :tabprevious<CR>
 nnoremap <C-k> :tabnext<CR>
 
+" Run Line In Bash
+nmap <F8> :exec '!'.getline('.')
+
 " Allow backspace in insert mode
 set backspace=indent,eol,start
 

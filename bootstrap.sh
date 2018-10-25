@@ -41,7 +41,7 @@ if [ ! -d "$HOME/.nix-profile" ]; then
 	. "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 	# Install Nix Packages
-	nix-env -i vim neovim emacs ranger tmux git pandoc source-code-pro roboto-mono
+	nix-env -i vim neovim emacs ranger tmux git pandoc source-code-pro nerdfonts roboto roboto-mono roboto-slab
 
 	# Link Nix Fonts
 	ln -sf "$HOME/.nix-profile/share/fonts" ~/.local/share/fonts/nix_fonts

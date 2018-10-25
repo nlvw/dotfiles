@@ -1,5 +1,5 @@
 git/userinfo
-vim.symh/autoload/plug.vim
-vim.symh/autoload/plug.vim.old
-vim.symh/plugged/
+vim.symc/autoload/plug.vim
+vim.symc/autoload/plug.vim.old
+vim.symc/plugged/
 .vscode

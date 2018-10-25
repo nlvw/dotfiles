@@ -1,11 +1,16 @@
 " ------------------------------------------------------------------------------------
 " Set Paths and Needed Variables
 " ------------------------------------------------------------------------------------
+" Enable New VIM Syntax/Settings
+set nocompatible
+
+" Set Lunix Paths
 if has('unix')
-    set runtimepath=~/.config/vim
+	set runtimepath=~/.config/vim
 	set packpath=~/.config/vim
 endif
 
+" Create Variable For Vim Config Directory 
 let $VIMFILES=split(&rtp,",")[0]
 
 " ------------------------------------------------------------------------------------
@@ -21,9 +26,6 @@ silent! colorscheme PaperColor
 
 " Enable syntax highlighting
 syntax on
-
-" Make Vim more useful
-set nocompatible
 
 " Disable audio bell / beebing tone
 set belloff=all
@@ -80,10 +82,10 @@ set binary
 set noeol
 
 " Centralize backups, swapfiles and undo history
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
+set backupdir=$VIMFILES/backups
+set directory=$VIMFILES/swaps
 if exists("&undodir")
-	set undodir=~/.vim/undo
+	set undodir=$VIMFILES/undo
 endif
 
 " Don’t create backups when editing files in certain directories

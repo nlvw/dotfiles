@@ -49,7 +49,7 @@ alias sudo='sudo '
 alias week='date +%V'
 
 # Vim (RTP at ~/.config/vim
-alias vim ='vim -u ~/.config/vim/vimrc.vim '
+alias vim='vim -u ~/.config/vim/vimrc.vim '
 
 # Google Chrome
 #alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'

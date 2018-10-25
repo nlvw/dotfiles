@@ -1,12 +1,12 @@
 " ------------------------------------------------------------------------------------
 " Plugin Installation 
 " ------------------------------------------------------------------------------------
-
 " Install Plugged and Init
 if empty(glob("$VIMFILES/autoload/plug.vim"))
-  silent! curl -fLo "$VIMFILES/autoload/plug.vim" --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  silent! curl -fLo "$VIMFILES/autoload/plug.vim" --create-dirs 
+		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  
+	autocmd VimEnter * PlugInstall --sync 
 endif
 
 " Define Required Plugins
@@ -17,6 +17,9 @@ call plug#begin("$VIMFILES/plugged")
 
 	" Draculo Theme https://vimawesome.com/plugin/vim
 	Plug 'dracula/vim'
+
+	" Gruvbox Theme https://github.com/morhetz/gruvbox
+	Plug 'morhetz/gruvbox'
 
 	" Colorfull Status Bar 
 	Plug 'itchyny/lightline.vim'
@@ -56,11 +59,11 @@ call plug#begin("$VIMFILES/plugged")
 
 call plug#end()
 
-" Install Missing Plugings
-autocmd VimEnter *
-  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \|   PlugInstall --sync | q
-  \| endif
+" Install Missing Plugins
+autocmd VimEnter * 
+	\ if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) 
+	\| PlugInstall | q 
+	\| endif
 
 " ------------------------------------------------------------------------------------
 " Plugin Settings
@@ -86,3 +89,4 @@ let g:syntastic_check_on_wq = 0
 
 " Syntax Powershell Settings
 let g:ps1_nofold_blocks = 1
+

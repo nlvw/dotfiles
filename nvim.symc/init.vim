@@ -1,4 +1,5 @@
 " Use Regular Vim's settings
-set runtimepath+=~/.vim,~/.vim/after 
-set packpath+=~/.vim 
-source ~/.vimrc
+set runtimepath=~/.config/vim 
+set packpath=~/.config/vim 
+source ~/.config/vim/vimrc.vim
+

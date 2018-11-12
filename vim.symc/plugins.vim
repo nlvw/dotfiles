@@ -56,6 +56,9 @@ call plug#begin("$VIMFILES/plugged")
 	
 	" Local VimRC Files
 	Plug 'embear/vim-localvimrc'
+	
+	" Ansible Common Files https://github.com/pearofducks/ansible-vim
+	Plug 'pearofducks/ansible-vim'
 
 call plug#end()
 

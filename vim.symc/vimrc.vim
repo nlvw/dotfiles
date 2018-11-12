@@ -6,8 +6,8 @@ set nocompatible
 
 " Set Lunix Paths
 if has('unix')
-	set runtimepath=~/.config/vim
-	set packpath=~/.config/vim
+	set runtimepath^=~/.config/vim
+	set packpath^=~/.config/vim
 endif
 
 " Create Variable For Vim Config Directory 

@@ -89,5 +89,8 @@ fi
 curl -fLo ~/.config/vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim +PlugInstall +qall
 
+# Unset Working Directory
+popd
+
 echo ''
 echo '  All installed!'

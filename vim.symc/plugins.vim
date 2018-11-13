@@ -1,12 +1,11 @@
 " ------------------------------------------------------------------------------------
 " Plugin Installation 
 " ------------------------------------------------------------------------------------
-" Install Plugged and Init
+
+" Install Plugged
 if empty(glob("$VIMFILES/autoload/plug.vim"))
-  silent! curl -fLo "$VIMFILES/autoload/plug.vim" --create-dirs 
-		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  silent !curl -fLo "$VIMFILES/autoload/plug.vim" --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
 " Define Required Plugins
@@ -14,12 +13,6 @@ call plug#begin("$VIMFILES/plugged")
 
 	" PaperColor Theme https://vimawesome.com/plugin/papercolor-theme
 	Plug 'nlknguyen/papercolor-theme'
-
-	" Draculo Theme https://vimawesome.com/plugin/vim
-	Plug 'dracula/vim'
-
-	" Gruvbox Theme https://github.com/morhetz/gruvbox
-	Plug 'morhetz/gruvbox'
 
 	" Colorfull Status Bar 
 	Plug 'itchyny/lightline.vim'
@@ -54,19 +47,15 @@ call plug#begin("$VIMFILES/plugged")
 	" Org Mode
 	Plug 'jceb/vim-orgmode'
 	
-	" Local VimRC Files
-	Plug 'embear/vim-localvimrc'
-	
 	" Ansible Common Files https://github.com/pearofducks/ansible-vim
 	Plug 'pearofducks/ansible-vim'
 
 call plug#end()
 
 " Install Missing Plugins
-autocmd VimEnter * 
-	\ if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) 
-	\| PlugInstall | q 
-	\| endif
+if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+	autocmd VimEnter * PlugInstall --sync | q
+endif
 
 " ------------------------------------------------------------------------------------
 " Plugin Settings
@@ -82,9 +71,9 @@ let g:PaperColor_Theme_Options = {
   \ }
 
 " Syntastic Settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1

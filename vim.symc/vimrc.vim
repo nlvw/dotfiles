@@ -14,7 +14,7 @@ endif
 let $VIMFILES=split(&rtp,",")[0]
 
 " ------------------------------------------------------------------------------------
-" Import Config Config Files
+" Source Additional Config Files 
 " ------------------------------------------------------------------------------------
 runtime plugins.vim
 

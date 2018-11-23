@@ -1,3 +1,6 @@
+!! Xft Settings
+Xft.dpi: 137x138
+
 ! Dracula Xresources palette
 *.foreground: #F8F8F2
 *.background: #282A36

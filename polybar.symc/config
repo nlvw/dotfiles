@@ -9,7 +9,7 @@
 ;=====================================================
 
 [colors]
-background = rgba(40, 42, 54, 0.68)
+background = #AD282A36
 foreground = #f8f8f2
 
 current_line = #44475a
@@ -230,6 +230,9 @@ menu-0-0-exec = menu-open-1
 menu-0-1 = Shutdown
 menu-0-1-foreground = ${colors.red}
 menu-0-1-exec = menu-open-2
+menu-0-2 = Logoff
+menu-0-2-foreground = ${colors.cyan}
+menu-0-2-exec = i3-msg exit
 
 menu-1-0 = Cancel
 menu-1-0-exec = menu-open-0

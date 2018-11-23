@@ -16,13 +16,39 @@ set $term --no-startup-id termite
 exec_always --no-startup-id xrdb -merge ~/.Xresources
 exec --no-startup-id xset r rate 300 50 # Incrase Key Rate
 exec --no-startup-id /usr/bin/pulseaudio --start # Start Sound Server
-exec --no-startup-id sudo mount -a # Mount other drives:
+#exec --no-startup-id sudo mount -a # Mount other drives:
 exec --no-startup-id compton --xrender-sync-fence # Composite manager:
 exec --no-startup-id feh --bg-scale ~/.config/i3/wall3.jpg # Set Background
 exec_always --no-startup-id bash ~/.config/polybar/launch.sh #Launch Polybar where appropriate
-exec --no-startup-id clipit
-#exec --no-startup-id unclutter # Unclutter makes the mouse invisible after a brief period
-#exec --no-startup-id nm-applet # Network Manager applet
+exec --no-startup-id unclutter # Unclutter makes the mouse invisible after a brief period
+
+# System Tray Applets
+exec --no-startup-id clipit # Clipboard applet
+exec --no-startup-id nm-applet # Network Manager applet
+exec --no-startup-id pasystray # Pulse Audio applet
+
+###########################################################################################
+# #---Set Variables---# #
+###########################################################################################
+set $shutdown systemctl poweroff
+set $reboot systemctl reboot
+
+#FOR ALSA/AMIXER
+#set $inc --no-startup-id amixer sset Master 2%+
+#set $biginc --no-startup-id amixer sset Master 5%+
+#set $dec --no-startup-id amixer sset Master 2%-
+#set $bigdec --no-startup-id amixer sset Master 5%-
+#set $mute --no-startup-id amixer sset Master toggle
+#set $truemute --no-startup-id amixer sset Master mute
+
+#For PULSEAUDIO/PAMIXER
+set $inc --no-startup-id pamixer --allow-boost -i 5
+set $biginc --no-startup-id pamixer --allow-boost -i 15
+set $dec --no-startup-id pamixer --allow-boost -d 5
+set $bigdec --no-startup-id pamixer --allow-boost -d 15
+set $mute --no-startup-id pamixer --allow-boost -t
+set $micmute --no-startup-id pamixer --allow-boost -t
+set $truemute --no-startup-id pamixer -m
 
 ###########################################################################################
 # #---Plasma Integration---# #
@@ -42,32 +68,6 @@ for_window [class="Kmix"] floating enable; border none
 for_window [class="Klipper"] floating enable; border none
 for_window [class="Plasmoidviewer"] floating enable; border none
 
-###########################################################################################
-# #---Set Variables---# #
-###########################################################################################
-set $shutdown systemctl poweroff
-set $reboot systemctl reboot
-
-#FOR ALSA/AMIXER
-#set $inc --no-startup-id amixer sset Master 2%+
-#set $biginc --no-startup-id amixer sset Master 5%+
-#set $dec --no-startup-id amixer sset Master 2%-
-#set $bigdec --no-startup-id amixer sset Master 5%-
-#set $mute --no-startup-id amixer sset Master toggle
-#set $truemute --no-startup-id amixer sset Master mute
-#set $screencast  --no-startup-id bash screencast_alsa.sh
-#set $audio --no-startup-id bash audio_alsa.sh
-
-#For PULSEAUDIO/PAMIXER
-set $inc --no-startup-id pamixer --allow-boost -i 5
-set $biginc --no-startup-id pamixer --allow-boost -i 15
-set $dec --no-startup-id pamixer --allow-boost -d 5
-set $bigdec --no-startup-id pamixer --allow-boost -d 15
-set $mute --no-startup-id pamixer --allow-boost -t
-set $micmute --no-startup-id pamixer --allow-boost -t
-set $truemute --no-startup-id pamixer -m
-set $screencast  --no-startup-id bash screencast_pulse.sh
-set $audio --no-startup-id bash audio_pulse.sh
 
 ###########################################################################################
 # #---Bindings---# #
@@ -202,10 +202,9 @@ bindsym XF86AudioNext	    	exec $next
 bindsym XF86AudioPlay		    exec $pause
 bindsym XF86AudioPrev		    exec $prev
 bindsym XF86AudioStop		    exec $pause
-bindsym XF86AudioRecord		    exec $audio
 bindsym XF86AudioRewind	    	exec $lilbak
 bindsym XF86AudioForward	    exec $lilfor
-#bindsym XF86AudioMicMute	    exec $micmute
+bindsym XF86AudioMicMute	    exec $micmute
 ##bindsym XF86TouchpadToggle	exec
 #bindsym XF86TouchpadOn		    exec --no-startup-id exec synclient TouchpadOff=0
 #bindsym XF86TouchpadOff	    	exec --no-startup-id exec synclient TouchpadOff=1

@@ -20,6 +20,7 @@ exec --no-startup-id /usr/bin/pulseaudio --start # Start Sound Server
 exec --no-startup-id compton --xrender-sync-fence # Composite manager:
 exec --no-startup-id feh --bg-scale ~/.config/i3/wall3.jpg # Set Background
 exec_always --no-startup-id bash ~/.config/polybar/launch.sh #Launch Polybar where appropriate
+exec_always --no-startup-id bash ~/.config/dunst/launch.sh # Launch Dunst notification daemon
 exec --no-startup-id unclutter # Unclutter makes the mouse invisible after a brief period
 
 # System Tray Applets

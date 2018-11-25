@@ -8,14 +8,14 @@ DFROOT="$(dirname "$(readlink -f "$0")")"
 
 # Setup Nix
 if [ ! -L "$HOME/.nix-profile" ]; then
-	read -p "Setup Nix (Yy/Nn)?? " -n 1 -r
+	read -p "Setup Nix (Yy/Nn)?? " -n 1 -r input
 	echo
-	if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+	if [[ ! $input =~ ^[Yy]$ ]]; then
 		bash "$DFROOT/Scripts/nix-setup.sh"
 	else
 		echo "Skipping Nix Setup!!"
 	fi
-	unset REPLY
+	unset input
 fi
 
 # Create/Refresh Symlinks For CLI Tool Dotfiles
@@ -24,15 +24,15 @@ bash "$DFROOT/Scripts/symh.sh" "$DFROOT/CLI"
 
 # Create/Refresh Symlinks For GUI Tool Dotfiles
 if [ ! -L "$HOME/.config/i3" ]; then
-	read -p "Setup Dotfiles For GUI Tools (Yy/Nn)?? " -n 1 -r
+	read -p "Setup Dotfiles For GUI Tools (Yy/Nn)?? " -n 1 -r input
 	echo
-	if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+	if [[ ! $input =~ ^[Yy]$ ]]; then
 		bash "$DFROOT/Scripts/symc.sh" "$DFROOT/GUI"
 		bash "$DFROOT/Scripts/symh.sh" "$DFROOT/GUI"
 	else
 		echo "Skipping GUI Dotfiles!!"
 	fi
-	unset REPLY
+	unset input
 else
 	bash "$DFROOT/Scripts/symc.sh" "$DFROOT/GUI"
 	bash "$DFROOT/Scripts/symh.sh" "$DFROOT/GUI"

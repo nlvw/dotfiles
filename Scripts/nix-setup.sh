@@ -5,9 +5,9 @@ curl https://nixos.org/nix/install | sh
 source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 # Install Applications and Fonts
-read -p "Install Nix Applications (Yy/Nn)?? " -n 1 -r
+read -p "Install Nix Applications (Yy/Nn)?? " -n 1 -r input
 echo
-if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+if [[ ! $input =~ ^[Yy]$ ]]; then
     # Install Nix Packages
     nix-env -i vim neovim emacs ranger tmux git fzf shellcheck pandoc pango source-code-pro nerdfonts roboto roboto-mono roboto-slab
 
@@ -22,4 +22,4 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 else
     echo "Skipping GUI Dotfiles!!"
 fi
-unset REPLY
+unset input

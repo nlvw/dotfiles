@@ -1,6 +1,4 @@
-# DotFiles For My Linux Preferences
-The repository is split between settings for cli/tui and gui settings.  
-
+# DotFiles For My Linux Preferences 
 ## Setup Instructions
 
 ```bash

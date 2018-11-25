@@ -10,6 +10,6 @@
   - '.symc' extension is stripped
 - symh.sh
   - Takes a path argument ($1)
-  - searches for files/folder with a '.symh' extensions and links them to user home directory
+  - searches for files/folder with a '.symh' extensions and links them to user home directory (~/*)
   - '.symh' extension is stripped and '.' is prepended to file/folder name
   

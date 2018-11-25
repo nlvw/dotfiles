@@ -2,12 +2,6 @@
 " Plugin Installation 
 " ------------------------------------------------------------------------------------
 
-" Install Plugged
-if empty(glob("$VIMFILES/autoload/plug.vim"))
-  silent !curl -fLo "$VIMFILES/autoload/plug.vim" --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-endif
-
 " Define Required Plugins
 call plug#begin("$VIMFILES/plugged")
 

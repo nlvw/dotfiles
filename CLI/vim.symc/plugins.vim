@@ -48,7 +48,7 @@ call plug#end()
 
 " Install Missing Plugins
 if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-	autocmd VimEnter * PlugInstall --sync | q
+	autocmd VimEnter * PlugInstall
 endif
 
 " ------------------------------------------------------------------------------------

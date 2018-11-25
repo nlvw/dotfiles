@@ -38,9 +38,6 @@ else
 	bash "$DFROOT/Scripts/symh.sh" "$DFROOT/GUI"
 fi
 
-# Refresh/Source bash_profile
-source "$HOME/.bash_profile"
-
 # Setup Local User Git Info if Missing
 if [ ! -f "$HOME/.config/git/userinfo" ]; then
   touch "$HOME/.config/git/userinfo"
@@ -63,7 +60,7 @@ fi
 
 # Install Vim Plugins
 if [ -z "$(ls "$HOME/.config/vim/plugged/")" ]; then
-	vim +PlugInstall +qall
+	vim -u "$HOME/.config/vim/vimrc.vim" +PlugInstall +qall
 fi
 
 echo ''

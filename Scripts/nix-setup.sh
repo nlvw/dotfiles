@@ -7,7 +7,7 @@ source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 # Install Applications and Fonts
 read -p "Install Nix Applications (Yy/Nn)?? " -n 1 -r input
 echo
-if [[ ! $input =~ ^[Yy]$ ]]; then
+if [[ $input =~ ^[Yy]$ ]]; then
     # Install Nix Packages
     nix-env -i vim neovim emacs ranger tmux git fzf shellcheck pandoc pango source-code-pro nerdfonts roboto roboto-mono roboto-slab
 

@@ -10,7 +10,7 @@ DFROOT="$(dirname "$(readlink -f "$0")")"
 if [ ! -L "$HOME/.nix-profile" ]; then
 	read -p "Setup Nix (Yy/Nn)?? " -n 1 -r input
 	echo
-	if [[ ! $input =~ ^[Yy]$ ]]; then
+	if [[ $input =~ ^[Yy]$ ]]; then
 		bash "$DFROOT/Scripts/nix-setup.sh"
 	else
 		echo "Skipping Nix Setup!!"
@@ -26,7 +26,7 @@ bash "$DFROOT/Scripts/symh.sh" "$DFROOT/CLI"
 if [ ! -L "$HOME/.config/i3" ]; then
 	read -p "Setup Dotfiles For GUI Tools (Yy/Nn)?? " -n 1 -r input
 	echo
-	if [[ ! $input =~ ^[Yy]$ ]]; then
+	if [[ $input =~ ^[Yy]$ ]]; then
 		bash "$DFROOT/Scripts/symc.sh" "$DFROOT/GUI"
 		bash "$DFROOT/Scripts/symh.sh" "$DFROOT/GUI"
 	else

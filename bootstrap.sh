@@ -7,7 +7,7 @@ set -e
 DFROOT="$(dirname "$(readlink -f "$0")")"
 
 # Setup Nix
-if [ ! -d "$HOME/.nix-profile" ]; then
+if [ ! -L "$HOME/.nix-profile" ]; then
 	read -p "Setup Nix (Yy/Nn)?? " -n 1 -r
 	echo
 	if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -23,7 +23,7 @@ bash "$DFROOT/Scripts/symc.sh" "$DFROOT/CLI"
 bash "$DFROOT/Scripts/symh.sh" "$DFROOT/CLI"
 
 # Create/Refresh Symlinks For GUI Tool Dotfiles
-if [ ! -d "$HOME/.config/i3" ]; then
+if [ ! -L "$HOME/.config/i3" ]; then
 	read -p "Setup Dotfiles For GUI Tools (Yy/Nn)?? " -n 1 -r
 	echo
 	if [[ ! $REPLY =~ ^[Yy]$ ]]; then

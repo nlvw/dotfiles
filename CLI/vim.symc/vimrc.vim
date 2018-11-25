@@ -81,11 +81,14 @@ let mapleader=","
 set binary
 set noeol
 
-" Centralize backups, swapfiles and undo history
+" Centralize backups, swapfiles, viminfo, and undo history
 set backupdir=$VIMFILES/backups
 set directory=$VIMFILES/swaps
 if exists("&undodir")
 	set undodir=$VIMFILES/undo
+endif
+if !has('nvim')
+    set viminfo+=n$VIMFILES/backups/viminfo
 endif
 
 " Don’t create backups when editing files in certain directories

@@ -4,72 +4,54 @@
 
 # Set dotfile base directory as current
 pushd "$(dirname "$0")"
-DOTFILES_ROOT=$(pwd -P)
+DFROOT=$(pwd -P)
 
 # Stop Script on Error
 #set -e
 
-# Create/Refresh dotfile symlinks (~/*)
-for src in $(find -H "$DOTFILES_ROOT" -maxdepth 4 -name '*.symh' -not -path '*.git*')
-do
-  dst="$HOME/.$(basename "${src%.*}")"
-  rm -rf "$dst" &>/dev/null || true
-  ln -rsf "$src" "$dst"
-done
+# Create/Refresh Symlinks For CLI Tool Dotfiles
+bash "$DFROOT/Scripts/symc.sh" "$DFROOT/CLI"
+bash "$DFROOT/Scripts/symh.sh" "$DFROOT/CLI"
 
-# Create/Refresh dotfile symlinks (~/.config/*)
-mkdir ~/.config &>/dev/null || true
-for src in $(find -H "$DOTFILES_ROOT" -maxdepth 4 -name '*.symc' -not -path '*.git*')
-do
-  dst="$HOME/.config/$(basename "${src%.*}")"
-  rm -rf "$dst" &>/dev/null || true
-  ln -rsf "$src" "$dst"
-done
+# Create/Refresh Symlinks For GUI Tool Dotfiles
+if [ ! -d "$HOME/.config/i3" ]; then
+	read -p "Setup Dotfiles For GUI Tools (Yy/Nn)?? " -n 1 -r
+	echo
+	if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+		bash "$DFROOT/Scripts/symc.sh" "$DFROOT/GUI"
+		bash "$DFROOT/Scripts/symh.sh" "$DFROOT/GUI"
+	else
+		echo "Skipping GUI Dotfiles!!"
+	fi
+else
+	bash "$DFROOT/Scripts/symc.sh" "$DFROOT/GUI"
+	bash "$DFROOT/Scripts/symh.sh" "$DFROOT/GUI"
+fi
 
 # Refresh/Source bash_profile
-source ~/.bash_profile
+source "$HOME/.bash_profile"
 
 # Setup Nix
 if [ ! -d "$HOME/.nix-profile" ]; then
-	echo "Do you wish to setup Nix?"
-	select yn in "Yes" "No"; do
-		case $yn in
-			Yes )
-				# Install Nix
-				curl https://nixos.org/nix/install | sh
-				. "$HOME/.nix-profile/etc/profile.d/nix.sh"
-
-				# Install Nix Packages
-				nix-env -i vim neovim emacs ranger tmux git pandoc source-code-pro nerdfonts roboto roboto-mono roboto-slab
-
-				# Link Nix Fonts
-				mkdir -p ~/.local/share/fonts
-				ln -sf "$HOME/.nix-profile/share/fonts" ~/.local/share/fonts/nix_fonts
-				
-				# Setup Spacemacs
-				if [ ! -d "$HOME/.emacs.d" ]; then
-					git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-				fi
-
-				;;
-
-			No ) 
-				echo "Skipping Nix Setup..."
-				;;
-		esac
-	done
+	read -p "Setup Nix (Yy/Nn)?? " -n 1 -r
+	echo
+	if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+		bash "$DFROOT/Scripts/nix-setup.sh"
+	else
+		echo "Skipping Nix Setup!!"
+	fi
 fi
 
 # Setup Local User Git Info if Missing
-if ! [ -f "${DOTFILES_ROOT}/git/userinfo" ]; then
-  touch "${DOTFILES_ROOT}/git/userinfo"
+if [ ! -f "$HOME/.config/git/userinfo" ]; then
+  touch "$HOME/.config/git/userinfo"
 
   read -erp $' - What is your github author name?\n' git_authorname
   read -erp $' - What is your github author email?\n' git_authoremail
 
-  echo "[user]" > "${DOTFILES_ROOT}/git/userinfo"
-  echo "name = ${git_authorname}" >> "${DOTFILES_ROOT}/git/userinfo"
-  echo "email = ${git_authoremail}" >> "${DOTFILES_ROOT}/git/userinfo"
+  echo "[user]" > "$HOME/.config/git/userinfo"
+  echo "name = ${git_authorname}" >> "$HOME/.config/git/userinfo"
+  echo "email = ${git_authoremail}" >> "$HOME/.config/git/userinfo"
 fi
 
 # Setup SSH Files
@@ -80,9 +62,10 @@ if [ ! -f ~/.ssh/config ]; then
   echo "AddKeysToAgent yes" >> ~/.ssh/config
 fi
 
-# Install Vim-Plug & Plugins
-curl -fLo ~/.config/vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim +PlugInstall +qall
+# Install Vim Plugins
+if [ -z "$(ls "$HOME/.config/vim/plugged/")" ]; then
+	vim +PlugInstall +qall
+fi
 
 # Unset Working Directory
 popd

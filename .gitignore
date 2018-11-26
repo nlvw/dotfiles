@@ -1,5 +1,25 @@
-git/userinfo
-vim.symc/autoload/plug.vim
-vim.symc/autoload/plug.vim.old
-vim.symc/plugged/
+################
+# Excluded 
+################
+
+# Git
+CLI/git/userinfo
+
+# Vim
+CLI/vim.symc/backups/*
+CLI/vim.symc/plugged/*
+CLI/vim.symc/swaps/*
+CLI/vim.symc/undo/*
+
+# VSCode Trash
 .vscode
+
+################
+# Exceptions
+################
+
+# Vim
+!CLI/vim.symc/backups/.gitkeep
+!CLI/vim.symc/plugged/.gitkeep
+!CLI/vim.symc/swaps/.gitkeep
+!CLI/vim.symc/undo/.gitkeep

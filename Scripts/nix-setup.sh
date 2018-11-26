@@ -2,7 +2,7 @@
 
 # Install Nix
 curl https://nixos.org/nix/install | sh
-. "$HOME/.nix-profile/etc/profile.d/nix.sh"
+source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 # Install Applications and Fonts
 read -p "Install Nix Applications (Yy/Nn)?? " -n 1 -r
@@ -22,3 +22,4 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 else
     echo "Skipping GUI Dotfiles!!"
 fi
+unset REPLY

@@ -1,13 +1,22 @@
 #!/usr/bin/env bash
 
-# bootstrap all the things!!
+# Stop Script on Error
+set -e
 
 # Set dotfile base directory as current
-pushd "$(dirname "$0")"
-DFROOT=$(pwd -P)
+DFROOT="$(dirname "$(readlink -f "$0")")"
 
-# Stop Script on Error
-#set -e
+# Setup Nix
+if [ ! -d "$HOME/.nix-profile" ]; then
+	read -p "Setup Nix (Yy/Nn)?? " -n 1 -r
+	echo
+	if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+		bash "$DFROOT/Scripts/nix-setup.sh"
+	else
+		echo "Skipping Nix Setup!!"
+	fi
+	unset REPLY
+fi
 
 # Create/Refresh Symlinks For CLI Tool Dotfiles
 bash "$DFROOT/Scripts/symc.sh" "$DFROOT/CLI"
@@ -23,6 +32,7 @@ if [ ! -d "$HOME/.config/i3" ]; then
 	else
 		echo "Skipping GUI Dotfiles!!"
 	fi
+	unset REPLY
 else
 	bash "$DFROOT/Scripts/symc.sh" "$DFROOT/GUI"
 	bash "$DFROOT/Scripts/symh.sh" "$DFROOT/GUI"
@@ -30,17 +40,6 @@ fi
 
 # Refresh/Source bash_profile
 source "$HOME/.bash_profile"
-
-# Setup Nix
-if [ ! -d "$HOME/.nix-profile" ]; then
-	read -p "Setup Nix (Yy/Nn)?? " -n 1 -r
-	echo
-	if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-		bash "$DFROOT/Scripts/nix-setup.sh"
-	else
-		echo "Skipping Nix Setup!!"
-	fi
-fi
 
 # Setup Local User Git Info if Missing
 if [ ! -f "$HOME/.config/git/userinfo" ]; then
@@ -66,9 +65,6 @@ fi
 if [ -z "$(ls "$HOME/.config/vim/plugged/")" ]; then
 	vim +PlugInstall +qall
 fi
-
-# Unset Working Directory
-popd
 
 echo ''
 echo '  All installed!'

@@ -1,16 +1,14 @@
 #!/usr/bin/env bash
 
 # Load the shell dotfiles, and then some:
-# * ~/.path can be used to extend `$PATH`.
-# * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/dotfiles/bash/{aliases,exports,functions,prompt}; do
+for file in ~/.config/bash/{aliases,exports,functions,prompt}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
 
 # if nix env exits source it
 if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
-	. "$HOME/.nix-profile/etc/profile.d/nix.sh"
+	source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 fi
 
 # Load Bash Completions
@@ -58,10 +56,8 @@ fi;
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
 #complete -W "NSGlobalDomain" defaults;
-if [ -e /home/nic/.nix-profile/etc/profile.d/nix.sh ]; then . /home/nic/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 # ChromeOS: Set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 	debian_chroot=$(cat /etc/debian_chroot)
 fi
-

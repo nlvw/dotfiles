@@ -8,6 +8,9 @@ set nocompatible
 if has('unix')
 	set runtimepath^=~/.config/vim
 	set packpath^=~/.config/vim
+elseif has('win32') || has('win64')
+	set runtimepath^=$USERPROFILE\.vim
+	set packpath^=$USERPROFILE\.vim
 endif
 
 " Create Variable For Vim Config Directory 

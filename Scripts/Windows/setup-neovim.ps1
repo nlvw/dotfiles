@@ -18,7 +18,7 @@ set runtimepath^=$USERPROFILE\.vim
 set packpath^=$USERPROFILE\.vim
 source $USERPROFILE\.vim\vimrc.vim
 '
-$initvim | Out-File "$env:LOCALAPPDATA\nvim\init.vim" -Force
+$initvim | Out-File "$env:LOCALAPPDATA\nvim\init.vim" -Encoding utf8 -Force
 
 # Download Plugins
 nvim +PlugInstall +qall

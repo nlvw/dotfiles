@@ -38,9 +38,6 @@ call plug#begin("$VIMFILES/plugged")
 	" Nix syntax highlighting
 	Plug 'lnl7/vim-nix'
 	
-	" Org Mode
-	Plug 'jceb/vim-orgmode'
-	
 	" Ansible Common Files https://github.com/pearofducks/ansible-vim
 	Plug 'pearofducks/ansible-vim'
 

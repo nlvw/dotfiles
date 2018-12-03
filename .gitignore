@@ -3,7 +3,7 @@
 ################
 
 # Git
-CLI/git/userinfo
+CLI/git.symc/userinfo
 
 # Vim
 CLI/vim.symc/backups/*

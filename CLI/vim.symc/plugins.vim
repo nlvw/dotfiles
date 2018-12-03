@@ -11,6 +11,9 @@ call plug#begin("$VIMFILES/plugged")
 	" Colorfull Status Bar 
 	Plug 'itchyny/lightline.vim'
 
+	" Markdown Syntax (https://github.com/plasticboy/vim-markdown)
+	Plug 'plasticboy/vim-markdown'
+
 	" The Nerd Tree https://vimawesome.com/plugin/nerdtree-red
 	Plug 'scrooloose/nerdtree'
 
@@ -60,6 +63,17 @@ let g:PaperColor_Theme_Options = {
   \     }
   \   }
   \ }
+
+" Markdown Settings
+let g:vim_markdown_folding_level = 6
+let g:vim_markdown_toc_autofit = 1
+let g:vim_markdown_conceal = 2
+let g:vim_markdown_follow_anchor = 1
+let g:vim_markdown_anchorexpr = "'<<'.v:anchor.'>>'"
+let g:vim_markdown_autowrite = 1
+let g:vim_markdown_no_extensions_in_markdown = 0
+let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_edit_url_in = 'tab'
 
 " Syntastic Settings
 "set statusline+=%#warningmsg#

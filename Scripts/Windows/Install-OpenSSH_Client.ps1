@@ -7,5 +7,9 @@ New-Item -Path $env:USERPROFILE\.ssh -ItemType Directory -Force
 Get-WindowsCapability -Online | ? Name -like 'OpenSSH.Client*' | Add-WindowsCapability -Online
 
 # Enable SSH Agent Service
-Set-Service ssh-agent -StartupType Automatic
-Start-Service ssh-agent
+Set-Service ssh-agent -StartupType Manual
+
+# Create SSH Folder and Settings
+New-Item -Path "$env:USERPROFILE\.ssh" -ItemType Directory -Force | Out-Null
+$config = "AddKeysToAgent yes"
+$config | Out-File "$env:USERPROFILE\.ssh\config" -Encoding utf8 -Force

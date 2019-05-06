@@ -11,7 +11,7 @@ DFROOT="$(dirname "$(readlink -f "$0")")"
 # ----------------------------------
 pause(){
 	echo ""
-  read -p "Press [Enter] key to continue..." fackEnterKey
+	read -p "Press [Enter] key to continue..." fackEnterKey
 }
 
 autolinker(){

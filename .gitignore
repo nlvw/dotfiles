@@ -5,6 +5,10 @@
 # Git
 CLI/git.symc/userinfo
 
+# Powershell Default Modules/Scripts Folder
+CLI/powershell.symc/Modules/*
+CLI/powershell.symc/Scripts/*
+
 # Vim
 CLI/vim.symc/backups/*
 CLI/vim.symc/plugged/*

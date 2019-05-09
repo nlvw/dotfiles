@@ -38,6 +38,9 @@ if (Test-Path("$env:ChocolateyInstall\helpers\chocolateyProfile.psm1")) {
 function prompt {
     # Store Current LastExitCode (incase this function changes it)
     $realLASTEXITCODE = $LASTEXITCODE
+    
+    # Add Empty Line To Seperate From Previous Command Output
+    Write-Host
 
     # color for PSSessions
     if ($s -ne $null) {

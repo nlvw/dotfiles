@@ -7,7 +7,10 @@ set nocompatible
 " Set Lunix Paths
 if has('unix')
 	set runtimepath^=~/.config/vim
-	set packpath^=~/.config/vim
+	
+	if v:version > 800
+		set packpath^=~/.config/vim
+	endif
 elseif has('win32') || has('win64')
 	set runtimepath^=$USERPROFILE\.vim
 	set packpath^=$USERPROFILE\.vim
@@ -31,7 +34,9 @@ silent! colorscheme PaperColor
 syntax on
 
 " Disable audio bell / beebing tone
-set belloff=all
+if v:version > 800
+	set belloff=all
+endif
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed

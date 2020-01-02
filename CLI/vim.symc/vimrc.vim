@@ -136,7 +136,11 @@ set incsearch
 set laststatus=2
 
 " Enable mouse in all modes
-set mouse=a
+if v:version > 800
+	set mouse=a
+else
+	set mouse=
+endif
 
 " Disable error bells
 set noerrorbells

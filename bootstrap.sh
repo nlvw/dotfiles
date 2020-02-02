@@ -113,8 +113,9 @@ nixbasics() {
 	echo "Installing Basic Apps/Fonts Using Nix! This May Take Some Time!!"
 
 	# Install Nix Packages
-	nix-env -i vim neovim emacs ranger tmux git fzf shellcheck pandoc pango roboto roboto-mono roboto-slab source-code-pro 
-
+	nix-env -i vim neovim emacs ranger tmux git fzf pandoc pango roboto roboto-mono roboto-slab source-code-pro 
+	nix-env -iA nixpkgs.shellcheck
+	
 	# Link Nix Fonts
 	mkdir -p ~/.local/share/fonts
 	ln -sf "$HOME/.nix-profile/share/fonts" ~/.local/share/fonts/nix_fonts

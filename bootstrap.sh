@@ -90,7 +90,14 @@ vimplug() {
 nixsetup() {
 	if [ ! -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
 		echo "Installing Nix Package Manager!"
-
+		
+		if grep -q Microsoft /proc/version; then
+  			echo "Ubuntu on Windows"
+			sudo mkdir /etc/nix; 
+			echo 'use-sqlite-wal = false' > /etc/nix/nix.conf
+			echo 'sandbox = false' >> /etc/nix/nix.conf
+		fi
+		
 		curl https://nixos.org/nix/install | sh
 		source "$HOME/.nix-profile/etc/profile.d/nix.sh" 
 
@@ -106,7 +113,7 @@ nixbasics() {
 	echo "Installing Basic Apps/Fonts Using Nix! This May Take Some Time!!"
 
 	# Install Nix Packages
-	nix-env -i vim neovim ranger tmux git fzf shellcheck pandoc pango roboto roboto-mono roboto-slab
+	nix-env -i vim neovim emacs ranger tmux git fzf shellcheck pandoc pango roboto roboto-mono roboto-slab source-code-pro 
 
 	# Link Nix Fonts
 	mkdir -p ~/.local/share/fonts

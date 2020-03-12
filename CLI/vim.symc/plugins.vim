@@ -9,7 +9,11 @@ call plug#begin("$VIMFILES/plugged")
 	Plug 'nlknguyen/papercolor-theme'
 
 	" Colorfull Status Bar 
-	Plug 'itchyny/lightline.vim'
+	"Plug 'itchyny/lightline.vim'
+
+	" Status Bar
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
 
 	" Markdown Syntax (https://github.com/plasticboy/vim-markdown)
 	Plug 'plasticboy/vim-markdown'
@@ -57,12 +61,18 @@ endif
 
 " Paper Color Theme Settings
 let g:PaperColor_Theme_Options = {
-  \   'theme': {
-  \     'default.dark': {
-  \       'transparent_background': 1
-  \     }
-  \   }
-  \ }
+	\		'theme': {
+	\			'default.dark': {
+	\				'transparent_background': 1
+	\			}
+	\		}
+	\ }
+
+" Status Line Settings
+let g:airline_powerline_fonts = 0
+let g:airline_theme='papercolor'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'default'
 
 " Markdown Settings
 let g:vim_markdown_folding_level = 6
@@ -76,9 +86,9 @@ let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_edit_url_in = 'tab'
 
 " Syntastic Settings
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1

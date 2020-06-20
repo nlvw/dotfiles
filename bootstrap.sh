@@ -87,6 +87,15 @@ vimplug() {
 	pause
 }
 
+doomsetup() {
+	if [ -d "$HOME/.doom.d/" ]; then
+		git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+		~/.emacs.d/bin/doom install
+	else
+		echo -e "${RED}~/.doom.d directory not found! CLI Config Files Must Be Linked First!!${STD}"
+	fi
+}
+
 nixsetup() {
 	if [ ! -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
 		echo "Installing Nix Package Manager!"
@@ -150,27 +159,29 @@ show_menus() {
 	echo "3. Git Default Author/Email"
 	echo "4. SSH Init (~/.ssh & ~/.ssh/config)"
 	echo "5. Vim Plugins (Install/Update)"
+	echo "6. Install Doom Emacs"
 	echo ""
-	echo "6. Nix Setup"
-	echo "7. Nix Install Basic Apps/Fonts"
-	echo "8. Nix Update Packages"
+	echo "7. Nix Setup"
+	echo "8. Nix Install Basic Apps/Fonts"
+	echo "9. Nix Update Packages"
 	echo ""
-	echo "9. Exit"
+	echo "10. Exit"
 }
 # read input from the keyboard and take a action
 read_options(){
 	local choice
-	read -p "Enter choice [ 1 - 9 ] " choice
+	read -p "Enter choice [ 1 - 10 ] " choice
 	case $choice in
 		1) autolinker "${DFROOT}/CLI" ;;
 		2) autolinker "${DFROOT}/GUI" ;;
 		3) gitinfo ;;
 		4) sshinit ;;
 		5) vimplug ;;
-		6) nixsetup ;;
-		7) nixbasics ;;
-		8) nixupdate ;;
-		9) exit 0 ;;
+		6) doomsetup ;;
+		7) nixsetup ;;
+		8) nixbasics ;;
+		9) nixupdate ;;
+		10) exit 0 ;;
 		*) echo -e "${RED}Error...${STD}" && sleep 2
 			esac
 }

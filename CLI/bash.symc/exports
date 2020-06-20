@@ -5,6 +5,11 @@ if [ -d "$HOME/.local/bin" ]; then
 	PATH+=":$HOME/.local/bin"
 fi
 
+# Doom Emacs
+if [ -f "$HOME/.emacs.d/bin/doom" ]; then
+	PATH+=":$HOME/.emacs.d/bin"
+fi
+
 # Make vim the default editor.
 export EDITOR='vim';
 

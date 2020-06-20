@@ -9,6 +9,9 @@ unset file;
 # if nix env exits source it
 if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
 	source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+	export LOCALE_ARCHIVE_2_11="$(nix-build --no-out-link "<nixpkgs>" -A glibcLocales)/lib/locale/locale-archive"
+	export LOCALE_ARCHIVE_2_27="$(nix-build --no-out-link "<nixpkgs>" -A glibcLocales)/lib/locale/locale-archive"
+	export LOCALE_ARCHIVE="/usr/bin/locale"
 fi
 
 # Load Bash Completions
@@ -17,7 +20,7 @@ if [ -e ~/.config/alacritty/alacritty-completions.bash ]; then
 fi
 
 # Enable bash vi mode
-set -o vi
+#set -o vi
 
 # Automate ssh-agent startup
 [ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" &>/dev/null
@@ -61,3 +64,4 @@ fi;
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 	debian_chroot=$(cat /etc/debian_chroot)
 fi
+if [ -e /home/wolfereign/.nix-profile/etc/profile.d/nix.sh ]; then . /home/wolfereign/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

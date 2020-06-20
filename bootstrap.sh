@@ -113,7 +113,7 @@ nixbasics() {
 	echo "Installing Basic Apps/Fonts Using Nix! This May Take Some Time!!"
 
 	# Install Nix Packages
-	nix-env -i vim neovim emacs ranger tmux git fzf ripgrep ripgrep-all fd roboto roboto-mono roboto-slab source-code-pro 
+	nix-env -i vim neovim emacs ranger tmux git fzf ripgrep ripgrep-all fd pandoc roboto roboto-mono roboto-slab source-code-pro 
 	nix-env -iA nixpkgs.glibcLocales nixpkgs.shellcheck
 	
 	# Link Nix Fonts

@@ -1,6 +1,7 @@
-" ------------------------------------------------------------------------------------
-" Set Paths and Needed Variables
-" ------------------------------------------------------------------------------------
+" ------------------------------ "
+" Set Paths and Needed Variables "
+" ------------------------------ "
+
 " Enable New VIM Syntax/Settings
 set nocompatible
 
@@ -19,14 +20,20 @@ endif
 " Create Variable For Vim Config Directory
 let $VIMFILES=split(&rtp,",")[0]
 
-" ------------------------------------------------------------------------------------
-" Source Additional Config Files
-" ------------------------------------------------------------------------------------
+" Change mapleader
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+
+" ------------------------------ "
+" Source Additional Config Files "
+" ------------------------------ "
 runtime plugins.vim
 
-" ------------------------------------------------------------------------------------
-" Default Vim Settings
-" ------------------------------------------------------------------------------------
+" -------------------- "
+" Default Vim Settings "
+" -------------------- "
+
+" Set Themeing
 set background=dark
 silent! colorscheme PaperColor
 
@@ -39,11 +46,10 @@ if v:version > 800
 endif
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
-set clipboard=unnamed
+set clipboard^=unnamed,unnamedplus
 
-" Change mapleader
-nnoremap <SPACE> <Nop>
-let mapleader=" "
+" Reload Settings
+nnoremap <Leader>r :source $VIMFILES/vimrc.vim<CR>
 
 " Keymap for OS clipboard
 vnoremap <C-c> "+y
@@ -77,6 +83,11 @@ nnoremap <C-h> :tabprevious<CR>
 nnoremap <C-k> :tabnext<CR>
 nnoremap <C-l> :tabnext<CR>
 
+" Buffer Navigation
+nnoremap <Leader>l :bnext<CR>
+nnoremap <Leader>h :bprev<CR>
+nnoremap <Leader>q :bd<CR>
+
 " Run Line In Bash
 nmap <F8> :exec '!'.getline('.')
 
@@ -97,15 +108,16 @@ set binary
 set noeol
 
 " Centralize backups, swapfiles, viminfo, and undo history
-set backupdir=$VIMFILES/backups
-set directory=$VIMFILES/swaps
-if exists("&undodir")
-	set undodir=$VIMFILES/undo
-endif
-if !has('nvim')
+if !isdirectory("$VIMFILES")
+ set backupdir=$VIMFILES/backups
+	set directory=$VIMFILES/swaps
+	if exists("&undodir")
+		set undodir=$VIMFILES/undo
+	endif
+	if !has('nvim')
 		set viminfo+=n$VIMFILES/backups/viminfo
+	endif
 endif
-
 " Don’t create backups when editing files in certain directories
 set backupskip=/tmp/*,/private/tmp/*
 
@@ -121,13 +133,16 @@ set secure
 set number
 
 " Highlight current line
-"set cursorline
+set cursorline
 
 " Make tabs as wide as two spaces
 set tabstop=2
 
 " Use tabs, not spaces
 set noexpandtab
+
+" Set default shiftwidth
+set shiftwidth=2
 
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
@@ -173,30 +188,13 @@ set title
 " Show the (partial) command as it’s being typed
 set showcmd
 
-" Use relative line numbers
-"if exists("&relativenumber")
-"	set relativenumber
-"	au BufReadPost * set relativenumber
-"endif
-
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
-
-" Strip trailing whitespace (,ss)
-function! StripWhitespace()
-	let save_cursor = getpos(".")
-	let old_query = getreg('/')
-	:%s/\s\+$//e
-	call setpos('.', save_cursor)
-	call setreg('/', old_query)
-endfunction
-noremap <leader>ss :call StripWhitespace()<CR>
 
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
 " Trim trailing whitespace
-" ========================
 function! TrimWhitespace()
 	" trailing whitespaces have meaning in markdown so don't try there
 	if &filetype!='markdown'
@@ -206,6 +204,7 @@ function! TrimWhitespace()
 	endif
 endfunction
 command! TrimWhitespace call TrimWhitespace()
+noremap <leader>ss :call TrimWhitespace()<CR>
 
 " Automatic commands
 if has("autocmd")
@@ -216,9 +215,9 @@ if has("autocmd")
 	autocmd BufNewFile,BufRead * setlocal formatoptions-=ro
 
 	" Enable Tab Expansion in Python/yaml
-	autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
-	autocmd Filetype yaml setlocal expandtab tabstop=2 shiftwidth=2
-	autocmd Filetype yml setlocal expandtab tabstop=2 shiftwidth=2
+	autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+	autocmd Filetype yaml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+	autocmd Filetype yml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 	" Treat .json files as .js
 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript

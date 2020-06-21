@@ -1,5 +1,5 @@
 " ------------------------------------------------------------------------------------
-" Plugin Installation 
+" Plugin Installation
 " ------------------------------------------------------------------------------------
 
 " Define Required Plugins
@@ -8,7 +8,7 @@ call plug#begin("$VIMFILES/plugged")
 	" PaperColor Theme https://vimawesome.com/plugin/papercolor-theme
 	Plug 'nlknguyen/papercolor-theme'
 
-	" Colorfull Status Bar 
+	" Colorfull Status Bar
 	"Plug 'itchyny/lightline.vim'
 
 	" Status Bar
@@ -41,10 +41,10 @@ call plug#begin("$VIMFILES/plugged")
 
 	" Syntax for Powershell https://vimawesome.com/plugin/vim-ps1
 	Plug 'pprovost/vim-ps1'
-	
+
 	" Nix syntax highlighting
 	Plug 'lnl7/vim-nix'
-	
+
 	" Ansible Common Files https://github.com/pearofducks/ansible-vim
 	Plug 'pearofducks/ansible-vim'
 
@@ -74,6 +74,19 @@ let g:airline_theme='papercolor'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
 
+" NerdTree Settings
+let g:NERDTreeWinSize=20
+let g:NERDTreeNaturalSort = 1
+let g:NERDTreeShowHidden=1
+let g:NERDTreeAutoDeleteBuffer=1
+let g:NERDTreeQuitOnOpen=0
+let g:plug_window = 'noautocmd vertical topleft new'
+nnoremap <Leader>n :NERDTreeToggle<CR>
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+
 " Markdown Settings
 let g:vim_markdown_folding_level = 6
 let g:vim_markdown_toc_autofit = 1
@@ -96,4 +109,3 @@ let g:syntastic_check_on_wq = 0
 
 " Syntax Powershell Settings
 let g:ps1_nofold_blocks = 1
-

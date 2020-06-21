@@ -10,6 +10,18 @@ if [ -f "$HOME/.emacs.d/bin/doom" ]; then
 	PATH+=":$HOME/.emacs.d/bin"
 fi
 
+# XDG Home
+if [ -z "$XDG_CONFIG_HOME" ]; then
+	export XDG_CONFIG_HOME="$HOME/.config"
+fi
+
+# XDG Run Dir
+if [ -z "$XDG_RUNTIME_DIR" ]; then
+	mkdir -p "/tmp/run-$EUID"
+	chmod 700 "/tmp/run-$EUID"
+	export XDG_RUNTIME_DIR="/tmp/run-$EUID"
+fi
+
 # Make vim the default editor.
 export EDITOR='vim';
 

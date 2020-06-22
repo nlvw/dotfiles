@@ -23,7 +23,7 @@ fi
 #set -o vi
 
 # Automate ssh-agent startup
-[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" &>/dev/null
+#[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" &>/dev/null
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
@@ -42,10 +42,8 @@ for option in autocd globstar; do
 done;
 
 # Add tab completion for many Bash commands
-if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
-	source "$(brew --prefix)/share/bash-completion/bash_completion";
-elif [ -f /etc/bash_completion ]; then
-	source /etc/bash_completion;
+if [ -f /etc/bash_completion ]; then
+	source /etc/bash_completion
 fi;
 
 # Enable tab completion for `g` by marking it as an alias for `git`
@@ -64,4 +62,14 @@ fi;
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 	debian_chroot=$(cat /etc/debian_chroot)
 fi
-if [ -e /home/wolfereign/.nix-profile/etc/profile.d/nix.sh ]; then . /home/wolfereign/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# Load Dropin Files
+if [ -d "$HOME/.bash.d" ]; then
+	for file in "$HOME/.bash.d/"*.sh ; do
+		source "$file"
+	done
+else
+	mkdir -p "$HOME/.bash.d"
+	chmod 700 "$HOME/.bash.d"
+fi
+

@@ -106,6 +106,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_sh_shellcheck_args="-e SC1090,SC1091,SC2155"
 
 " Syntax Powershell Settings
 let g:ps1_nofold_blocks = 1

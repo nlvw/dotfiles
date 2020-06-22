@@ -2,7 +2,7 @@
 
 # Create a new directory and enter it
 function mkd() {
-	mkdir -p "$@" && cd "$_";
+	mkdir -p "$@" && cd "$_" || exit
 }
 
 # Determine size of a file or total size of a directory
@@ -12,7 +12,7 @@ function fs() {
 	else
 		local arg=-sh;
 	fi
-	if [[ -n "$@" ]]; then
+	if [[ -n "$*" ]]; then
 		du $arg -- "$@";
 	else
 		du $arg .[^.]* ./*;
@@ -20,8 +20,7 @@ function fs() {
 }
 
 # Use Git’s colored diff when available
-hash git &>/dev/null;
-if [ $? -eq 0 ]; then
+if hash git &>/dev/null; then
 	function diff() {
 		git diff --no-index --color-words "$@";
 	}
@@ -109,3 +108,14 @@ man() {
     LESS_TERMCAP_us=$'\E[04;38;5;146m' \
     man "$@"
 }
+
+# Automate ssh-agent startup
+start_agent() {
+	if [ ! -S "$HOME/.ssh/ssh_auth_sock" ]; then
+		eval "$(ssh-agent)"
+		ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+	fi
+	export SSH_AUTH_SOCK="$HOME/.ssh/ssh_auth_sock"
+	ssh-add -l > /dev/null
+}
+

@@ -65,8 +65,10 @@ fi
 
 # Load Dropin Files
 if [ -d "$HOME/.bash.d" ]; then
-	for file in "$HOME/.bash.d/"*.sh ; do
-		source "$file"
+	for file in "$HOME/.bash.d/"* ; do
+		if [[ $file == *.sh ]]; then
+			source "$file"
+		fi
 	done
 else
 	mkdir -p "$HOME/.bash.d"

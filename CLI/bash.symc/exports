@@ -23,7 +23,7 @@ if [ -z "$XDG_RUNTIME_DIR" ]; then
 fi
 
 # Make vim the default editor.
-export EDITOR='vim';
+export EDITOR='vim -u ~/.config/vim/vimrc.vim ';
 
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 #export PYTHONIOENCODING='UTF-8';

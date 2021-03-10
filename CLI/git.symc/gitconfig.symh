@@ -82,6 +82,9 @@
 		fi \
 	}; f"
 
+	# Checkout gitlab merge request for review
+	mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
+
 [apply]
 
 	# Detect whitespace errors when applying a patch
@@ -192,3 +195,8 @@
 
 	insteadOf = "gist:"
 
+[pull]
+	rebase = false
+[user]
+	name = Nicholas Von Wolff
+	email = nvonwolf@nmsu.edu

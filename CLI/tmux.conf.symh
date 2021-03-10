@@ -1,7 +1,7 @@
-# remap prefix 
-set-option -g prefix C-Space
-unbind C-Space
-bind C-Space send-prefix
+# remap prefix
+unbind C-b
+set-option -g prefix C-a
+bind-key C-a send-prefix
 
 # start with window 1 (instead of 0)
 set -g base-index 1
@@ -13,7 +13,8 @@ set -g pane-base-index 1
 set -g history-limit 10000
 
 # open new windows in the current path
-bind c new-window -c "#{pane_current_path}"
+unbind t
+bind t new-window -c "#{pane_current_path}"
 
 # reload config file (change file location to your the tmux.conf you want to use)
 bind r source-file ~/.tmux.conf
@@ -22,26 +23,78 @@ bind r source-file ~/.tmux.conf
 set -sg escape-time 1
 
 # Enable mouse control (clickable windows, panes, resizable panes)
-set -g mouse on # v >= 2.1
+set-option -g mouse on
+setw -g alternate-screen on
 
-# don't rename windows automatically
-#set-option -g allow-rename off
+#
+# Keybinds
+#
+bind \\ split-window -h -c '#{pane_current_path}'
+bind | split-window -v -c '#{pane_current_path}'
+unbind '"'
+unbind k
 
-# enable vi mode keys
-set-window-option -g mode-keys vi
+# Moving between panes with vim movement keys
+bind -r h select-pane -L
+bind -r j select-pane -D
+bind -r k select-pane -U
+bind -r l select-pane -R
+
+# Resize panes
+bind -r H resize-pane -L
+bind -r J resize-pane -D
+bind -r K resize-pane -U
+bind -r L resize-pane -R
+bind m resize-pane -Z
+
+# Window Cycle/Swap
+bind -r , previous-window
+bind -r . next-window
+bind -r < swap-window -t -1
+bind -r > swap-window -t +1
+
+# Activate inner-most session (when nesting tmux) to send commands
+bind a send-prefix
+
+#
+# Colors
+#
+active_window_bg=colour34
+inactive_window_bg=colour102
+bar_bg=colour237
+bar_fg=colour255
+
+#
+# Appearance
+#
+set -g status-style bg=$bar_bg
+setw -g window-status-style fg=$bar_fg
+setw -g window-status-current-format ' #I #W '
+setw -g window-status-format ' #I #T '
+setw -g window-status-current-style bg=$active_window_bg
+
+# Notification
+setw -g monitor-activity on
+set -g visual-activity on
+set-option -g bell-action any
+set-option -g visual-bell off
+
+# Automatically set window titles
+set-option -g set-titles on
+set-option -g set-titles-string '#h (Tmux)'
 
 # Plugins
-set -g @plugin 'nhdaly/tmux-better-mouse-mode'
-set -g @plugin 'tmux-plugins/tmux-yank'
-set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'tmux-plugins/tmux-copycat'
-set -g @plugin 'tmux-plugins/tmux-pain-control'
-set -g @plugin 'tmux-plugins/tmux-logging'
-set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
+#set -g @plugin 'nhdaly/tmux-better-mouse-mode'
+#set -g @plugin 'tmux-plugins/tmux-yank'
+#set -g @plugin 'tmux-plugins/tmux-sensible'
+#set -g @plugin 'tmux-plugins/tmux-copycat'
+#set -g @plugin 'tmux-plugins/tmux-pain-control'
+#set -g @plugin 'tmux-plugins/tmux-logging'
+#set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
 
 # Plugin Specific Options
-set -g status-right '#{prefix_highlight} | %a %Y-%m-%d %H:%M'
+#set -g status-right '#{prefix_highlight} | %a %Y-%m-%d %H:%M'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run -b '~/.tmux/plugins/tpm/tpm'
+#run -b '~/.tmux/plugins/tpm/tpm'
 

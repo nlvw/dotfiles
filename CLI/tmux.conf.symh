@@ -69,8 +69,8 @@ bar_fg=colour255
 #
 set -g status-style bg=$bar_bg
 setw -g window-status-style fg=$bar_fg
-setw -g window-status-current-format ' #I #W '
-setw -g window-status-format ' #I #T '
+setw -g window-status-current-format ' #I.#W '
+setw -g window-status-format ' #I.#W '
 setw -g window-status-current-style bg=$active_window_bg
 
 # Notification
@@ -79,7 +79,7 @@ set -g visual-activity on
 set-option -g bell-action any
 set-option -g visual-bell off
 
-# Automatically set window titles
+# Names and Titles
 set-option -g set-titles on
 set-option -g set-titles-string '#h (Tmux)'
 

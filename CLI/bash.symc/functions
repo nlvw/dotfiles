@@ -119,3 +119,38 @@ start_agent() {
 	ssh-add -l > /dev/null
 }
 
+# Set tmux window title on ssh
+tmux_ssh(){
+
+	# Determine Desired Window Name
+	local hname="$(echo "$*" | sed 's/^ssh //' | sed 's/-\w*//g' | sed 's/^ //g' | awk '{print $1}' | sed 's/^.*@//')"
+	local uname="$(echo "$*" | sed 's/^ssh //' | sed 's/-\w*//g' | sed 's/^ //g' | awk '{print $1}' | sed 's/@.*//')"
+	if [ "$uname" == "pkgmgr" ]; then
+		local name="$uname"
+	else
+		local name="$hname"
+	fi
+
+	# Get Current tmux Window Name
+	wid="$(tmux list-windows| awk -F : '/\(active\)$/{print $1}')"
+
+	# Use current window to change back the setting. If not it will be applied to the active window
+	trap 'tmux set-window-option -t "$wid" automatic-rename on 1>/dev/null' RETURN
+
+	# Rename tmux Window
+	tmux rename-window "$name"
+
+	# Call SSH
+	command "$@"
+
+}
+
+# Intercept 'ssh' and handle tmux window title
+ssh() {
+	if [ -n "$TMUX" ]; then
+		tmux_ssh ssh "$@"
+	else
+		command ssh "$@"
+	fi
+}
+

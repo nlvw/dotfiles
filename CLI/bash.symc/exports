@@ -1,13 +1,26 @@
 #!/usr/bin/env bash
 
+# fix manpath if needed
+if [ -z "$MANPATH" ]; then
+	export MANPATH="$(manpath)"
+fi
+
 # .local paths
 if [ -d "$HOME/.local/bin" ]; then
-	PATH+=":$HOME/.local/bin"
+	export PATH="$HOME/.local/bin:$PATH"
 fi
 
 # Doom Emacs
 if [ -f "$HOME/.emacs.d/bin/doom" ]; then
-	PATH+=":$HOME/.emacs.d/bin"
+	export PATH="$HOME/.emacs.d/bin:$PATH"
+fi
+
+# NPM Directory
+if [ -d "$HOME/.local/npm-packages/bin" ]; then
+	export NPM_PACKAGES="$HOME/.local/npm-packages"
+	export PATH="$NPM_PACKAGES/bin:$PATH"
+	export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
+	export NODE_PATH="$NPM_PACKAGES:$NODE_PATH"
 fi
 
 # XDG Home
@@ -22,11 +35,11 @@ if [ -z "$XDG_RUNTIME_DIR" ]; then
 	export XDG_RUNTIME_DIR="/tmp/run-$EUID"
 fi
 
-# Make vim the default editor.
-export EDITOR='vim -u ~/.config/vim/vimrc.vim ';
+# Make emacs the default editor.
+export EDITOR='emacs -nw ';
 
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
-#export PYTHONIOENCODING='UTF-8';
+export PYTHONIOENCODING='UTF-8';
 
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 export HISTSIZE='32768';
@@ -43,8 +56,4 @@ export LESS_TERMCAP_md="${yellow}";
 
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
-
-# Avoid issues with `gpg` as installed via Homebrew.
-# https://stackoverflow.com/a/42265848/96656
-#export GPG_TTY=$(tty);
 

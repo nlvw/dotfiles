@@ -58,8 +58,7 @@ else
 fi;
 
 # Set the terminal title and prompt.
-PS1+="\[${bold}\]\n"; # newline
-PS1+="\[${hostStyle}\][\h]"; # host
+PS1="\[${bold}\]\[${hostStyle}\][\h]"; # host
 PS1+="\[${userStyle}\][\u]"; # username
 PS1+="\[${cyan}\][\w]"; # working directory full path (W for short path)
 PS1+="\n";

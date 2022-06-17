@@ -123,8 +123,11 @@ start_agent() {
 tmux_ssh(){
 
 	# Determine Desired Window Name
-	local hname="$(echo "$*" | sed 's/^ssh //' | sed 's/-\w*//g' | sed 's/^ //g' | awk '{print $1}' | sed 's/^.*@//')"
-	local uname="$(echo "$*" | sed 's/^ssh //' | sed 's/-\w*//g' | sed 's/^ //g' | awk '{print $1}' | sed 's/@.*//')"
+	local orig_cmd="$*"
+	local ssh_info_cmd="${orig_cmd/ssh/$(which --skip-alias --skip-functions ssh) -G}"
+	local ssh_info="$(eval "$ssh_info_cmd")"
+	local hname="$(grep '^hostname' <<< "$ssh_info" | awk '{print $2}' | awk -F'.' '{print $1}')"
+	local uname="$(grep '^user' <<< "$ssh_info" | awk '{print $2}')"
 	if [ "$uname" == "pkgmgr" ]; then
 		local name="$uname"
 	else

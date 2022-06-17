@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# User Bin
+if [ -d "$HOME/bin" ]; then
+	PATH+=":$HOME/bin"
+fi
+
 # .local paths
 if [ -d "$HOME/.local/bin" ]; then
 	PATH+=":$HOME/.local/bin"

@@ -59,7 +59,7 @@ gitinfo() {
 	fi
 
 	pause
-} 
+}
 
 sshinit() {
 	if [ ! -f ~/.ssh/config ]; then
@@ -74,6 +74,17 @@ sshinit() {
 	fi
 
 	pause
+}
+
+npminit(){
+	mkdir -p "$HOME/.local/npm-packages"
+	source "$HOME/.bashrc"
+	npm -g install @antora/cli @antora/site-generator-default antora-lunr antora-site-generator-lunr asciidoctor bash-language-server
+}
+
+npmupdate(){
+	source "$HOME/.bashrc"
+	npm -g update
 }
 
 vimplug() {
@@ -99,32 +110,32 @@ doomsetup() {
 nixsetup() {
 	if [ ! -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
 		echo "Installing Nix Package Manager!"
-		
+
 		if grep -q Microsoft /proc/version; then
   			echo "Ubuntu on Windows"
-			sudo mkdir /etc/nix; 
+			sudo mkdir /etc/nix;
 			echo 'use-sqlite-wal = false' > /etc/nix/nix.conf
 			echo 'sandbox = false' >> /etc/nix/nix.conf
 		fi
-		
+
 		curl https://nixos.org/nix/install | sh
-		source "$HOME/.nix-profile/etc/profile.d/nix.sh" 
+		source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 		echo "Installation Finished!!"
 	fi
 
 	pause
 }
- 
+
 nixbasics() {
 	nixsetup
-	
+
 	echo "Installing Basic Apps/Fonts Using Nix! This May Take Some Time!!"
 
 	# Install Nix Packages
-	nix-env -i vim neovim emacs ranger tmux git fzf ripgrep ripgrep-all fd pandoc roboto roboto-mono roboto-slab source-code-pro 
+	nix-env -i vim neovim emacs ranger tmux git fzf ripgrep ripgrep-all fd pandoc roboto roboto-mono roboto-slab source-code-pro
 	nix-env -iA nixpkgs.glibcLocales nixpkgs.shellcheck
-	
+
 	# Link Nix Fonts
 	mkdir -p ~/.local/share/fonts
 	ln -sf "$HOME/.nix-profile/share/fonts" ~/.local/share/fonts/nix_fonts
@@ -136,7 +147,7 @@ nixbasics() {
 
 nixupdate() {
 	nixsetup
-	
+
 	echo "Updating Apps/Fonts Installed By Nix! This May Take Some Time!!"
 
 	# Update Nix Environment
@@ -150,7 +161,7 @@ nixupdate() {
 # function to display menus
 show_menus() {
 	clear
-	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"	
+	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 	echo " B O O T S T R A P - M E N U"
 	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 	echo "1. Link/Relink CLI Config Files"
@@ -185,12 +196,12 @@ read_options(){
 		*) echo -e "${RED}Error...${STD}" && sleep 2
 			esac
 }
- 
+
 # ----------------------------------------------
 # Trap CTRL+C, CTRL+Z and quit singles
 # ----------------------------------------------
 trap '' SIGINT SIGQUIT SIGTSTP
- 
+
 # -----------------------------------
 # Main logic - infinite loop
 # ------------------------------------

@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
+# Run bash_logout on disconnect
+exit_session() {
+	source "$HOME/.bash_logout"
+}
+trap exit_session SIGHUP
+
 # Load the shell dotfiles, and then some:
 for file in ~/.config/bash/{aliases,exports,functions,prompt}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
+	[ -r "$file" ] && [ -f "$file" ] && source "$file"
+done
+unset file
 
 # if nix env exits source it
 if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
@@ -22,48 +28,47 @@ fi
 # Enable bash vi mode
 #set -o vi
 
-# Automate ssh-agent startup
-#[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" &>/dev/null
-
 # Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob;
+shopt -s nocaseglob
 
 # Append to the Bash history file, rather than overwriting it
-shopt -s histappend;
+shopt -s histappend
 
 # Autocorrect typos in path names when using `cd`
-shopt -s cdspell;
+shopt -s cdspell
 
 # Enable some Bash 4 features when possible:
 # * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
 # * Recursive globbing, e.g. `echo **/*.txt`
 for option in autocd globstar; do
-	shopt -s "$option" 2> /dev/null;
-done;
+	shopt -s "$option" 2>/dev/null
+done
 
 # Add tab completion for many Bash commands
 if [ -f /etc/bash_completion ]; then
 	source /etc/bash_completion
-fi;
+fi
 
 # Enable tab completion for `g` by marking it as an alias for `git`
-if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-	complete -o default -o nospace -F _git g;
-fi;
+if type _git &>/dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+	complete -o default -o nospace -F _git g
+fi
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
 
 # Handle SSH Agent Sock For TMUX
-#if [ -z ${TMUX+x} ]; then
-#	# Not in a TMUX session
-#	if [ ! -S ~/.ssh/ssh_auth_sock ] && [ -S "$SSH_AUTH_SOCK" ]; then
-#		ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
-#	fi
-#else
-#	# In TMUX session
-#	export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-#fi
+# Automate ssh-agent startup
+SSH_AUTH_CONST_SOCK="$HOME/.ssh/ssh-agent.sock"
+if [ "$(pidof ssh-agent | wc -w)" -ne "1" ] || [ ! -e "${SSH_AUTH_CONST_SOCK}" ]; then
+	pkill -9 ssh-agent
+	rm -rf "${SSH_AUTH_CONST_SOCK}"
+	ssh-agent -s -t 9h -a "${SSH_AUTH_CONST_SOCK}" 1>/dev/null
+fi
+SSH_AUTH_SOCK="${SSH_AUTH_CONST_SOCK}"
+SSH_AGENT_PID="$(pidof ssh-agent)"
+export SSH_AUTH_SOCK SSH_AGENT_PID
+unset SSH_AUTH_CONST_SOCK
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
@@ -76,7 +81,7 @@ fi
 
 # Load Dropin Files
 if [ -d "$HOME/.bash.d" ]; then
-	for file in "$HOME/.bash.d/"* ; do
+	for file in "$HOME/.bash.d/"*; do
 		if [[ $file == *.sh ]]; then
 			source "$file"
 		fi
@@ -85,4 +90,3 @@ else
 	mkdir -p "$HOME/.bash.d"
 	chmod 700 "$HOME/.bash.d"
 fi
-

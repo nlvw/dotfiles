@@ -62,3 +62,4 @@ alias path='echo -e ${PATH//:/\\n}'
 
 # OpenSuse Tumbleweed Easy Update
 alias dup='sudo zypper ref && sudo zypper dup --auto-agree-with-licenses && flatpak update --user'
+

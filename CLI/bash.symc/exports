@@ -14,6 +14,9 @@ fi
 if [ -d "$HOME/.local/bin" ]; then
 	export PATH="$HOME/.local/bin:$PATH"
 fi
+if [ -d "$HOME/.local/bin/flatpak" ]; then
+	export PATH="$HOME/.local/bin/flatpak:$PATH"
+fi
 
 # Doom Emacs
 if [ -f "$HOME/.emacs.d/bin/doom" ]; then

@@ -57,19 +57,6 @@ fi
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
 
-# Handle SSH Agent Sock For TMUX
-# Automate ssh-agent startup
-SSH_AUTH_CONST_SOCK="$HOME/.ssh/ssh-agent.sock"
-if [ "$(pidof ssh-agent | wc -w)" -ne "1" ] || [ ! -e "${SSH_AUTH_CONST_SOCK}" ]; then
-	pkill -9 ssh-agent
-	rm -rf "${SSH_AUTH_CONST_SOCK}"
-	ssh-agent -s -t 9h -a "${SSH_AUTH_CONST_SOCK}" 1>/dev/null
-fi
-SSH_AUTH_SOCK="${SSH_AUTH_CONST_SOCK}"
-SSH_AGENT_PID="$(pidof ssh-agent)"
-export SSH_AUTH_SOCK SSH_AGENT_PID
-unset SSH_AUTH_CONST_SOCK
-
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
 #complete -W "NSGlobalDomain" defaults;

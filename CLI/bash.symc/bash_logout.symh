@@ -1,7 +1,2 @@
 #!/usr/bin/env bash
 
-if command -v ss &>/dev/null && command -v pidof &>/dev/null ; then
-	if [ "$(ss -a | grep ssh | grep ESTAB | wc -l)" -lt '1' ] && [ "$(pidof ssh-agent | wc -w)" -gt '0' ]; then
-		ssh-agent -D
-	fi
-fi

@@ -1,0 +1,55 @@
+//
+
+themes {
+  dracula {
+    fg 248 248 242
+    bg 40 42 54
+    red 255 85 85
+    green 80 250 123
+    yellow 241 250 140
+    blue 98 114 164
+    magenta 255 121 198
+    orange 255 184 108
+    cyan 139 233 253
+    black 0 0 0
+    white 255 255 255
+  }
+}
+
+// default_mode "locked"
+// scrollback_editor "/usr/bin/vim"
+//default_layout "compact"
+auto_layout true
+copy_on_select true
+disable_session_metadata false
+mirror_session true
+mouse_mode true
+on_force_close "detach"
+pane_frames true
+scroll_buffer_size 10000
+scrollback_lines_to_serialize 10000
+serialize_pane_viewport true
+session_serialization true
+simplified_ui true
+styled_underlines true
+theme "dracula"
+
+// Provide a command to execute when copying text. The text will be piped to
+// the stdin of the program to perform the copy. This can be used with
+// terminal emulators which do not support the OSC 52 ANSI control sequence
+// that will be used by default if this option is not set.
+// Examples:
+//
+// copy_command "xclip -selection clipboard" // x11
+// copy_command "wl-copy"                    // wayland
+// copy_command "pbcopy"                     // osx
+
+// Choose the destination for copied text
+// Allows using the primary selection buffer (on x11/wayland) instead of the system clipboard.
+// Does not apply when using copy_command.
+// Options:
+//   - system (default)
+//   - primary
+//
+copy_clipboard "system"
+

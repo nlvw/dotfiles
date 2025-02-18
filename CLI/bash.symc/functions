@@ -147,3 +147,55 @@ ssh() {
 	fi
 }
 
+ensure_keyctl_session() {
+	if ! command -v keyctl &>/dev/null; then
+		echo "'keyctl' is not in '$PATH'. Stopping!!" 1>&2
+		return 1
+	fi
+
+	if ! keyctl list @s &>/dev/null; then
+		keyctl new_session
+	fi
+}
+
+# Intercept 'govc' and handle password
+govc() {
+	# Check for govc
+	if ! command -v govc &>/dev/null; then
+		echo "'govc' is not in ${PATH}. Stopping!!" 1>&2
+		return 1
+	fi
+
+	# Handle URL
+	if [ -z "$GOVC_URL" ]; then
+		read -rp "VMware URL: " GOVC_URL
+		export GOVC_URL
+	fi
+
+	# Handle User Name
+	if [ -z "$GOVC_USERNAME" ]; then
+		read -rp "VMware Username: " GOVC_USERNAME
+		export GOVC_USERNAME
+	fi
+
+	# Handle Password
+	if [ -z "$GOVC_PASSWORD" ]; then
+		ensure_keyctl_session >/dev/null || return 2
+		if keyctl search @s user "GOVC_PASSWORD" &>/dev/null; then
+			keyid="$(keyctl search @s user "GOVC_PASSWORD")"
+			GOVC_PASSWORD="$(keyctl print "$keyid")"
+		else
+			read -rsp "VMware Password ($GOVC_USERNAME): " GOVC_PASSWORD
+			echo ""
+			keyid="$(keyctl add user "GOVC_PASSWORD" "$GOVC_PASSWORD" @s)"
+			keyctl timeout "$keyid" 1200
+		fi
+		export GOVC_PASSWORD
+	fi
+
+	command govc "$@" || unset GOVC_PASSWORD
+
+	# Cleanup Password
+	unset GOVC_PASSWORD
+}
+

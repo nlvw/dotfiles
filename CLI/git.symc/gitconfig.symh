@@ -183,3 +183,6 @@
 [fetch]
 	prune = false
 
+[user]
+	name = Nicholas Von Wolff
+	email = nvonwolf@nmsu.edu

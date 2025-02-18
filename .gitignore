@@ -1,5 +1,5 @@
 ################
-# Excluded 
+# Excluded
 ################
 
 # Git
@@ -15,6 +15,9 @@ CLI/vim.symc/plugged/*
 CLI/vim.symc/swaps/*
 CLI/vim.symc/undo/*
 
+# Tmux
+CLI/tmux.symc/plugins/*
+
 # VSCode Trash
 .vscode
 
@@ -27,3 +30,7 @@ CLI/vim.symc/undo/*
 !CLI/vim.symc/plugged/.gitkeep
 !CLI/vim.symc/swaps/.gitkeep
 !CLI/vim.symc/undo/.gitkeep
+
+# Tmux
+!CLI/tmux.symc/plugins/.gitkeep
+

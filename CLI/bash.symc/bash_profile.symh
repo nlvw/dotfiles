@@ -6,25 +6,6 @@ exit_session() {
 }
 trap exit_session SIGHUP
 
-# Load the shell dotfiles, and then some:
-for file in ~/.config/bash/{aliases,exports,functions,prompt}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file"
-done
-unset file
-
-# if nix env exits source it
-if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
-	source "$HOME/.nix-profile/etc/profile.d/nix.sh"
-	export LOCALE_ARCHIVE_2_11="$(nix-build --no-out-link "<nixpkgs>" -A glibcLocales)/lib/locale/locale-archive"
-	export LOCALE_ARCHIVE_2_27="$(nix-build --no-out-link "<nixpkgs>" -A glibcLocales)/lib/locale/locale-archive"
-	export LOCALE_ARCHIVE="/usr/bin/locale"
-fi
-
-# Load Bash Completions
-if [ -e ~/.config/alacritty/alacritty-completions.bash ]; then
-	source ~/.config/alacritty/alacritty-completions.bash
-fi
-
 # Enable bash vi mode
 #set -o vi
 
@@ -66,14 +47,15 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 	debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# Load Dropin Files
-if [ -d "$HOME/.bash.d" ]; then
-	for file in "$HOME/.bash.d/"*; do
-		if [[ $file == *.sh ]]; then
-			source "$file"
-		fi
-	done
-else
-	mkdir -p "$HOME/.bash.d"
-	chmod 700 "$HOME/.bash.d"
-fi
+# Load Git Controlled Dropin Files
+for file in ~/.config/bash/config.d/*; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file"
+done
+unset file
+
+# Load Host Local Dropin Files
+for file in ~/.config/bash/local.d/*; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file"
+done
+unset file
+

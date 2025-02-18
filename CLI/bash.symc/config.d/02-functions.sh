@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+# Add to PATH if not in PATH
+function pathadd() {
+	if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+		if [ "$2" == "prepend" ]; then
+			PATH="$1${PATH:+":$PATH"}"
+		else
+			PATH="${PATH:+"$PATH:"}$1"
+		fi
+	fi
+}
+
 # Create a new directory and enter it
 function mkd() {
 	mkdir -p "$@" && cd "$_" || exit
@@ -157,6 +168,17 @@ ensure_keyctl_session() {
 		keyctl new_session
 	fi
 }
+
+# Lmod Setup
+os_ver="$(grep -i '^VERSION_ID' /etc/os-release | awk -F'=' '{print $2}' | sed 's/"//g' | tr '[:upper:]' '[:lower:]')"
+os_name="$(grep -i '^NAME' /etc/os-release | awk -F'=' '{print $2}' | sed 's/"//g' | sed 's/ /_/g' | tr '[:upper:]' '[:lower:]')"
+sstack_stack_name="${os_name}-${os_ver}"
+if [[ $(type -t module) == function ]] && [ -d "$HOME/sstack/$sstack_stack_name/modules" ]; then
+        module use "$HOME/sstack/$sstack_stack_name/modules"
+fi
+unset os_ver
+unset os_name
+unset sstack_stack_name
 
 # Intercept 'govc' and handle password
 govc() {

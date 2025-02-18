@@ -2,6 +2,9 @@
 # Excluded
 ################
 
+# Bash
+CLI/bash.symc/local.d/*
+
 # Git
 CLI/git.symc/userinfo
 
@@ -24,6 +27,9 @@ CLI/tmux.symc/plugins/*
 ################
 # Exceptions
 ################
+
+# Bash
+!CLI/bash.symc/local.d/.gitkeep
 
 # Vim
 !CLI/vim.symc/backups/.gitkeep

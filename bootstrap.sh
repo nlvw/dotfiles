@@ -93,9 +93,9 @@ ensure_pixi() {
 	# Ensure Pixi Is Installed/Setup
 	if ! which --skip-alias --skip-functions pixi &>/dev/null; then
 		mkdir -p ~/.pixi/bin
-		curl -fsSL https://pixi.sh/install.sh | PIXI_HOME="$HOME/.local/bin" PIXI_NO_PATH_UPDATE="true" bash
+		curl -fsSL https://pixi.sh/install.sh | PIXI_HOME="$HOME/.pixi" PIXI_NO_PATH_UPDATE="true" bash
 	fi
-	PATH="$HOME/.pixi/bin:$PATH"
+	export PATH="$HOME/.pixi/bin:$PATH"
 }
 
 toolsetup() {

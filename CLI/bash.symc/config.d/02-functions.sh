@@ -158,7 +158,7 @@ tmux_ssh(){
 # Set zellij window title on ssh
 zellij_ssh(){
 	# Rename Tab
-	zellij action rename-tab "{$(tabname_ssh "$@")}"
+	zellij action rename-tab "SSH:$(tabname_ssh "$@")"
 
 	# Call SSH
 	command "$@"

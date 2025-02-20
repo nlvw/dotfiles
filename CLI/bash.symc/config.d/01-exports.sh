@@ -15,17 +15,17 @@ if [ -d "$HOME/.local/bin" ]; then
 	export PATH="$HOME/.local/bin:$PATH"
 fi
 
+# Pixi Global Exports
+if [ -d "$HOME/.pixi/bin" ]; then
+	export PATH="$HOME/.pixi/bin:$PATH"
+fi
+
 # flatpak paths
 if [ -d "$HOME/.local/bin/flatpak" ]; then
 	export PATH="$HOME/.local/bin/flatpak:$PATH"
 fi
 if [ -n "$CONTAINER_ID" ]; then
 	export PATH="$(echo "$PATH" | sed "s|$HOME/\.local/bin/flatpak||g")"
-fi
-
-# Doom Emacs
-if [ -f "$HOME/.emacs.d/bin/doom" ]; then
-	export PATH="$HOME/.emacs.d/bin:$PATH"
 fi
 
 # NPM Directory
@@ -48,8 +48,14 @@ if [ -z "$XDG_RUNTIME_DIR" ]; then
 	export XDG_RUNTIME_DIR="/tmp/run-$EUID"
 fi
 
-# Make emacs the default editor.
-export EDITOR='emacs -nw ';
+# Set Default Editor
+if command -v nvim &>/dev/null; then
+	export EDITOR='nvim '
+elif command -v vim &>/dev/null; then
+	export EDITOR='vim '
+else
+	export EDITOR='vi '
+fi
 
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
@@ -69,3 +75,4 @@ export LESS_TERMCAP_md="${yellow}";
 
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
+

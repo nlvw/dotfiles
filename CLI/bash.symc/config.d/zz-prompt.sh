@@ -42,3 +42,10 @@ export PS1
 PS2="${_purple}> ${_reset}"
 export PS2
 
+# Set Prompt Command
+if [ -n "$ZELLIJ" ]; then
+	PROMPT_COMMAND='history -a; [ -n "$ZELLIJ" ] && zellij action rename-tab "[$(pwd | sed "s;$HOME;~;" | xargs basename)]"'
+else
+	PROMPT_COMMAND='history -a'
+fi
+

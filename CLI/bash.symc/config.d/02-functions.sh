@@ -120,21 +120,27 @@ man() {
     man "$@"
 }
 
-# Set tmux window title on ssh
-tmux_ssh(){
-
-	# Determine Desired Window Name
+tabname_ssh(){
+	# Extract User and Host from SSH command
 	local orig_cmd="$*"
 	local ssh_info_cmd="${orig_cmd/ssh/$(which --skip-alias --skip-functions ssh) -G}"
 	local ssh_info="$(eval "$ssh_info_cmd")"
 	local hname="$(grep '^hostname' <<< "$ssh_info" | awk '{print $2}' | awk -F'.' '{print $1}')"
-	local uname="$(grep '^user' <<< "$ssh_info" | awk '{print $2}')"
+	local uname="$(grep '^user ' <<< "$ssh_info" | awk '{print $2}')"
+
+	# Determine Desired Tab Name
 	if [ "$uname" == "pkgmgr" ]; then
 		local name="$uname"
 	else
 		local name="$hname"
 	fi
 
+	# Return Name
+	echo "$name"
+}
+
+# Set tmux window title on ssh
+tmux_ssh(){
 	# Get Current tmux Window Name
 	wid="$(tmux list-windows| awk -F : '/\(active\)$/{print $1}')"
 
@@ -142,17 +148,31 @@ tmux_ssh(){
 	trap 'tmux set-window-option -t "$wid" automatic-rename on 1>/dev/null' RETURN
 
 	# Rename tmux Window
-	tmux rename-window "$name"
+	tmux rename-window "$(tabname_ssh "$@")"
 
 	# Call SSH
 	command "$@"
 
 }
 
-# Intercept 'ssh' and handle tmux window title
+# Set zellij window title on ssh
+zellij_ssh(){
+	# Rename Tab
+	zellij action rename-tab "{$(tabname_ssh "$@")}"
+
+	# Call SSH
+	command "$@"
+
+	# Restore Tab Name
+	zellij action undo-rename-tab
+}
+
+# Intercept 'ssh' and handle multiplexer window title
 ssh() {
 	if [ -n "$TMUX" ]; then
 		tmux_ssh ssh "$@"
+	elif [ -n "$ZELLIJ_SESSION_NAME" ]; then
+		zellij_ssh ssh "$@"
 	else
 		command ssh "$@"
 	fi
@@ -219,5 +239,14 @@ govc() {
 
 	# Cleanup Password
 	unset GOVC_PASSWORD
+}
+
+# Zellij Use Default Session
+zellij() {
+	if [ $# -eq 0 ]; then
+		command zellij attach -c default
+	else
+		command zellij "$@"
+	fi
 }
 

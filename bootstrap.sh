@@ -100,7 +100,7 @@ ensure_pixi() {
 
 toolsetup() {
 	ensure_pixi
-	pixi global install nvim
+	pixi global install --environment neovim --expose nvim nvim diffutils git lazygit tar curl gcc fzf ripgrep fd-find
 	pixi global install zellij
 	pixi global install tmux
 	pixi global install htop

@@ -250,3 +250,16 @@ zellij() {
 	fi
 }
 
+# Prompt Function
+custom_prompt() {
+	# Update History File
+	history -a
+
+	# Update Zellij Tab Name
+	if [ -n "$ZELLIJ" ] \
+		&& which --skip-alias --skip-functions zellij &>/dev/null
+	then
+		zellij action rename-tab "$(pwd | sed "s;$HOME;~;" | xargs basename)"
+	fi
+}
+

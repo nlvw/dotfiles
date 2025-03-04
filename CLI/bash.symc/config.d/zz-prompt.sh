@@ -32,20 +32,22 @@ prompt="${_white}\$"
 fi
 
 # Set the terminal title and prompt.
-PS1="${hostStyle}"
-PS1+="${userStyle}[\u]"
-PS1+="${_cyan}[\w]"
-PS1+="\n"
-PS1+="${prompt} ${_reset}"
-export PS1
+if [ -z "$APPTAINER_CONTAINER" ]; then
+	PS1="${hostStyle}"
+	PS1+="${userStyle}[\u]"
+	PS1+="${_cyan}[\w]"
+	PS1+="\n"
+	PS1+="${prompt} ${_reset}"
+	export PS1
 
-PS2="${_purple}> ${_reset}"
-export PS2
+	PS2="${_purple}> ${_reset}"
+	export PS2
+else
+	# Container Override
+	PS1='\[\e[38;5;214m\][Container]\[\e[38;5;28m\][\u]\[\e[38;5;32m\][\w]\n\[\e[0m\]\\$ '
+	PS2='\[\e[38;5;165m\]> \[\e[0m\]'
+fi
 
 # Set Prompt Command
-if [ -n "$ZELLIJ" ]; then
-	PROMPT_COMMAND='history -a; [ -n "$ZELLIJ" ] && zellij action rename-tab "$(pwd | sed "s;$HOME;~;" | xargs basename)"'
-else
-	PROMPT_COMMAND='history -a'
-fi
+PROMPT_COMMAND='[ "$(type -t custom_prompt)" == "function" ] && custom_prompt'
 

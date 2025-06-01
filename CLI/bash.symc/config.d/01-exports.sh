@@ -20,6 +20,11 @@ if [ -d "$HOME/.pixi/bin" ]; then
 	export PATH="$HOME/.pixi/bin:$PATH"
 fi
 
+# Brew paths
+if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+	export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+fi
+
 # flatpak paths
 if [ -d "$HOME/.local/bin/flatpak" ]; then
 	export PATH="$HOME/.local/bin/flatpak:$PATH"

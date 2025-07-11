@@ -257,6 +257,9 @@ custom_prompt() {
 
 	# Update Zellij Tab Name
 	if [ -n "$ZELLIJ" ] \
+		&& [ -n "$ZELLIJ_SESSION_NAME" ] \
+		&& [ -n "$ZELLIJ_PANE_ID" ] \
+		&& [ -z "$APPTAINER_CONTAINER" ] \
 		&& which --skip-alias --skip-functions zellij &>/dev/null
 	then
 		zellij action rename-tab "$(pwd | sed "s;$HOME;~;" | xargs basename)"

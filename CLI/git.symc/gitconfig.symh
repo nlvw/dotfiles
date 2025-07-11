@@ -186,3 +186,5 @@
 [user]
 	name = Nicholas Von Wolff
 	email = nvonwolf@nmsu.edu
+[init]
+	defaultBranch = main

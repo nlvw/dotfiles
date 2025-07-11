@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-if [[ $(type -t module) == function ]] && which module | grep -iq lmod; then
+if [[ $(type -t module) == function ]] \
+	&& [ -f "/usr/share/lmod/lmod/libexec/lmod" ] \
+	&& which module | grep -iq lmod
+then
 
 	# Custom LMOD Settings
 	export LMOD_PAGER="less"

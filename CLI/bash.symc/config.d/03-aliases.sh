@@ -53,8 +53,8 @@ alias sudo='sudo '
 alias week='date +%V'
 
 # Vim (RTP at ~/.config/vim
-alias vim='vim -u ~/.config/vim/vimrc.vim '
-alias gvim='gvim -v -u ~/.config/vim/vimrc.vim '
+alias vim='vim -u ~/.config/vim/minimal.vim '
+alias gvim='gvim -v -u ~/.config/vim/minimal.vim '
 
 # Trim new lines and copy to clipboard
 #alias c="tr -d '\n' | pbcopy"

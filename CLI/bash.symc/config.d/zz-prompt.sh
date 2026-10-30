@@ -43,7 +43,7 @@ _white="\[$(tput setaf 7 2>/dev/null)\]"
 # Highlight the user name when logged in as root.
 if [ "${EUID:-$(id -u)}" -eq 0 ]; then
 	ps1_apptainer="${_yellow}[Container]${_blue}[\h]"
-	ps1_host="${_blue}[\$(get_prompt_host)]"
+	ps1_host="${_blue}[\h]"
 	ps1_user="${_bold}${_red}[\u]${_reset}"
 	ps1_path="${_cyan}[\w]"
 	ps1_prompt="${_purple}#"
